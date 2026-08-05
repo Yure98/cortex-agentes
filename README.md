@@ -1,8 +1,9 @@
 # 🧠 Cortex — Agentes de IA para Advocacia Previdenciária
 
-Transforme o **Claude** numa equipe previdenciária completa. Quatro agentes especializados
-que redigem petições, analisam CNIS, decidem a melhor aposentadoria e geram recursos ao INSS —
-tudo com jurisprudência real e sem invenção.
+Transforme o **Claude** numa equipe previdenciária completa. Agentes especializados
+que redigem petições, analisam CNIS, decidem a melhor aposentadoria, geram recursos ao INSS
+e cuidam de salário-maternidade e da aposentadoria da pessoa com deficiência, tudo com
+jurisprudência real e sem invenção.
 
 Funciona no **Claude Code** e no **Claude Cowork**.
 
@@ -30,14 +31,14 @@ bash install.sh
 
 ### 3. Reinicie o Claude Code e teste
 ```
-/cnis        /peticionar        /decisor        /recurso
+/cnis   /peticionar   /decisor   /recurso   /raio-x   /pcd   /maternidade
 ```
 
 Pronto. Os agentes estão instalados e prontos para usar. ✅
 
 ---
 
-## 🤖 Os 4 agentes
+## 🤖 Os agentes
 
 | Agente | Comando | O que faz |
 |--------|---------|-----------|
@@ -45,6 +46,9 @@ Pronto. Os agentes estão instalados e prontos para usar. ✅
 | **Analista de CNIS** | `/cnis` | Analisa o CNIS, calcula tempo de contribuição, simula todos os benefícios e monta planejamento previdenciário (8 fases). |
 | **Decisor de Aposentadoria** | `/decisor` | Compara cenários e recomenda a melhor opção com modelagem financeira (ponto de equilíbrio, VPL, antecipar × esperar). |
 | **Recurso INSS** | `/recurso` | Gera recurso administrativo ao CRPS fundamentado a partir da carta de indeferimento. |
+| **Raio-X do CNIS** | `/raio-x` | Triagem rápida de CNIS: tempo aproximado, alertas, pendências, possíveis direitos e veredito. |
+| **Aposentadoria PCD** | `/pcd` | Aposentadoria da pessoa com deficiência (LC 142/2013): atendimento, IF-BrA, grau, perícia e peças. |
+| **Cortex Maternidade** | `/maternidade` | Salário-maternidade de ponta a ponta: triagem, prova, requerimento, recurso ao CRPS e petição no JEF. |
 
 Cada agente também ativa **automaticamente** por contexto — basta mencionar o tema
 (ex: "analisa esse CNIS", "preciso recorrer desse indeferimento").

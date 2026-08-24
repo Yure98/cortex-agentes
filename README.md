@@ -31,7 +31,7 @@ bash install.sh
 
 ### 3. Reinicie o Claude Code e teste
 ```
-/cnis   /peticionar   /decisor   /recurso   /raio-x   /pcd   /maternidade
+/cnis   /peticionar   /decisor   /recurso   /raio-x   /pcd   /maternidade   /pensaopormorte   /auxilioacidente
 ```
 
 Pronto. Os agentes estão instalados e prontos para usar. ✅
@@ -49,6 +49,8 @@ Pronto. Os agentes estão instalados e prontos para usar. ✅
 | **Raio-X do CNIS** | `/raio-x` | Triagem rápida de CNIS: tempo aproximado, alertas, pendências, possíveis direitos e veredito. |
 | **Aposentadoria PCD** | `/pcd` | Aposentadoria da pessoa com deficiência (LC 142/2013): atendimento, IF-BrA, grau, perícia e peças. |
 | **Cortex Maternidade** | `/maternidade` | Salário-maternidade de ponta a ponta: triagem, prova, requerimento, recurso ao CRPS e petição no JEF. |
+| **Pensão por Morte** | `/pensaopormorte` | Pensão por morte urbana e rural: entrevista, Índice de Prontidão, dependência, cálculo de cota e duração, DIB/DER, fase administrativa e recursal. |
+| **Auxílio-Acidente** | `/auxilioacidente` | Auxílio-acidente urbano e rural: nexo técnico (CAT, NTEP, trajeto, doença ocupacional), Índice de Prontidão Probatória, análise documental prévia, cálculo (50% do SB), cumulação, fase administrativa e recursal. |
 
 Cada agente também ativa **automaticamente** por contexto — basta mencionar o tema
 (ex: "analisa esse CNIS", "preciso recorrer desse indeferimento").

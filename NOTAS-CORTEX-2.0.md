@@ -1,10 +1,10 @@
-# Cortex 2.0 — Yure Digital
+# Cortex 2.0.1 — Yure Digital
 
 Pacote proprietário de IA previdenciária para Claude Code: **nove especialistas atualizadas e o coordenador `/prev`**.
 
 ## Instalação e atualização
 
-Baixe `Cortex-2.0.0.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
+Baixe `Cortex-2.0.1.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
 
 - Verifica Python 3.10+ e orienta sobre pré-requisitos.
 - Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.0.
@@ -24,3 +24,7 @@ Dossiê com proveniência e continuidade entre skills, verificação de fontes, 
 **Cortex 2.0 é propriedade intelectual da Yure Digital. Uso exclusivo de clientes autorizados. Compartilhamento, redistribuição e revenda sem autorização prévia e expressa são proibidos.** Materiais de terceiros preservam seus direitos. Consulte LICENSE.
 
 A licença não é um bloqueio técnico de cópia. Conteúdo público permanece acessível. Não há garantia de infalibilidade jurídica ou de anonimização integral do acervo histórico. Itens normativos não confirmados permanecem sinalizados. Integrações com Cowork, Drive e NotebookLM, bem como a interface Windows, ainda exigem validação em ambiente real; os testes automatizados exercitam o motor de instalação e as regressões em Linux.
+
+## Correção 2.0.1
+
+Tratamento de arquivos somente leitura do Git na instalação anterior (WinError 5), sem alterar permissões ACL ou forçar liberação de arquivos em uso. O instalador informa o backup antes de substituir, restaura somente destinos afetados e explica quando a recuperação não pôde terminar. Abertura dentro do ZIP agora mostra instruções de extração. Feche Claude e editores durante a atualização; backups de tentativas anteriores são preservados.

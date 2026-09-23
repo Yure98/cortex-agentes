@@ -3,6 +3,8 @@
 import argparse
 import json
 import shutil
+import os
+import stat
 import sys
 import tempfile
 import uuid
@@ -18,11 +20,26 @@ def entries():
                   + [p.relative_to(ROOT) for p in (ROOT / 'commands').glob('*.md')])
 
 
+def retry_readonly(func, path, exc_info):
+    """Retry only a read-only PermissionError; never change ACLs or bypass file locks."""
+    error = exc_info[1]
+    if not isinstance(error, PermissionError) or Path(path).is_symlink():
+        raise error
+    mode = os.stat(path).st_mode
+    if mode & stat.S_IWUSR:
+        raise error
+    os.chmod(path, mode | stat.S_IWUSR)
+    func(path)
+
+
 def remove(path):
     if path.is_symlink() or path.is_file():
-        path.unlink()
+        try:
+            path.unlink()
+        except PermissionError:
+            retry_readonly(os.unlink, str(path), sys.exc_info())
     elif path.exists():
-        shutil.rmtree(path)
+        shutil.rmtree(path, onerror=retry_readonly)
 
 
 def copy(src, dst):
@@ -42,7 +59,7 @@ def safe_target(dest, rel):
     return target
 
 
-def restore(dest, backup):
+def restore(dest, backup, changed=None):
     manifest = json.loads((backup / 'manifest.json').read_text(encoding='utf-8'))
     if manifest['destino'] != str(dest.resolve()):
         raise ValueError('backup pertence a outro destino')
@@ -52,6 +69,8 @@ def restore(dest, backup):
         if item['existia'] and not (backup / 'anterior' / rel).exists():
             raise ValueError('backup incompleto: ' + str(rel))
     for item in manifest['arquivos']:
+        if changed is not None and Path(item['path']) not in changed:
+            continue
         rel = Path(item['path']); target = safe_target(dest, rel)
         remove(target)
         if item['existia']:
@@ -93,14 +112,26 @@ def _install(dest):
             if exists:
                 copy(dest / rel, backup / 'anterior' / rel)
         (backup / 'manifest.json').write_text(json.dumps(manifest, indent=2), encoding='utf-8')
+        print('Backup pronto: ' + str(backup))
+        changed = []
         try:
             for rel in paths:
                 target = safe_target(dest, rel)
+                changed.append(rel)
                 remove(target)
                 copy(stage / rel, target)
-        except Exception:
-            restore(dest, backup)
-            raise
+        except Exception as error:
+            try:
+                restore(dest, backup, changed=changed)
+            except Exception as recovery_error:
+                raise OSError(
+                    'Falha ao atualizar: ' + str(error) +
+                    '\nRestauracao incompleta: ' + str(recovery_error) +
+                    '\nBackup preservado em ' + str(backup) +
+                    '\nFeche Claude/editores que estejam usando estas pastas. Nao apague o backup.'
+                ) from error
+            raise OSError('Atualizacao interrompida; arquivos afetados restaurados. Backup: '
+                          + str(backup) + '\nCausa: ' + str(error)) from error
     return backup
 
 

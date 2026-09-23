@@ -128,7 +128,7 @@ class InstallTests(unittest.TestCase):
             original=ins.copy;failed=False
             def fail_once(src,dst):
                 nonlocal failed
-                if not failed and str(src).startswith('/tmp/cortex-stage-') and dst==dest/'skills/auxilio-acidente':
+                if not failed and any(part.startswith('cortex-stage-') for part in src.parts) and dst==dest/'skills/auxilio-acidente':
                     failed=True;raise OSError('falha simulada')
                 return original(src,dst)
             with patch.object(ins,'copy',side_effect=fail_once):
@@ -175,3 +175,34 @@ class UpdatePackageTests(unittest.TestCase):
             dest=Path(temp);(dest/'.cortex-install.lock').write_text('ocupado')
             with self.assertRaises(ValueError):ins.install(dest)
             self.assertFalse((dest/'skills').exists())
+
+class ReadOnlyUpdateTests(unittest.TestCase):
+    def test_retry_readonly_git_object(self):
+        import os
+        import stat
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'object';path.write_text('git object')
+            path.chmod(stat.S_IREAD)
+            error=PermissionError(13,'access denied',str(path))
+            ins.retry_readonly(os.unlink,str(path),(PermissionError,error,None))
+            self.assertFalse(path.exists())
+    def test_writable_permission_denial_not_bypassed(self):
+        from unittest.mock import Mock
+        with tempfile.TemporaryDirectory() as temp:
+            path=Path(temp)/'locked';path.write_text('locked')
+            retry=Mock();error=PermissionError(13,'locked',str(path))
+            with self.assertRaises(PermissionError):
+                ins.retry_readonly(retry,str(path),(PermissionError,error,None))
+            retry.assert_not_called();self.assertTrue(path.exists())
+    def test_upgrade_old_skill_with_readonly_git_objects(self):
+        import stat
+        with tempfile.TemporaryDirectory() as temp:
+            dest=Path(temp)/'claude'
+            obj=dest/'skills/aposentadoria-pcd/.git/objects/11/object'
+            obj.parent.mkdir(parents=True);obj.write_text('original');obj.chmod(stat.S_IREAD)
+            backup=ins.install(dest)
+            self.assertFalse(obj.exists())
+            saved=backup/'anterior/skills/aposentadoria-pcd/.git/objects/11/object'
+            self.assertEqual(saved.read_text(),'original')
+            ins.restore(dest,backup)
+            self.assertEqual(obj.read_text(),'original')

@@ -19,7 +19,7 @@
 
 Regra de ouro: **grau menor exige mais tempo de contribuição.** Por isso a definição do grau é o coração da estratégia — mais prova de limitação = grau mais grave = menos tempo exigido = maior chance de benefício.
 
-Carência: 180 contribuições. Cálculo: **100% da média** (não incide o coeficiente 60%+2% da EC 103/19).
+Carência: 180 contribuições. Cálculo: **100% do salário de benefício por tempo; por idade, 70% + 1% por grupo de 12 contribuições, limitado a 100% (LC 142, art. 8º)** (não incide o coeficiente 60%+2% da EC 103/19).
 
 ---
 
@@ -97,11 +97,7 @@ Não faz, ou terceiros fazem por você.
 
 ## 5. Modelo Fuzzy (situações emblemáticas que podem reduzir a pontuação final)
 
-Analisar especialmente em casos graves com dependência relevante. Verificar, por tipo de deficiência:
-- **Auditiva:** pontuação 25/50 em Comunicação ou Socialização; surdez antes dos 6 anos; ausência de auxílio de terceiros sempre que necessário.
-- **Intelectual/mental:** pontuação 25/50 em Vida Doméstica ou Socialização; não pode ficar sozinho em segurança; ausência de auxílio de terceiros sempre que necessário.
-- **Motora:** pontuação 25/50 em Mobilidade ou Cuidados Pessoais; desloca-se exclusivamente em cadeira de rodas; ausência de auxílio de terceiros sempre que necessário.
-- **Visual:** pontuação 25/50 em Mobilidade ou Vida Doméstica; já não enxergava ao nascer; ausência de auxílio de terceiros sempre que necessário.
+Não aplicar este ajuste por resumo ou intuição. Recuperar o formulário integral vigente e verificar cada condição por tipo de deficiência e por avaliador. Em especial, a condição de 75 pontos em todas as atividades pertinentes não equivale a uma única atividade com 75. As condições emblemáticas e de disponibilidade de ajuda devem ser registradas separadamente. Sem os dois formulários completos e a fonte normativa, não emitir total ajustado nem grau definitivo.
 
 ---
 

@@ -13,8 +13,12 @@ description: >
   contestação", petição de aposentadoria, petição de BPC, petição de auxílio-doença,
   petição de pensão por morte, petição de salário-maternidade. Essencial para
   advogados previdenciários — nunca ignore em contexto de redação de peças.
-license: Proprietário — Cortex / Vértika
+license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Estagiário 2.0 — Coordenador de Petições Previdenciárias
 
@@ -23,7 +27,7 @@ entrega uma petição completa, no estilo exato do advogado, fundamentada e pron
 
 Responda sempre em português. Seja direto e profissional.
 
-> **Compatibilidade:** Esta skill roda em **Claude Code** e **Claude Cowork**. Os
+> **Ambiente-alvo:** Claude Code. Cowork e integrações externas exigem validação própria. Os
 > sub-agentes ficam na pasta `agents/` ao lado deste arquivo. Sempre use caminhos
 > relativos a esta skill para localizá-los.
 
@@ -34,7 +38,7 @@ Responda sempre em português. Seja direto e profissional.
 Quando o usuário digitar `/peticionar`, `/peticao` ou `/estagiario` (com ou sem
 argumentos), **inicie este fluxo imediatamente**, sem pedir confirmação para começar.
 Se vier um identificador de cliente após o comando (ex: `/peticionar kemelly`),
-trate-o como `{slug}` na Etapa 0.
+trate-o como `{slug}` na Etapa 0, aceitando somente letras ASCII, números, hífen e sublinhado (1–80 caracteres). Recusar barras, `..` e caminhos absolutos; não interpolar entradas em comandos de shell.
 
 ---
 
@@ -47,7 +51,7 @@ o perfil. Exemplo:
 ```json
 {
   "nome": "Kemelly Romão Advocacia",
-  "oab": "OAB/SE 12345",
+  "oab": "[OAB/UF CONFERIR]",
   "vara_padrao": "JEF Sergipe",
   "notebooklm_url": "https://notebooklm.google.com/notebook/xxxx",
   "cidade": "Aracaju/SE"
@@ -58,7 +62,7 @@ o perfil. Exemplo:
 `guia_de_estilo = null`. Prossiga normalmente.
 
 Se o arquivo não existir, informe:
-`⚠️ Perfil "{slug}" não encontrado. Use /setup-cliente para cadastrar. Prosseguindo sem perfil.`
+`⚠️ Perfil "{slug}" não encontrado. Informe os dados do escritório para criar o perfil local. Prosseguindo sem perfil.`
 
 ---
 
@@ -73,9 +77,9 @@ Pergunte o que faltar antes de prosseguir:
 | **Benefício** | aposentadoria por tempo de contribuição / por invalidez / BPC-LOAS / auxílio-doença / auxílio-acidente / pensão por morte / salário-maternidade / segurado especial |
 | **Fatos** | Narrativa livre do caso |
 | **Pedidos** | O que se requer ao juízo |
-| **Tribunal/Vara** | JEF / TRF5 / TRF4 (default: perfil do cliente ou JEF Sergipe) |
+| **Tribunal/Vara** | JEF / TRF5 / TRF4 (confirmar competência material, territorial e valor; sem comarca padrão) |
 
-Se a entrada for incompleta, liste exatamente o que falta e aguarde.
+Se a entrada for incompleta, entregue o Painel do Caso e pergunte até três lacunas essenciais, aproveitando o que já foi informado.
 
 ---
 
@@ -101,7 +105,7 @@ Armazene como `guia_de_estilo`. Se `config_cliente` for null, pule esta etapa.
 Informe: `🔍 Buscando jurisprudência nos 5 tribunais...`
 
 Spawne o **Agente Pesquisador**: leia `agents/pesquisador.md` e use como prompt.
-Passe: benefício, fatos resumidos (3-5 linhas), tipo de peça, tribunal alvo. Aguarde retorno.
+Passe: benefício, dossiê versionado completo e documentos pertinentes, tipo de peça, tribunal alvo. Aguarde retorno.
 
 ---
 
@@ -132,7 +136,7 @@ Spawne o **Agente Revisor**: leia `agents/revisor.md` e use como prompt.
 Passe: petição redigida + fatos/pedidos originais + ementas selecionadas.
 
 - Se **REPROVADO**: devolva ao Redator com as correções. Máximo 2 ciclos.
-- Se **APROVADO** ou 2º ciclo encerrado: prossiga.
+- Se **APROVADO**: prossiga. Se o 2º ciclo terminar sem aprovação: **BLOQUEADO**. Entregar pendências e, se útil, minuta parcial identificada; não enviar como peça concluída ao agente Documentos.
 
 ---
 

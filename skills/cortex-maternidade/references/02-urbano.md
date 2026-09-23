@@ -122,7 +122,7 @@ na jurisprudência para fins de qualidade de segurada. Distinga sempre: **compet
 
 ## 4. Dossiê documental — trilho U
 
-Checklist operacional em `assets/checklist-documental-urbano.md`.
+Checklist operacional em `assets/checklists-documentais.md`.
 
 **Núcleo (todos):**
 1. RG, CPF, comprovante de residência

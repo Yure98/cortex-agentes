@@ -1,0 +1,13 @@
+{
+  "versao_schema": 1,
+  "caso_id": "caso-exemplo",
+  "revisao_numero": 1,
+  "data_referencia": "2026-09-23",
+  "objetivo": "[CONFERIR]",
+  "fatos": [{"id": "f1", "valor": null, "estado": "desconhecido", "origem": null}],
+  "fontes": [],
+  "calculos": [],
+  "pendencias": [{"descricao": "Definir objetivo e documentos disponíveis", "essencial": true}],
+  "revisao": {"fatos": "pendente", "prova_calculo": "pendente", "contraditorio": "pendente", "final": "pendente"},
+  "historico": []
+}

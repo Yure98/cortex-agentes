@@ -1,21 +1,12 @@
 ---
 name: calculos-previdenciarios
-description: >
-  Analista Previdenciário IA — cálculos e planejamento previdenciário brasileiro.
-  GATILHOS DIRETOS (slash): /cnis, /analista, /previdencia, /aposentadoria — sempre que
-  o usuário digitar qualquer um desses comandos, ative imediatamente esta skill.
-  Use SEMPRE que mencionar: CNIS, INSS, aposentadoria, tempo de contribuição, simulação
-  de benefício, EC 103/2019, BPC/LOAS, auxílio-doença, pensão por morte, aposentadoria
-  especial, fator previdenciário, regra de pontos, pedágio 50%/100%, regra de transição,
-  direito adquirido, auditoria de CNIS, indicadores PEXT/PREC/IREC/IEAN, atividade rural,
-  atividade especial insalubre, PPP, LTCAT, revisão de benefício INSS, correção monetária
-  INPC, tábua de mortalidade IBGE. Acione também quando o advogado disser: "calcular
-  aposentadoria", "meu cliente quer se aposentar", "analisa o CNIS", "simula o benefício",
-  "quanto tempo falta", "qual a melhor regra", "tem direito adquirido?", "quanto vai
-  receber", "upload do CNIS", "anexei o PDF". Essencial para advogados previdenciários —
-  nunca ignore em contexto de cálculo ou planejamento previdenciário.
-license: Proprietário — Cortex / Vértika
+description: Apurar tempo de contribuição, carência e RMI, auditar salários e simular regras de aposentadoria a partir do CNIS. Comandos /cnis e /analista. Usar para cálculo ou planejamento quantitativo. Triagem rápida pertence a raio-x-cnis; comparação entre cenários já apurados pertence a decisor-aposentadoria; enquadramento de deficiência pertence a aposentadoria-pcd. Não ativar apenas pela palavra aposentadoria.
+license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Analista Previdenciário IA
 
@@ -98,7 +89,7 @@ Período mais antigo: [data] / Período mais recente: [data]
 Indicadores/Pendências detectados: [lista]
 ```
 
-Peça confirmação antes de prosseguir: "Os dados estão corretos? Posso seguir para o interrogatório?"
+Apresente os dados extraídos e destaque só as divergências. Prossiga com o que está confirmado; pergunte até três lacunas prioritárias, sem repetir dados já fornecidos.
 
 ---
 
@@ -140,15 +131,8 @@ Faça TODAS estas perguntas antes de calcular. Agrupe em blocos e **espere respo
 
 **Bloco 6 — Preferências de Cálculo** ⭐ NOVO
 
-20. **Correção monetária:** Quer que eu aplique correção monetária INPC nos salários antigos?
-    - **SIM (recomendado para precisão)** → vou aplicar INPC mês a mês desde a competência até hoje
-    - **NÃO** → uso valores nominais e sinalizo no relatório como "sem correção monetária"
-
-21. **Tábua de mortalidade IBGE:** Para os cálculos que usam Fator Previdenciário, quer que
-    eu consulte a tábua de mortalidade do IBGE em tempo real?
-    - **SIM** → abro o navegador no site oficial do IBGE, busco a expectativa de sobrevida (Es)
-      vigente para a idade do segurado e uso o valor exato
-    - **NÃO** → uso a tábua mais recente disponível na skill (pode estar desatualizada — sinalizo no relatório)
+20. **Data-base do cálculo:** extrair DER/DIB e confirmar apenas se ambígua. Atualização e teto por competência são obrigatórios para RMI definitiva; não oferecer valores nominais como opção equivalente.
+21. **Fator previdenciário:** quando aplicável, consultar tábua oficial efetiva na data-base e registrar fonte/versão. Sem acesso ou tabela fornecida verificável, bloquear valor definitivo; não existe tábua interna presumida.
 
 > **Regra:** Se o usuário não souber responder, registre como "NÃO INFORMADO" e sinalize
 > que a resposta pode impactar o resultado. Nunca presuma.
@@ -163,7 +147,7 @@ Faça TODAS estas perguntas antes de calcular. Agrupe em blocos e **espere respo
 |-----------|-------------|---------|-------------|
 | PEXT | Vínculo extemporâneo (fora do prazo de 120 dias) | Pode ser questionado pelo INSS | Reunir CTPS, contracheques, rescisão |
 | PREC | Pendência de recolhimento | Período pode não contar como contribuição | Verificar e complementar se necessário |
-| PREC-FBR | Recolhimento abaixo do mínimo | Mês não conta para carência nem tempo | Complementar a diferença até o salário mínimo |
+| PREC-FBR | Pendência de validação de facultativo de baixa renda | Conferir requisitos e legenda oficial | Verificar CadÚnico/renda/categoria antes de propor ajuste |
 | IREC | Recolhimento não identificado/inconsistente | Período em risco | Investigar tipo específico |
 | AEXT-VI | Acerto de vínculo extemporâneo INDEFERIDO | Vínculo NÃO reconhecido | Reapresentar com documentação mais robusta ou judicializar |
 | PREC-CSE | Pendência de contribuição de segurado especial | Atividade rural/especial não confirmada | Apresentar documentação rural (CCIR, CAR, declaração sindical) |
@@ -204,7 +188,7 @@ Monte tabela com TODOS os vínculos:
 - Descontar períodos concomitantes (contar apenas uma vez)
 - Adicionar tempo de serviço militar
 - Adicionar período de benefício por incapacidade intercalado com contribuições
-- Adicionar tempo rural comprovado (se anterior a 11/1991: conta como carência e tempo)
+- Adicionar tempo rural comprovado (anterior a 11/1991: regra geral de tempo sem carência, art. 55, §2º; hipóteses específicas como híbrida/Tema 1007 exigem enquadramento separado)
 - Converter tempo especial em comum quando aplicável:
   - Fator 1,2 (mulher) / 1,4 (homem) para 25 anos especial — SOMENTE até 13/11/2019
   - Ajuste proporcional para 15 e 20 anos especial
@@ -232,34 +216,9 @@ Data-marco para direito adquirido (13/11/2019):
 
 Para os detalhes de cada regra e fórmulas completas, consulte `references/regras-calculo.md`.
 
-### 5.0 — Aplicação das Preferências de Cálculo
+### 5.0 — Memória e parâmetros obrigatórios
 
-**Se o usuário respondeu SIM à correção monetária (Bloco 6, pergunta 20):**
-
-1. Para cada salário de contribuição registrado, aplique correção monetária do INPC
-   da competência até o mês atual.
-2. Se você tem acesso à tabela INPC oficial atualizada (referência interna), use-a.
-3. Se NÃO tem a tabela atualizada, pergunte:
-   > "Para aplicar a correção monetária precisa, preciso consultar a tabela INPC mais
-   > recente. Posso:
-   > (a) Consultar no site do IBGE/BCB em tempo real via navegador
-   > (b) Usar a tabela INPC que tenho até [última data] — pode estar levemente desatualizada
-   > (c) Você cola os índices que quer usar"
-4. Mostre a memória de cálculo: salário nominal → salário corrigido por mês.
-
-**Se o usuário respondeu SIM à consulta IBGE (Bloco 6, pergunta 21):**
-
-Apenas execute para benefícios que aplicam Fator Previdenciário (ATC Direito Adquirido e Pedágio 50%):
-
-1. Abra o navegador na URL oficial do IBGE — Tábua Completa de Mortalidade:
-   `https://www.ibge.gov.br/estatisticas/sociais/populacao/9126-tabuas-completas-de-mortalidade.html`
-2. Navegue até a tábua mais recente publicada (geralmente "Tábua Completa de Mortalidade — Ambos os Sexos")
-3. Localize a expectativa de sobrevida (Es) para a idade exata do segurado na data do cálculo
-4. Use esse Es na fórmula do Fator Previdenciário
-5. Registre no relatório: "Expectativa de sobrevida consultada no IBGE em [data]: [Es] anos"
-
-Se o navegador falhar (sem login, página fora do ar), use a tábua mais recente da skill
-e sinalize a limitação.
+Identificar regra temporal, DER/DIB, competências e fonte dos fatores oficiais. Aplicar teto de cada competência e atualização até a data-base, não até hoje por padrão. Sem tabela completa e verificável, entregar pendências ou simulação explicitamente não validada. Quando houver fator previdenciário, obter tábua oficial efetiva e acréscimos legais aplicáveis. Executar `.cortex/cortex.py coeficiente` apenas nas modalidades suportadas, após confirmar elegibilidade; o utilitário não calcula média nem direito adquirido.
 
 ### 5.1 — Direito Adquirido (antes de 13/11/2019)
 

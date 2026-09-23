@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Fluxograma — Aposentadoria da PCD (LC 142/2013): Fluxo Completo para Concessão
 
 > Fonte (PDF original): `40---fluxograma.pdf` — infográfico do acervo do curso Aposentadoria da PCD PRO (AJ&G). PDF de imagem, transcrito integralmente abaixo.

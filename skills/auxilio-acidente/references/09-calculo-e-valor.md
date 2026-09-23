@@ -112,18 +112,6 @@ previdenciários de pagamento continuado.
 
 ---
 
-## 8. Imposto de renda: atenção à isenção que NÃO se aplica aqui
+## 8. Imposto de renda
 
-A isenção de imposto de renda por moléstia grave, prevista na Lei 7.713/88, alcança
-rendimentos de **aposentadoria, pensão ou reforma**. O auxílio-acidente não está nessa lista.
-Ainda que o segurado seja portador de doença grave listada na lei, a isenção específica dessa
-lei não se estende ao auxílio-acidente, por se tratar de benefício de natureza distinta,
-indenizatória, e não de aposentadoria, pensão ou reforma.
-
-**Não prometa ao cliente uma isenção que ele não tem direito de pedir sobre este benefício
-específico.** Se ele for portador de moléstia grave e tiver também uma aposentadoria, a isenção
-pode incidir sobre a aposentadoria, não sobre o auxílio-acidente pago paralelamente.
-
-O décimo terceiro do auxílio-acidente está sujeito à retenção de imposto de renda na fonte,
-conforme a faixa de tributação do beneficiário, como ocorre com a generalidade dos rendimentos
-tributáveis pagos pelo INSS.
+A Receita Federal lista auxílio-acidente entre rendimentos isentos. Não tratá-lo como rendimento tributável por não ser aposentadoria por moléstia grave: são enquadramentos distintos. Conferir rubrica do benefício, informe de rendimentos e tratamento de atrasados/13º no caso concreto, antes de propor restituição. Fonte: [RFB — Outros rendimentos](https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/preenchimento/manual-mir/rendimentos/outros-rendimentos), consultada em 23/09/2026.

@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição Inicial — Enquadramento PCD (impugnação específica do IF-BrA)
 
 > Fonte (PDF original): `21--PETICAO-INICIAL-enquadramento-pcd-com-foco-em-impugnacao-especifica-do-if-bra.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -309,7 +311,7 @@
        – pagina 1.
 
                 A despeito disso, o INSS concedeu a Aposentadoria por Tempo de
-       Contribuição comum (Espécie 42, NB 235.601.291-0), sem autorização expressa,
+       Contribuição comum (Espécie 42, NB [NB DO CASO — CONFERIR]), sem autorização expressa,
        como já dito alhures, em violação ao princípio da legalidade e às normas
        procedimentais da IN INSS n.º 128/2022.
 

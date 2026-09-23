@@ -1,19 +1,12 @@
 ---
 name: decisor-aposentadoria
-description: >
-  Decisor de Melhor Aposentadoria — motor de decisão que compara TODAS as regras de
-  aposentadoria que o segurado cumpre (ou vai cumprir) e recomenda a mais vantajosa
-  segundo o objetivo do cliente, com modelagem financeira aprofundada.
-  GATILHOS DIRETOS (slash): /decisor, /melhor-aposentadoria, /aposentar — sempre que o
-  usuário digitar qualquer um, ative IMEDIATAMENTE esta skill.
-  Use SEMPRE que o usuário perguntar: "qual a melhor aposentadoria?", "vale a pena
-  esperar?", "aposento agora ou espero?", "qual regra escolhe?", "qual rende mais?",
-  "compensa continuar contribuindo?", "antecipar ou maximizar?", "qual cenário é melhor",
-  comparar regras de aposentadoria, ponto de equilíbrio, break-even previdenciário,
-  decisão de DER (data de entrada do requerimento), otimização de benefício, trade-off
-  entre antecipar e maximizar. Complementa o Analista de CNIS com a camada de DECISÃO.
-license: Proprietário — Cortex / Vértika
+description: Comparar cenários de aposentadoria já apurados: aposentar agora ou esperar, escolher DER, ponto de equilíbrio e valor presente. Comandos /decisor e /melhor-aposentadoria. Usar quando o objetivo é decidir entre alternativas; obter antes elegibilidade e RMI com calculos-previdenciarios e enquadramento PCD com aposentadoria-pcd.
+license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Decisor de Melhor Aposentadoria
 

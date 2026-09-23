@@ -26,7 +26,7 @@ sem chegar à etapa 3.** Ver seção 5.
 
 ## 2. O grau da lesão não é o critério decisivo
 
-Tese fixada pelo STJ, no Tema 416, julgado em 28/03/2018: exige-se, para concessão do
+Tese fixada pelo STJ, no Tema 416, julgado em 25/08/2010: exige-se, para concessão do
 auxílio-acidente, a existência de lesão decorrente de acidente de qualquer natureza que implique
 redução da capacidade para o labor habitualmente exercido, **sem exigência de um grau mínimo**.
 

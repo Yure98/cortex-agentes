@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição Inicial — PCD Tempo de Contribuição (deficiência auditiva)
 
 > Fonte (PDF original): `24---peticao-inicial-pcd-tc-por-deficiencia-auditiva (1).pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -40,13 +42,13 @@ base no artigo 55 da lei 8.213/91, para o periodo de 03/02/1983 a 31/01/1984, co
 anexo), havendo parcial provimento ao pedido do autor, mas não houve a concessão do benefício.
        Contudo, incorreu em equívoco o INSS, quando não reconheceu a deficiência da parte autora neste
 
-requerimento, visto que, em um segundo requerimento, realizado em 24/07/2024 - protocolo n. 815396578 - houve o
+requerimento, visto que, em um segundo requerimento, realizado em 24/07/2024 - protocolo n. [CONFERIR] - houve o
 reconhecimento da deficiencia em grau leve (processo em anexo - paginas 84 e 94), desde 01/07/2014.
 
        Diante deste cenário, a judicialização se tornou necessária para 2 (duas) situações:
 
        a) se a deficiencia da parte autora for reconhecida como de grau moderado, o mesmo possui o tempo de
-contribuição necessário na DER do NB n. 215.199.006-5 (05/03/2024), eis que com a inclusão do periodo de serviço
+contribuição necessário na DER do NB n. [NB DO CASO — CONFERIR] (05/03/2024), eis que com a inclusão do periodo de serviço
 militar obrigatório como tempo de contribuição, possui mais de 29 anos de tempo de contribuição como PCD
 moderado; havendo direito ao beneficio;
 
@@ -663,7 +665,7 @@ indevida em prejuízo do segurado.
        DOS PEDIDOS:
 
        Por todo o exposto, a parte autora pugna pela CONDENAÇÃO do INSS na concessão da aposentadoria
-por tempo de contribuição da pessoa com deficiência (NB 215.199.006-5), fixando-se a DIB na DER, ocorrida em
+por tempo de contribuição da pessoa com deficiência (NB [NB DO CASO — CONFERIR]), fixando-se a DIB na DER, ocorrida em
 05/03/2024, mediante o reconhecimento:
 
                - DO GRAU DE DEFICIÊNCIA:
@@ -705,7 +707,7 @@ em grau leve, com o que a parte autora não concorda.
        Atibaia, em 19 de Fevereiro de 2026.
 
                                                       GISELE BERALDO DE PAIVA
-                                                              OAB/SP N. 229788
+                                                              OAB/SP N. [CONFERIR]
 
 Cálculo de RMI e valor da causa
 

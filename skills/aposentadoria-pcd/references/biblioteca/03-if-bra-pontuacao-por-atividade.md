@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Pontuação IF-BrA por Atividade (100/75/50/25)
 
 > Fonte (PDF original): `25---PONTUACAO-IF-BRA-POR-ATIVIDADE.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).

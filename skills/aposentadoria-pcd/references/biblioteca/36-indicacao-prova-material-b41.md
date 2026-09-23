@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição de Indicação de Prova Material (processo judicial B41 PCD)
 
 > Fonte (PDF original): `16---peticao-de-indicacao-de-prova-material-no-processo-judicial-de-b41-pcd.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).

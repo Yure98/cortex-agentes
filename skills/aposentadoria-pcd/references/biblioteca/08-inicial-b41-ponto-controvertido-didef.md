@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição Inicial — B41 PCD (ponto controvertido DIDEF)
 
 > Fonte (PDF original): `20---peticao-inicial-b41-pcd-ponto-controvertido-didef.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -28,12 +30,12 @@
                                                                                                                  1
 
        2. Quanto aos fatos, o autor ingressou com pedido de aposentadoria por idade da
-            pessoa portadora de deficiência em 11/07/2023 – NB n. 214.110.553-0, sob o
+            pessoa portadora de deficiência em 11/07/2023 – NB n. [NB DO CASO — CONFERIR], sob o
             fundamento de que:
 
             - tinha mais de 60 anos;
             - tinha mais de 15 anos de contribuição como deficiente, já reconhecido em
-            processo administrativo anterior – NB n. 202.115.494-1 (DER em 21/12/22) - ,
+            processo administrativo anterior – NB n. [NB DO CASO — CONFERIR] (DER em 21/12/22) - ,
             que fixou o inicio da deficiência em 03/12/2001, do qual pediu a reutilização
             das avaliações médica e social;
             - tinha mais de 180 meses de carência.
@@ -60,7 +62,7 @@
                                                                                                                  2
 - patologia lombar:
 
-          4.1 No processo administrativo realizado em 21/12/2022 (NB n. 202.115.494-1),
+          4.1 No processo administrativo realizado em 21/12/2022 (NB n. [NB DO CASO — CONFERIR]),
         a pericia médica e social fixou a data do inicio da deficiência em 03/12/2001 – O
         QUE ESTÁ CORRETO E SE REQUER O RECONHECIMENTO JUDICIAL, veja-
 
@@ -83,7 +85,7 @@
        pessoa sem as patologias indicadas (auditiva e de coluna), necessária para o
        pedido em tela, já vem comprovada pela propria pericia adminsitrativa do
        INSS, no primeiro requerimento realizado – em 21/12/2022 (NB n.
-       202.115.494-1), de forma que a segunda data entendida pelo INSS (14/02/14)
+       [NB DO CASO — CONFERIR]), de forma que a segunda data entendida pelo INSS (14/02/14)
        não se levou em consideração todas as patologias que acometem o autor, que
        ocasionam as barreiras (visual e fisica – patologia lombar) – de forma que não
        deve prevalecer.
@@ -108,7 +110,7 @@
                 autor (documento em anexo);
 
             d) Por fim, a concessão da aposentadoria por idade da pessoa com
-                deficiencia ao autor, devida desde a DER do NB n. 214.110.553-0
+                deficiencia ao autor, devida desde a DER do NB n. [NB DO CASO — CONFERIR]
                 (11/07/2023), quitando-se os atrasados de uma unica vez, com os
                 consectários legais;
 
@@ -116,7 +118,7 @@
 
        6. Com relação às provas que pretende produzir, pugna o autor pela prova
             documental que acompanha a presente, envio de ofício ao INSS para vinda aos
-            autos da avaliação médica e social realizada no NB n. 202.115.494-1 (IF-Bra),
+            autos da avaliação médica e social realizada no NB n. [NB DO CASO — CONFERIR] (IF-Bra),
             e prova pericial médica e social, se necessária for, para qual, caso seja
             determinada, apresentará o autor os quesitos pertinentes.
 

@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Recurso Administrativo sobre Atividade Especial
 
 > Fonte (PDF original): `11---MODELO-RECURSO-ADM-SOBRE-ATIV-ESPECIAL.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -29,7 +31,7 @@
        formalizada a "Indicação de Erro Administrativo", uma vez que o INSS ignorou o pedido
        de análise de atividade especial, apesar da juntada dos respectivos PPPs. O INSS,
        inclusive, já identificou internamente a falha, abrindo tarefa de Revisão de Ofício
-       Identificada sob o protocolo nº 855285359, mas sem qualquer andamento até a
+       Identificada sob o protocolo nº [CONFERIR], mas sem qualquer andamento até a
        presente data.
 
        2. DA NULIDADE POR CERCEAMENTO DE DEFESA – FALHA NA ANÁLISE DE ATIVIDADE
@@ -72,14 +74,14 @@
        Diante do exposto, requer:
        a) O recebimento e processamento do presente recurso;
        b) O reconhecimento do erro administrativo, conforme já identificado na tarefa de
-       Revisão de Ofício Identificada sob o protocolo nº 855285359;
+       Revisão de Ofício Identificada sob o protocolo nº [CONFERIR];
        c) o reconhecimento da atividade especial dos períodos constantes em PPPs
        apresentados, na forma da lei vigente;
        d) subsidiariamente, caso o pedido acima não seja possível, que haja a baixa dos autos
        em diligência para que a Perícia Médica Federal analise os PPPs da empresa Grammer
        do Brasil Ltda;
        e) A reforma da decisão para conceder a Aposentadoria por Tempo de Contribuição da
-       Pessoa com Deficiência (NB 234.328.009-0) desde a DER (03/02/2025);
+       Pessoa com Deficiência (NB [NB DO CASO — CONFERIR]) desde a DER (03/02/2025);
        f) ainda subsidiariamente, caso seja necessário, reafirma a autorização feita no pedido
        inicial para a REAFIRMAÇÃO DE DER caso seja necessário, considerando-se o
        enquadramento do segurado como PCD leve já reconhecido nos autos do pedido

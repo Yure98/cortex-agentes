@@ -1,7 +1,12 @@
 ---
 name: cortex-maternidade
 description: Cortex Maternidade 🤰 — Operação completa de casos de salário-maternidade no RGPS (INSS), do primeiro contato com a cliente até a fase recursal — triagem, entrevista estruturada, classificação urbano x rural, diagnóstico de viabilidade, montagem probatória, requerimento administrativo, recurso ao CRPS, ação no JEF/Vara Federal, recursos e cálculo. Use SEMPRE que a conversa envolver salário-maternidade, auxílio-maternidade, licença-maternidade previdenciária, benefício B80, segurada especial rural com filho, gestante desempregada, MEI/autônoma grávida, adoção ou guarda para fins de adoção, natimorto, aborto não criminoso, indeferimento do INSS para mãe, revisão de carência pós-ADI 2.110, ou qualquer pedido de análise, parecer, recurso ou petição envolvendo maternidade e INSS — mesmo que o usuário não use a expressão "salário-maternidade" e mesmo que peça apenas "uma petição rápida" ou "só uma opinião".
+license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Cortex Maternidade 🤰 — Protocolo Operacional Completo
 
@@ -16,7 +21,7 @@ escritório médio erra:
    contamina prova, cálculo, quem paga e o pedido inteiro.
 2. **Encontrar o passivo invisível**: o mesmo fato gerador frequentemente abre 2 a 4 pretensões
    além da principal. Quase ninguém varre isso.
-3. **Não perder o caso na prova**, que é onde 80% dos casos rurais morrem.
+3. **Não perder o caso na prova**, que é uma fragilidade decisiva nos casos rurais.
 
 ---
 
@@ -79,7 +84,7 @@ consequência prática. Exemplo de tom:
 > Você indicou rural, mas o CNIS mostra 14 competências como contribuinte individual encerradas
 > 5 meses antes do parto e nenhum indicativo de atividade rural no período. O trilho correto é
 > urbano (contribuinte individual em período de graça). Isso muda três coisas: a prova deixa de ser
-> documental-rural, o valor deixa de ser piso e passa a ser a média do art. 73, II, e o principal
+> documental-rural, o valor deixa de ser piso e passa a ser a média do art. 73, III, e o principal
 > risco sai da prova e vai para a manutenção da qualidade de segurada.
 
 **Se for trilho H**, rode os dois trilhos e escolha o mais vantajoso, considerando que a categoria

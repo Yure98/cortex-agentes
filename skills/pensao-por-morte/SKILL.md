@@ -1,8 +1,16 @@
 ---
 name: pensao-por-morte
 description: Sistema completo de atuação em pensão por morte do INSS (RGPS), urbana e rural, para advogados. Conduz entrevista estruturada com o cliente, aplica pontuação de prontidão do caso (0 a 100) para identificar lacunas probatórias, analisa qualidade de segurado, dependência, cálculo (cota familiar 50% + 10%), duração, acumulação, DIB/DER, estratégia administrativa versus judicial, e vai até a fase recursal (CRPS e Judiciário). USE SEMPRE que o usuário digitar /pensãopormorte, /pensaopormorte, ou mencionar "pensão por morte", "pensão do falecido", "morte do segurado", "viúva/viúvo INSS", "pensão rural", "óbito do instituidor", "dependente do falecido", "B21", "pensão por morte negada", "recurso de pensão", mesmo que não peça explicitamente ajuda jurídica e mesmo que a pergunta pareça simples. Também use quando o usuário estiver analisando indeferimento do INSS, carta de exigência, CNIS de falecido, ou preparando recurso ao CRPS ou ação na Justiça Federal envolvendo óbito de segurado.
-license: Uso interno. Programa Cortex.
+license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
 ---
+
+## Prontidão: contrato de execução
+
+A rubrica operacional canônica é `scripts/score_prontidao.py`: cheio = 100% do peso, parcial = 50%, zero = 0%; não aplicável exige motivo. Havendo divergência em tabela ou exemplo antigo, usar os pesos do script e informar o ajuste. Bloqueios começam desconhecidos (`null`), nunca liberados por padrão. Não protocolar automaticamente por score; verificar os portões, inclusive hipóteses impeditivas que não constem do resumo numérico.
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Pensão por Morte (RGPS): da entrevista à fase recursal
 

@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Revisão Judicial — Pedido Adm. sem Realizar Perícia
 
 > Fonte (PDF original): `32---revisao-judicial-pedido-adm-sem-realizar-pericia.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -19,7 +21,7 @@
        I - DOS FATOS:
 
        - Da concessão da aposentadoria:
-       A Autora é beneficiária do NB nº 173.310.675-5 - espécie 42 - Aposentadoria por Tempo
+       A Autora é beneficiária do NB nº [NB DO CASO — CONFERIR] - espécie 42 - Aposentadoria por Tempo
        de Contribuição - , cuja Data de Entrada do Requerimento (DER) foi em 01/06/2015, a
        concessão se deu em 16/07/2015, bem como Renda Mensal Inicial (RMI) foi fixada em
        R$ 2.142,13, como faz prova a carta de concessão em anexo.
@@ -61,7 +63,7 @@
        requerido e torna o ato administrativo realizado totalmente nulo.
        Neste diapasão, necessário se faz a realização de avaliações médica e social no presente
        caso, para fins de enquadramento da parte autora como pessoa com deficiência, à luz
-       da LC 143/2013 e da portaria n. 01/2014, o que não pode ser considerado como fato
+       da LC 142/2013 e da portaria n. 01/2014, o que não pode ser considerado como fato
        novo, eis que solicitadas suas realizações desde o requerimento inicial da revisão.
        Não se pode penalizar a parte autora – e o argumento é feito desde logo – pela desídia
        da autarquia que não realizou os atos necessários para instrução do pedido,

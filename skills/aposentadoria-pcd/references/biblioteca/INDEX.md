@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Biblioteca de Modelos e Materiais — Aposentadoria PCD
 
 Acervo completo derivado dos **44 PDFs** da pasta `Downloads/pcd` (curso *Aposentadoria da PCD PRO*, AJ&G). Todo PDF foi incorporado. Duplicatas físicas foram unificadas (ver nota no fim). Abra o arquivo pela relevância à tarefa; **nunca copie dados de exemplo como se fossem do cliente**.

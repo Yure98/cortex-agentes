@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição Inicial — Grau Moderado (deficiência visual)
 
 > Fonte (PDF original): `22---peticao-inicial-grau-moderado-deficiencia-visual.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -104,7 +106,7 @@
 
         O processo administrativo somente foi finalizado em 26/05/2025, quando houve o julgamento
         dos embargos de declaração pela 13ª Junta de Recursos no processo n. 44236.076417/2023-50,
-        referente ao NB n. 42/206.814.344-0.
+        referente ao NB n. 42/[NB DO CASO — CONFERIR].
         Como a autora continuou laborando e contribuindo ao INSS, verifica-se, pelo cálculo em anexo,
         que em 19/11/2024, houve o implemento de 24 anos de tempo de contribuição na deficiência
         moderada, o que possibilitava a reafirmação de DER – pedido este reiterado em embargos de

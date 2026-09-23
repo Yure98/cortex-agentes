@@ -9,7 +9,7 @@ Data-base: agosto de 2026. Confirme número, teor e situação antes de citar em
 
 | Precedente | Conteúdo |
 |---|---|
-| Tema 416/STJ (julgado em 28/03/2018) | Exige-se, para concessão do auxílio-acidente, a existência de lesão decorrente de acidente de qualquer natureza que implique redução da capacidade para o labor habitualmente exercido, sem exigência de grau mínimo |
+| Tema 416/STJ (julgado em 25/08/2010, DJe 08/09/2010) | Exige-se, para concessão do auxílio-acidente, a existência de lesão decorrente de acidente de qualquer natureza que implique redução da capacidade para o labor habitualmente exercido, sem exigência de grau mínimo |
 | Súmula 88/TNU | É suficiente a existência de limitação leve para a concessão do auxílio-acidente |
 | Súmula 44/STJ | A definição, em ato regulamentar, de grau mínimo de disacusia não exclui, por si só, a concessão do benefício previdenciário. Alcance restrito ao critério de grau mínimo de perda auditiva; não afasta a exigência de redução real de capacidade quando esse for o obstáculo efetivo |
 | Tema 22/STJ | Comprovados o nexo de causalidade e a redução da capacidade laborativa, mesmo em face de perda auditiva em grau inferior ao estabelecido pela tabela técnica de referência, subsiste o direito ao auxílio-acidente |
@@ -98,7 +98,7 @@ Antes de citar, escreva também como o INSS usaria o mesmo precedente. Isso alim
 
 Modelo de citação segura:
 
-> Nesse sentido, o Superior Tribunal de Justiça, ao julgar o Tema 416 em 28/03/2018, fixou que a
+> Nesse sentido, o Superior Tribunal de Justiça, ao julgar o Tema 416 em 25/08/2010, fixou que a
 > concessão do auxílio-acidente exige apenas a existência de lesão decorrente de acidente de
 > qualquer natureza que implique redução da capacidade para o labor habitualmente exercido, sem
 > exigência de grau mínimo de incapacidade. A Turma Nacional de Uniformização, pela Súmula 88,

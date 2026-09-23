@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Orientação de Perícia — Coxartrose (enquadramento leve)
 
 > Fonte (PDF original): `12---ORIENTACAO-PERICIA-PCD-coxartrose-enquadramento-leve.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -20,13 +22,13 @@
 
         Perguntas técnicas e estratégicas para cada atividade em que a pontuação deverá ser 75
         pontos:
-        ������ DOMÍNIO 2 – COMUNICAÇÃO
+        ������ DOMÍNIO 2 – COMUNICAÇÃO
         2.5 Utilizar dispositivos de comunicação à distância – 75 pontos
         Pergunta: O senhor consegue utilizar computador por longos períodos?
         Resposta esperada: Sim, utiliza normalmente, mas sente desconforto quando permanece muito
         tempo sentado, precisando realizar pausas frequentes.
 
-        ������ DOMÍNIO 3 – MOBILIDADE
+        ������ DOMÍNIO 3 – MOBILIDADE
         3.1 Mudar e manter a posição do corpo – 75 pontos
         Pergunta: Consegue levantar-se, deitar-se ou permanecer em pé sem ajuda?
         Resposta: Sim, mas com movimentos lentos, evitando agachar ou cruzar as pernas para não
@@ -72,7 +74,7 @@
         Não tenho carro baixo, justamente pela dificuldade em entrar e sair do carro e sempre utilizo
         alça de apoio (comum em caminhonetes).
 
-        ������ DOMÍNIO 4 – CUIDADOS PESSOAIS
+        ������ DOMÍNIO 4 – CUIDADOS PESSOAIS
         4.1 Lavar-se – 75 pontos
         Pergunta: Consegue tomar banho?
         Resposa: Sim, mas não consegue lavar o pé, sem se apoiar na parede e não pode escorregar,
@@ -105,7 +107,7 @@
         Tudo o que demanda andar mais rápido não consegue / tem dor localizada, mas não consegue
         identificar – de imediato - que é da prótese.
 
-        ������ DOMÍNIO 5 – VIDA DOMÉSTICA
+        ������ DOMÍNIO 5 – VIDA DOMÉSTICA
         5.2 Cozinhar – 75 pontos
         Pergunta: Prepara refeições completas?
         Resposta: Sim, mas evita ficar muito tempo em pé e não manuseia panelas pesadas (pois não
@@ -135,7 +137,7 @@
         Não consegue cuidar de pessoas da família, pois não tem o reflexo imediato de ajudar alguém
         quando cai.
 
-        ������ DOMÍNIO 6 – EDUCAÇÃO, TRABALHO E VIDA ECONÔMICA
+        ������ DOMÍNIO 6 – EDUCAÇÃO, TRABALHO E VIDA ECONÔMICA
         6.2 Qualificação profissional – 75 pontos
         Pergunta: Consegue participar de cursos ou treinamentos longos?
 
@@ -162,7 +164,7 @@
         agências bancárias, prefere rampa com corrimão à escada e não fica em pé em fila por longos
         períodos.
 
-        ������ DOMÍNIO 7 – SOCIALIZAÇÃO E VIDA COMUNITÁRIA
+        ������ DOMÍNIO 7 – SOCIALIZAÇÃO E VIDA COMUNITÁRIA
         7.4 Relacionamentos familiares – 75 pontos
         Pergunta: Participa normalmente de atividades familiares?
         Resposta: Não joga mais futebol nem tênis (por proibição médica), não corre em parques, como

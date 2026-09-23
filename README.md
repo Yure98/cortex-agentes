@@ -98,3 +98,15 @@ advogado nem software de cálculo homologado.
   <strong>Cortex</strong> · IA aplicada à advocacia previdenciária<br>
   desenvolvido por <strong>Vértika</strong>
 </p>
+
+## Atualização estrutural de 23/09/2026
+
+Requer Claude Code instalado e Python 3.10 ou superior disponível no terminal. As integrações opcionais com Drive/NotebookLM dependem de configuração própria; sua ausência permite entrega local. Não se declara compatibilidade testada com Cowork nem com uma versão específica do Claude Code.
+
+Após clonar, execute `bash install.sh` no Mac/Linux ou `powershell -ExecutionPolicy Bypass -File install.ps1` no Windows. O instalador guarda a versão anterior e personalizações em um backup, exibe o caminho e o comando de restauração. Não mistura automaticamente personalizações com a nova versão. Skills de terceiros permanecem intactas. Para testar em outra pasta: `python3 scripts/install.py --dest /caminho/de/teste`.
+
+Comece com `/raiox` para triagem, `/cnis` para apuração, `/decisor` para comparar cenários, `/pcd` para LC 142, `/maternidade`, `/auxilioacidente`, `/pensaopormorte`, `/recurso` ou `/peticionar`. Aliases antigos com acento continuam funcionando; todos encaminham para a mesma skill. Anexe o documento e diga o objetivo; não precisa preencher uma entrevista inteira antes do primeiro diagnóstico.
+
+As nove skills compartilham dossiê versionado, registro de fontes e quatro portões de revisão. Dados ausentes continuam pendentes. Scripts não substituem enquadramento jurídico e podem recusar casos históricos ou incompletos. Uma revisão bloqueada entrega pendências, nunca uma peça marcada como concluída.
+
+Para manutenção: editar o núcleo em `core/`, executar `python3 scripts/sync_core.py` e `python3 -m unittest discover -s tests -v`. As cópias `.cortex` tornam cada skill autocontida; `python3 scripts/sync_core.py --check` detecta divergências. Dossiês reais ficam em diretório privado fora deste repositório.

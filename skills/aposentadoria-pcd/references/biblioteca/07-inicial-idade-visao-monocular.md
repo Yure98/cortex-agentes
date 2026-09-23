@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição Inicial — Aposentadoria por Idade PCD (visão monocular)
 
 > Fonte (PDF original): `19---peticao-inicial-aposentadoria-por-idade-pcd-visao-monocular.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -23,7 +25,7 @@
 
         O Autor, nascido em 08 de março de 1960, contando atualmente com 65 anos de idade,
         protocolou junto à autarquia ré, em 14 de fevereiro de 2024, requerimento administrativo de
-        Aposentadoria da Pessoa com Deficiência por Idade, sob o NB 216.779.077-0 e protocolo de n.
+        Aposentadoria da Pessoa com Deficiência por Idade, sob o NB [NB DO CASO — CONFERIR] e protocolo de n.
         1878465817.
         O fundamento para o pedido é de que possui visão monocular desde a adolescência (perda da
         visão do olho esquerdo aos 15 anos de idade) – fls. 39 do processo administrativo em anexo –

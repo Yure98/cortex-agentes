@@ -10,8 +10,12 @@ description: >
   pena?", "análise rápida do CNIS", "diagnóstico do CNIS", "o que tem nesse CNIS". Para
   o cálculo EXATO, planejamento e decisão, encaminhe para as skills `calculos-previdenciarios`
   (/cnis), `decisor-aposentadoria` (/decisor) e os demais agentes do Cortex.
-license: Proprietário — Cortex / Vértika
+license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Raio-X do CNIS — Analista de Triagem
 

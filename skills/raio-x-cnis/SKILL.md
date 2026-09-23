@@ -10,7 +10,7 @@ description: >
   pena?", "análise rápida do CNIS", "diagnóstico do CNIS", "o que tem nesse CNIS". Para
   o cálculo EXATO, planejamento e decisão, encaminhe para as skills `calculos-previdenciarios`
   (/cnis), `decisor-aposentadoria` (/decisor) e os demais agentes do Cortex.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

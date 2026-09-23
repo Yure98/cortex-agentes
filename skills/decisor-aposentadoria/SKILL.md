@@ -1,7 +1,7 @@
 ---
 name: decisor-aposentadoria
 description: Comparar cenários de aposentadoria já apurados: aposentar agora ou esperar, escolher DER, ponto de equilíbrio e valor presente. Comandos /decisor e /melhor-aposentadoria. Usar quando o objetivo é decidir entre alternativas; obter antes elegibilidade e RMI com calculos-previdenciarios e enquadramento PCD com aposentadoria-pcd.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

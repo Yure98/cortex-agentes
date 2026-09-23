@@ -1,0 +1,39 @@
+name: Publicar Cortex
+on:
+  push:
+    branches: [main]
+    paths: [VERSION, .github/workflows/release.yml]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cortex-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - name: Validar pacote
+        run: |
+          python3 scripts/sync_core.py --check
+          python3 -m unittest discover -s tests -q
+          bash -n install.sh
+      - name: Publicar pacote versionado
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version=$(tr -d '\r\n' < VERSION)
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          tag="v$version"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "Release $tag ja existe; nao sera sobrescrita."
+            exit 0
+          fi
+          git archive --format=zip --prefix="Cortex-$version/" -o "Cortex-$version.zip" HEAD skills commands scripts core tests README.md LICENSE VERSION install.sh install.ps1 INSTALAR-CORTEX-WINDOWS.cmd NOTAS-CORTEX-2.0.md
+          gh release create "$tag" "Cortex-$version.zip" --target "$GITHUB_SHA" --title "Cortex $version — Yure Digital" --notes-file NOTAS-CORTEX-2.0.md

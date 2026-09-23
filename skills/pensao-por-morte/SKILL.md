@@ -1,7 +1,7 @@
 ---
 name: pensao-por-morte
 description: Sistema completo de atuação em pensão por morte do INSS (RGPS), urbana e rural, para advogados. Conduz entrevista estruturada com o cliente, aplica pontuação de prontidão do caso (0 a 100) para identificar lacunas probatórias, analisa qualidade de segurado, dependência, cálculo (cota familiar 50% + 10%), duração, acumulação, DIB/DER, estratégia administrativa versus judicial, e vai até a fase recursal (CRPS e Judiciário). USE SEMPRE que o usuário digitar /pensãopormorte, /pensaopormorte, ou mencionar "pensão por morte", "pensão do falecido", "morte do segurado", "viúva/viúvo INSS", "pensão rural", "óbito do instituidor", "dependente do falecido", "B21", "pensão por morte negada", "recurso de pensão", mesmo que não peça explicitamente ajuda jurídica e mesmo que a pergunta pareça simples. Também use quando o usuário estiver analisando indeferimento do INSS, carta de exigência, CNIS de falecido, ou preparando recurso ao CRPS ou ação na Justiça Federal envolvendo óbito de segurado.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Prontidão: contrato de execução

@@ -13,7 +13,7 @@ description: >
   contestação", petição de aposentadoria, petição de BPC, petição de auxílio-doença,
   petição de pensão por morte, petição de salário-maternidade. Essencial para
   advogados previdenciários — nunca ignore em contexto de redação de peças.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

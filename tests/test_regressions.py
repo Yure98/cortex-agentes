@@ -158,3 +158,20 @@ class CoordinatorInstallTests(unittest.TestCase):
             self.assertEqual(len(list((dest/'skills').glob('*/SKILL.md'))),10)
             for name in ('prev','aposentadoria-pcd','recurso-inss','estagiario-peticoes'):
                 self.assertTrue((dest/'skills'/name/'.cortex/protocolo.md').is_file())
+
+class UpdatePackageTests(unittest.TestCase):
+    def test_obsolete_cortex_files_removed_and_license_installed(self):
+        with tempfile.TemporaryDirectory() as temp:
+            dest=Path(temp)/'claude'
+            old=dest/'skills/cortex-maternidade/references/antigo.md'
+            old.parent.mkdir(parents=True);old.write_text('antigo')
+            backup=ins.install(dest)
+            self.assertFalse(old.exists())
+            self.assertTrue((backup/'anterior/skills/cortex-maternidade/references/antigo.md').exists())
+            for skill in (dest/'skills').iterdir():
+                self.assertIn('Yure Digital',(skill/'.cortex/LICENSE').read_text())
+    def test_concurrent_install_blocked(self):
+        with tempfile.TemporaryDirectory() as temp:
+            dest=Path(temp);(dest/'.cortex-install.lock').write_text('ocupado')
+            with self.assertRaises(ValueError):ins.install(dest)
+            self.assertFalse((dest/'skills').exists())

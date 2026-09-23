@@ -1,7 +1,7 @@
 ---
 name: aposentadoria-pcd
 description: Assessorar aposentadoria da pessoa com deficiência, LC 142/2013, DID, avaliação biopsicossocial e IF-BrA; organizar prova, preparar perícia e peças. Comandos /pcd, /atendimentopcd, /peticaopcd, /aposentadoriapcd e /ifbra. Ativar quando houver contexto explícito de deficiência ou LC 142, sem assumir grau ou pontuação. Não ativar por aposentadoria genérica.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

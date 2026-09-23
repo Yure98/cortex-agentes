@@ -1,15 +1,29 @@
-# 🧠 Cortex — Agentes de IA para Advocacia Previdenciária
+# 🧠 Cortex 2.0 — Yure Digital
 
 Transforme o **Claude** numa equipe previdenciária completa. Agentes especializados
 que redigem petições, analisam CNIS, decidem a melhor aposentadoria, geram recursos ao INSS
 e cuidam de salário-maternidade e da aposentadoria da pessoa com deficiência, tudo com
 jurisprudência real e sem invenção.
 
-Funciona no **Claude Code** e no **Claude Cowork**.
+Ambiente-alvo: **Claude Code**. Compatibilidade com Cowork ainda não validada.
 
 ---
 
-## ⚡ Instalação rápida
+## Instalar ou atualizar no computador do cliente
+
+**Propriedade intelectual da Yure Digital. Compartilhamento, redistribuição ou revenda sem autorização prévia e expressa são proibidos.** Ver [LICENSE](LICENSE).
+
+1. Baixe o ZIP desta versão pelo botão **Code → Download ZIP** e **extraia tudo** antes de executar.
+2. No Windows, abra **INSTALAR-CORTEX-WINDOWS.cmd** com dois cliques. No Mac/Linux, execute `bash install.sh` na pasta extraída.
+3. O instalador verifica Python 3.10+, identifica a instalação anterior nos diretórios oficiais do Cortex e substitui as dez skills e os comandos pelos arquivos completos do Cortex 2.0. Não é preciso desinstalar a versão anterior nem copiar pastas manualmente.
+4. Um backup preserva os arquivos substituídos, inclusive personalizações. Arquivos antigos dentro das pastas Cortex deixam de ficar ativos; skills de terceiros não são removidas.
+5. Ao terminar, abra uma nova sessão do Claude Code e digite `/prev`, seguido do caso. Se faltarem pré-requisitos, o instalador informa o próximo passo; não instala Python ou Claude silenciosamente.
+
+Destino padrão: pasta `.claude` do usuário que executa o instalador. Para outra conta ou instalação por projeto, execute no usuário correto ou informe `--dest CAMINHO_DA_PASTA_CLAUDE`. Cópias antigas em outros projetos, perfis ou pastas renomeadas não são apagadas por varredura indiscriminada. Execute a atualização em cada destino utilizado. Feche sessões do Claude que estejam usando as skills durante a atualização.
+
+O pacote funciona como instalador e atualizador **ao ser executado**. Não há serviço oculto, atualização remota contínua ou bloqueio anticópia. A licença proíbe compartilhamento; o repositório público continua tecnicamente acessível.
+
+## ⚡ Instalação pelo terminal
 
 ### 1. Baixe o repositório
 ```bash

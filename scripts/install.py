@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+VERSION = (ROOT / "VERSION").read_text(encoding="utf-8").strip()
 
 
 def entries():
@@ -57,7 +58,7 @@ def restore(dest, backup):
             copy(backup / 'anterior' / rel, target)
 
 
-def install(dest):
+def _install(dest):
     dest = dest.absolute()
     if dest.is_symlink():
         raise ValueError('destino simbólico não suportado')
@@ -73,6 +74,11 @@ def install(dest):
         safe_target(dest, rel)
         if rel.parts[0] == 'skills' and not (ROOT / rel / '.cortex/protocolo.md').is_file():
             raise ValueError('núcleo ausente: executar scripts/sync_core.py')
+    existentes = [str(rel) for rel in paths if (dest / rel).exists()]
+    print("Cortex " + VERSION + " | Yure Digital")
+    print("Uso exclusivo de clientes autorizados. Compartilhamento sem autorizacao expressa proibido.")
+    print("Destino: " + str(dest))
+    print("Atualizando " + str(len(existentes)) + " pastas/comandos existentes." if existentes else "Instalacao nova.")
     stamp = datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%SZ') + '-' + uuid.uuid4().hex[:8]
     backup = dest / 'cortex-backups' / stamp
     backup.mkdir(parents=True)
@@ -98,6 +104,21 @@ def install(dest):
     return backup
 
 
+def install(dest):
+    dest = dest.absolute()
+    dest.mkdir(parents=True, exist_ok=True)
+    lock = dest / '.cortex-install.lock'
+    try:
+        fd = lock.open('x')
+    except FileExistsError:
+        raise ValueError('outra instalacao esta em andamento; se foi interrompida, confira o backup antes de remover ' + str(lock))
+    try:
+        fd.close()
+        return _install(dest)
+    finally:
+        lock.unlink(missing_ok=True)
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--dest', type=Path, default=Path.home() / '.claude')
@@ -109,7 +130,9 @@ def main():
             print('Versão anterior restaurada.')
         else:
             backup = install(a.dest)
-            print('Coordenador /prev e nove especialistas instalados. Abra uma nova sessão do Claude Code e use /prev seguido do caso.')
+            print('Cortex ' + VERSION + ' instalado. Coordenador /prev e nove especialistas instalados. Abra uma nova sessão do Claude Code e use /prev seguido do caso.')
+            if shutil.which('claude') is None:
+                print('Claude Code nao foi localizado no PATH. Se ainda nao estiver instalado, consulte https://code.claude.com/docs/en/setup e entre na sua conta antes de usar /prev.')
             print('Backup das personalizações e versão anterior: ' + str(backup))
             print('Para restaurar: python3 scripts/install.py --dest "' + str(a.dest) + '" --restore "' + str(backup) + '"')
     except (ValueError, OSError) as e:

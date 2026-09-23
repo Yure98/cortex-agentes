@@ -1,0 +1,26 @@
+# Cortex 2.0 — Yure Digital
+
+Pacote proprietário de IA previdenciária para Claude Code: **nove especialistas atualizadas e o coordenador `/prev`**.
+
+## Instalação e atualização
+
+Baixe `Cortex-2.0.0.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
+
+- Verifica Python 3.10+ e orienta sobre pré-requisitos.
+- Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.0.
+- Preserva backup e restaura a instalação anterior se houver falha durante substituição.
+- Não remove skills de terceiros. Personalizações dentro das pastas Cortex ficam no backup.
+- Inclui a licença Yure Digital em cada skill instalada.
+- Ao concluir, abra nova sessão no Claude Code e use `/prev` seguido do caso.
+
+Destino padrão: `.claude` do usuário atual. Para instalações por projeto ou outro caminho, use `--dest`. Não procura nem apaga cópias em perfis de outros usuários ou pastas renomeadas. Não há atualização remota contínua: execute a nova versão do pacote para atualizar.
+
+## Melhorias
+
+Dossiê com proveniência e continuidade entre skills, verificação de fontes, bloqueios de revisão, entrevista progressiva, cálculos com validação de entradas e parâmetros temporais, entrevista PCD neutra e rotas especializadas. O coordenador escolhe e executa a sequência necessária sem exigir conhecimento dos comandos individuais.
+
+## Propriedade e limites
+
+**Cortex 2.0 é propriedade intelectual da Yure Digital. Uso exclusivo de clientes autorizados. Compartilhamento, redistribuição e revenda sem autorização prévia e expressa são proibidos.** Materiais de terceiros preservam seus direitos. Consulte LICENSE.
+
+A licença não é um bloqueio técnico de cópia. Conteúdo público permanece acessível. Não há garantia de infalibilidade jurídica ou de anonimização integral do acervo histórico. Itens normativos não confirmados permanecem sinalizados. Integrações com Cowork, Drive e NotebookLM, bem como a interface Windows, ainda exigem validação em ambiente real; os testes automatizados exercitam o motor de instalação e as regressões em Linux.

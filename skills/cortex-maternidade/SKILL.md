@@ -1,7 +1,7 @@
 ---
 name: cortex-maternidade
 description: Cortex Maternidade 🤰 — Operação completa de casos de salário-maternidade no RGPS (INSS), do primeiro contato com a cliente até a fase recursal — triagem, entrevista estruturada, classificação urbano x rural, diagnóstico de viabilidade, montagem probatória, requerimento administrativo, recurso ao CRPS, ação no JEF/Vara Federal, recursos e cálculo. Use SEMPRE que a conversa envolver salário-maternidade, auxílio-maternidade, licença-maternidade previdenciária, benefício B80, segurada especial rural com filho, gestante desempregada, MEI/autônoma grávida, adoção ou guarda para fins de adoção, natimorto, aborto não criminoso, indeferimento do INSS para mãe, revisão de carência pós-ADI 2.110, ou qualquer pedido de análise, parecer, recurso ou petição envolvendo maternidade e INSS — mesmo que o usuário não use a expressão "salário-maternidade" e mesmo que peça apenas "uma petição rápida" ou "só uma opinião".
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

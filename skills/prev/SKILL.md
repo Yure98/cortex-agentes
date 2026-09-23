@@ -1,7 +1,7 @@
 ---
 name: prev
 description: Coordenador do Cortex para relatos de casos previdenciários. Usar quando o advogado digitar /prev, pedir para escolher o agente adequado ou apresentar um caso sem saber por onde começar. Identifica objetivo, benefício e etapa, seleciona entre as nove skills especialistas e conduz a sequência necessária com um único dossiê. Não substituir comandos explícitos das especialistas nem ativar por toda menção genérica ao INSS.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 # Prev — Coordenador Previdenciário Cortex

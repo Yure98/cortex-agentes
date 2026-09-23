@@ -1,7 +1,7 @@
 ---
 name: calculos-previdenciarios
 description: Apurar tempo de contribuição, carência e RMI, auditar salários e simular regras de aposentadoria a partir do CNIS. Comandos /cnis e /analista. Usar para cálculo ou planejamento quantitativo. Triagem rápida pertence a raio-x-cnis; comparação entre cenários já apurados pertence a decisor-aposentadoria; enquadramento de deficiência pertence a aposentadoria-pcd. Não ativar apenas pela palavra aposentadoria.
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

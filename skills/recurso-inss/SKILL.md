@@ -12,7 +12,7 @@ description: >
   perícia negou, "o INSS indeferiu", "negaram a aposentadoria", "negaram o benefício",
   "como recorrer", DER indeferida, comunicação de decisão INSS. Para recursos na esfera
   ADMINISTRATIVA (antes de judicializar).
-license: Proprietário — Cortex / Vértika; ver LICENSE do projeto
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
 ## Protocolo comum obrigatório

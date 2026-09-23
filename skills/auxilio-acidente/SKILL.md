@@ -1,8 +1,21 @@
 ---
 name: auxilio-acidente
 description: Sistema completo de atuação em auxílio-acidente do INSS (RGPS), urbano e rural, para advogados. Classifica o caso logo na abertura (urbano, rural/segurado especial, avulso, doméstico), conduz entrevista estruturada, mapeia o nexo técnico (CAT, NTEP, acidente de trajeto, doença ocupacional), aplica Índice de Prontidão Probatória (0 a 100), analisa qualidade de segurado e enquadramento de beneficiário (art. 18, §1º), simula o cálculo (50% do salário de benefício), trata cumulação e vedações (Súmula 507/STJ, EC 103/2019), e vai da fase administrativa (incluindo a nova análise documental prévia da Portaria Conjunta MPS/INSS nº 15/2026) até a fase recursal no CRPS e a via judicial. USE SEMPRE que o usuário digitar /auxilioacidente ou /auxílio-acidente, ou mencionar "auxílio-acidente", "auxilio acidente", "auxílio acidente", "B94", "sequela de acidente", "redução da capacidade laboral", "acidente de trajeto", "doença ocupacional", "LER/DORT", "acidente de trabalho com sequela", mesmo que a pergunta pareça simples ou não peça explicitamente ajuda jurídica. Também use quando o usuário estiver analisando indeferimento de auxílio-acidente, carta de exigência do INSS, CAT, laudo pericial, cessação de auxílio-doença com sequela residual, ou preparando recurso ao CRPS ou ação na Justiça Federal envolvendo sequela permanente de acidente ou doença ocupacional.
-license: Uso interno. Programa Cortex.
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
+
+## Prontidão: contrato de execução
+
+A rubrica operacional canônica é `scripts/score_prontidao.py`: cheio = 100% do peso, parcial = 50%, zero = 0%; não aplicável exige motivo. Havendo divergência em tabela ou exemplo antigo, usar os pesos do script e informar o ajuste. Bloqueios começam desconhecidos (`null`), nunca liberados por padrão. Não protocolar automaticamente por score; verificar os portões, inclusive hipóteses impeditivas que não constem do resumo numérico.
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
+
+## Classificação material antes da entrevista
+
+Separar natureza **comum (B36)** e **ocupacional (B94)**. Ambos exigem nexo entre evento e sequela; CAT/NTEP são pertinentes ao ramo ocupacional, não requisitos universais. No score, informar `natureza: comum` ou `ocupacional`; B1/B2 são inaplicáveis automaticamente no ramo comum, sem dispensar prova do evento, consolidação e redução funcional. Ação ocupacional: Justiça Estadual; natureza comum: conferir competência federal/JEF. Ler referências 09 e 13 antes de calcular tributos ou definir via.
+
 
 # Auxílio-Acidente (RGPS): da entrevista à fase recursal
 

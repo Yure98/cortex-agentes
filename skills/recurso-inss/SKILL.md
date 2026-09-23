@@ -12,8 +12,16 @@ description: >
   perícia negou, "o INSS indeferiu", "negaram a aposentadoria", "negaram o benefício",
   "como recorrer", DER indeferida, comunicação de decisão INSS. Para recursos na esfera
   ADMINISTRATIVA (antes de judicializar).
-license: Proprietário — Cortex / Vértika
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
+
+## Controle de rito e prova
+
+Extrair data de ciência da decisão, motivo e documentos já disponíveis antes de perguntar. Prazo de 30 dias só gera data nominal sem calendário/expediente verificados; não somar 30 + 30 para prever recurso especial. Consultar o regimento CRPS vigente. Separar força vinculante, aderência e via: nenhum ranking CRPS > TNU > STJ > STF substitui essa análise. Prova nova exige distinguir o que foi submetido ao INSS, dever de colaboração e efeito financeiro; não prometer DIB/atrasados automáticos. Sem carta/ciência, entregar diagnóstico e lista de pendências, não recurso final.
 
 # Gerador de Recurso INSS (CRPS)
 

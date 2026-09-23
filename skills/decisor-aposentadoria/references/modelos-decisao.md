@@ -16,12 +16,12 @@ análise — podem ter mudado.
 | Dir. Adquirido ATC (até 13/11/2019) | — | 30F / 35H | Sim (opcional) | Pode ser o maior valor se média alta |
 | Dir. Adquirido Idade | 60F / 65H | 15 anos | Não | Antecipa para quem tem idade |
 | Pontos | progressiva | 30F / 35H | Não | Equilíbrio valor × tempo |
-| Idade progressiva | 59,5F / 64,5H (2026) | 15F / 20H | Não | Boa para quem tem idade e menos tempo |
-| Pedágio 50% | — | faltava ≤2 anos em 2019 | **Sim** | Antecipa, mas fator pode reduzir |
+| Idade progressiva | 59,5F / 64,5H (2026) | 30F / 35H | Não | Exige tempo mínimo além da idade progressiva |
+| Pedágio 50% | — | faltava <2 anos em 13/11/2019 | **Sim** | Antecipa, mas fator pode reduzir |
 | Pedágio 100% | 57F / 60H | dobro do que faltava | Não | Valor cheio (100% da média), sem fator |
 | Idade definitiva | 62F / 65H | 15F / 20H | Não | Última opção, mais lenta |
 | Especial | 55/58/60 | 15/20/25 anos | Não | Antecipa muito se exposição comprovada |
-| PcD (LC 142/2013) | varia pelo grau | varia | Não | Antecipa para deficiência comprovada |
+| PcD (LC 142/2013) | idade: 55F/60H; tempo: sem idade mínima | tempo varia pelo grau; idade exige 15 anos PCD | Só favorável | Antecipa para deficiência comprovada |
 
 **Regra de bolso para decisão:**
 - **Pedágio 100%** costuma dar o MAIOR valor (100% da média, sem fator) — mas é o mais lento.
@@ -64,13 +64,13 @@ Passo 2 — Vantagem mensal de B depois que começa:
   delta_mensal = RMI_B − RMI_A
 
 Passo 3 — Tempo para B "alcançar" A:
-  meses_equilibrio = A_acumulado_ate_B / delta_mensal
+  Se delta_mensal <= 0, não há recuperação da vantagem inicial por ganho mensal.
+  Para delta_mensal > 0: meses_equilibrio = A_acumulado_ate_B / delta_mensal
   data_equilibrio  = início_B + meses_equilibrio
   idade_equilibrio = idade do cliente em data_equilibrio
 
 DECISÃO:
-  Se expectativa de vida (IBGE) > idade_equilibrio → ESPERAR (B) compensa
-  Se < idade_equilibrio, ou saúde frágil/urgência → ANTECIPAR (A) compensa
+  Comparar horizontes e taxas declarados. Sobrevida populacional não determina sobrevida individual nem uma recomendação automática.
 ```
 
 **Exemplo numérico (ilustrativo):**
@@ -152,3 +152,7 @@ Mostrar como a recomendação muda conforme a variável-chave:
 
 > Nenhuma premissa é "verdade" — todas devem aparecer no relatório e poder ser trocadas
 > pelo advogado. A força do Decisor é a transparência da conta.
+
+## Execução reproduzível obrigatória
+
+Usar `.cortex/cortex.py comparar cenarios.json`: informar `unidade: reais-constantes`, `taxa_real_mensal`, `horizonte_meses` e lista `cenarios`, cada qual com `nome`, `rmi`, `espera_meses`, `contribuicao_adicional_mensal`, `elegibilidade_confirmada: true` e `fonte_calculo`. 13º provisionado em 1/12 em todos os fluxos; não é calendário de pagamento ou cálculo de atrasados. Custos são apenas a diferença entre cenários, nunca toda contribuição de quem seguirá trabalhando em ambos. Rodar pelo menos três taxas/horizontes plausíveis, sem inventar expectativa de vida ou elegibilidade. Exemplos simplificados acima não substituem essa memória.

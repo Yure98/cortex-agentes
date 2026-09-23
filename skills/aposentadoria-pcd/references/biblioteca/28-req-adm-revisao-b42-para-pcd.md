@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Requerimento Adm. de Revisão de B42 para PCD (inclusão de AA)
 
 > Fonte (PDF original): `10---modelo-de-requerimento-adm-de-revisao-de-B42-para-PCD-com-inclusao-de-AA.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).

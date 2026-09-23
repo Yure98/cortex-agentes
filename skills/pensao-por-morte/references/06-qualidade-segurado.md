@@ -10,7 +10,7 @@ O falecido tinha qualidade de segurado se, na data do óbito:
    facultativo) ou exercendo atividade rural como segurado especial; ou
 2. **Estava em período de graça** (art. 15); ou
 3. **Recebia benefício previdenciário** (aposentadoria, auxílio por incapacidade, salário-
-   maternidade, auxílio-acidente mantém a qualidade enquanto pago); ou
+   maternidade mantém a qualidade enquanto pago; auxílio-acidente não mantém por si a qualidade na redação posterior à Lei 13.846/2019 — conferir período histórico); ou
 4. **Não tinha mais qualidade de segurado, mas já havia preenchido em vida todos os requisitos de
    alguma aposentadoria** (art. 102, §2º, da Lei 8.213/91; Tema 148/TNU). Nesse caso a pensão é
    devida mesmo com a perda da qualidade.

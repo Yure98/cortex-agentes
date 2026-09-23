@@ -24,14 +24,13 @@ Piso constitucional: nenhum benefício substitutivo do salário pode ser inferio
 | Contribuinte individual | art. 73, III | **1/12 da soma dos 12 últimos salários de contribuição**, apurados em período **não superior a 15 meses** |
 | Facultativa | art. 73, III | Idem |
 | **Desempregada em período de graça** | art. 73, III + **Tema 202/TNU** | Idem — **mesmo que a última vinculação tenha sido como empregada** |
-| MEI | — | 1 salário mínimo; com complementação para 20%, aplica-se o art. 73, III |
+| MEI | — | 1 salário mínimo na base MEI; complemento de alíquota sobre a mesma base não aumenta a renda |
 | Segurada especial | art. 39, parágrafo único | 1 salário mínimo; se recolheu facultativamente, art. 73, III |
-| Adotante | art. 73, II | Conforme a categoria (art. 72 ou art. 73), pago sempre pelo INSS |
+| Adotante | art. 71-A | Conforme a categoria (art. 72 ou art. 73), pago sempre pelo INSS |
 | Cônjuge sobrevivente (art. 71-B) | art. 71-B, § 2º | Remuneração integral se empregado/avulso; se desempregado, 1/12 dos 12 últimos, em até 15 meses |
 
 **Regra dos 15 meses:** procura-se **para trás** o período necessário para reunir 12 salários de
-contribuição, sem ultrapassar 15 meses. Se houver menos de 12 competências no intervalo, divide-se
-pelo número existente — respeitado o piso.
+contribuição, sem ultrapassar 15 meses. Mesmo com menos de 12 competências no intervalo, o divisor legal é 12 — respeitado o piso.
 
 ---
 

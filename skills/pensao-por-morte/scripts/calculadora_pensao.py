@@ -23,6 +23,8 @@ Valores de referencia de 2026 (confirmar antes de usar):
 """
 
 import argparse
+import math
+import calendar
 from datetime import date, timedelta
 
 SM_PADRAO = 1621.00
@@ -53,6 +55,11 @@ TABELA_DESDE_2021 = [
 ]
 
 
+def soma_meses(dt, meses):
+    y, m = divmod(dt.year * 12 + dt.month - 1 + meses, 12)
+    return date(y, m + 1, min(dt.day, calendar.monthrange(y, m + 1)[1]))
+
+
 def brl(valor):
     return "R$ " + f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
 
@@ -76,6 +83,13 @@ def cmd_rmi(args):
     dep = args.dependentes
     obito = parse_data(args.obito) if args.obito else None
     teto = args.teto
+    if obito is None:
+        raise ValueError("obito obrigatorio: nao presumir regime novo")
+    if obito < date(2015, 6, 18):
+        raise ValueError("regime historico anterior a 18/06/2015 nao suportado; conferir lei e MP 664")
+    if dep < 1:
+        raise ValueError("dependentes deve ser pelo menos 1")
+    base = min(base, teto)
 
     print("CALCULO DO VALOR DA PENSAO")
     print("-" * 46)
@@ -89,7 +103,7 @@ def cmd_rmi(args):
         print(f"Regime: {'EC 103/2019 (cotas)' if regime_novo else 'anterior a 13/11/2019 (100%)'}")
 
     if not regime_novo:
-        total = min(base, teto)
+        total = max(args.salario_minimo, min(base, teto))
         print(f"\nValor total da pensao: {brl(total)} (100% da base)")
         if dep > 0:
             print(f"Cota por dependente: {brl(total / dep)}")
@@ -99,7 +113,7 @@ def cmd_rmi(args):
 
     if args.invalido:
         percentual = 100
-        print("\nDependente invalido ou com deficiencia: art. 23, §2º, da EC 103/2019.")
+        print("\nDependente invalido ou com deficiencia intelectual, mental ou grave: art. 23, §2º, da EC 103/2019.")
     else:
         percentual = min(50 + 10 * dep, 100)
 
@@ -116,10 +130,14 @@ def cmd_rmi(args):
     if dep > 0:
         print(f"Cota por dependente: {brl(total / dep)}")
 
+    if args.invalido:
+        print("Projecao bloqueada: identificar se permanece dependente protegido pelo art. 23, par. 2o.")
+        return
+
     print("\nProjecao de cessacao de cotas (cotas nao revertem, art. 23, §1º):")
     for restantes in range(dep - 1, 0, -1):
         p = min(50 + 10 * restantes, 100)
-        v = base * p / 100
+        v = max(args.salario_minimo, min(teto, base * p / 100))
         print(f"  com {restantes} dependente(s): {p}% = {brl(v)}  (cota individual {brl(v / restantes)})")
     if dep >= 5:
         print("  com 5 ou mais remanescentes, preserva-se 100% (art. 23, §1º, parte final).")
@@ -140,9 +158,7 @@ def cmd_duracao(args):
     print(f"Data do obito: {obito.strftime('%d/%m/%Y')}")
 
     if obito < LEI_13135:
-        print("\nObito anterior a 18/06/2015: pensao vitalicia para conjuge ou companheiro,")
-        print("sem os filtros de 18 contribuicoes e de 2 anos de uniao (direito adquirido).")
-        return
+        raise ValueError("duracao historica anterior a 18/06/2015 exige analise especifica, incluindo MP 664")
 
     if args.idade_dependente is not None:
         idade = args.idade_dependente
@@ -152,11 +168,12 @@ def cmd_duracao(args):
     print(f"Idade do dependente na data do obito: {idade} anos")
 
     if args.invalido:
-        print("\nDependente invalido ou com deficiencia: duracao enquanto persistir a condicao,")
-        print("respeitados os prazos minimos da faixa etaria abaixo.")
+        raise ValueError("duracao com invalidez/deficiencia exige condicao, cessacao e minima legal; nao aplicar tabela comum automaticamente")
 
-    filtro_contrib = args.contribuicoes is None or args.contribuicoes >= 18
-    filtro_uniao = args.uniao_meses is None or args.uniao_meses >= 24
+    if not args.acidente and (args.contribuicoes is None or args.uniao_meses is None):
+        raise ValueError("contribuicoes e duracao da uniao desconhecidas; nao presumir filtros atendidos")
+    filtro_contrib = args.contribuicoes is not None and args.contribuicoes >= 18
+    filtro_uniao = args.uniao_meses is not None and args.uniao_meses >= 24
 
     print(f"\nFiltro 1 - 18 contribuicoes (ou 18 meses de atividade rural): "
           f"{'ATENDIDO' if filtro_contrib else 'NAO ATENDIDO'}")
@@ -166,7 +183,7 @@ def cmd_duracao(args):
         print("Morte por acidente de qualquer natureza ou doenca do trabalho: filtros afastados.")
 
     if not args.acidente and not (filtro_contrib and filtro_uniao):
-        fim = obito + timedelta(days=120)
+        fim = soma_meses(obito, 4)
         print(f"\nRESULTADO: 4 meses, contados da data do obito (art. 77, §2º, V, 'b').")
         print(f"Termo final aproximado: {fim.strftime('%d/%m/%Y')}")
         print("Tema 377/TNU: o prazo conta da data do obito mesmo em habilitacao tardia.")
@@ -179,7 +196,7 @@ def cmd_duracao(args):
             if anos is None:
                 print(f"\nRESULTADO: pensao VITALICIA (idade {idade} na faixa {minimo}+).")
             else:
-                fim = date(obito.year + anos, obito.month, min(obito.day, 28))
+                fim = soma_meses(obito, anos * 12)
                 print(f"\nRESULTADO: {anos} anos de duracao (faixa {minimo} a {maximo}).")
                 print(f"Cessacao aproximada: {fim.strftime('%d/%m/%Y')}")
             return
@@ -191,16 +208,25 @@ def cmd_dib(args):
     obito = parse_data(args.obito)
     der = parse_data(args.der)
     dias = (der - obito).days
-    menor16 = args.idade_dependente is not None and args.idade_dependente < 16
+    if args.idade_dependente is None:
+        raise ValueError("informe idade na data do obito e confirme a especie de dependente")
+    if der < obito:
+        raise ValueError("DER anterior ao obito")
+    if obito < date(1997, 12, 11):
+        raise ValueError("DIB historica nao suportada")
+    menor16 = args.filho and args.idade_dependente < 16
 
     print("DEFINICAO DA DIB")
     print("-" * 46)
     print(f"Obito: {obito.strftime('%d/%m/%Y')}   DER: {der.strftime('%d/%m/%Y')}   "
           f"Intervalo: {dias} dias")
 
-    if obito < MP_871:
+    if obito < date(2015, 11, 5):
         limite = 30
-        base_legal = "art. 74, I (redacao anterior a MP 871/2019): 30 dias"
+        base_legal = "art. 74, I, redacao anterior a Lei 13.183/2015: 30 dias"
+    elif obito < MP_871:
+        limite = 90
+        base_legal = "Lei 13.183/2015: 90 dias"
     elif menor16:
         limite = 180
         base_legal = "art. 74, I: 180 dias para filho menor de 16 anos"
@@ -222,7 +248,7 @@ def cmd_dib(args):
 
     print("\nPrescricao: parcelas anteriores a 5 anos da DER estao prescritas (art. 103,")
     print("paragrafo unico, e Sumula 85/STJ), salvo pensionista menor, incapaz ou ausente")
-    print("(art. 79 da Lei 8.213/91).")
+    print("[CONFERIR] causas impeditivas/suspensivas e capacidade no periodo; art. 79 revogado.")
 
 
 # --------------------------------------------------------- ACUMULACAO
@@ -248,6 +274,7 @@ def aplica_redutor(valor, sm):
 
 
 def cmd_acumulacao(args):
+    print("SIMULACAO ARITMETICA: confirmar especies, regimes e permissao legal de acumulacao antes de aplicar redutor.")
     sm = args.salario_minimo
     a, b = args.beneficio_a, args.beneficio_b
     maior, menor = (a, b) if a >= b else (b, a)
@@ -281,13 +308,8 @@ def cmd_prazos(args):
     print(f"\nRecurso ordinario ao CRPS (30 dias, art. 126 da Lei 8.213/91): "
           f"ate {r30.strftime('%d/%m/%Y')}")
     print(f"Recurso especial a Camara de Julgamento (30 dias da ciencia da decisao da Junta).")
-    print(f"\nNovo requerimento da mesma especie (art. 576-A da IN 128/2022, redacao da IN")
-    print(f"208/2026): somente apos a decisao e o decurso dos 30 dias, ou seja, a partir de")
-    print(f"{(r30 + timedelta(days=1)).strftime('%d/%m/%Y')}.")
-    print("Excecoes: pedido de revisao e beneficios por incapacidade.")
-    print("\nAtencao: no Regimento do CRPS aprovado pela Portaria MPS 125/2026, os prazos sao")
-    print("contados em dias corridos. Confirmar a redacao vigente.")
-
+    print("Data nominal: conferir calendario de expediente, prorrogacao e regimento vigente.")
+    print("Novo requerimento: conferir texto vigente da IN 128; este script nao fixa impedimento automatico.")
 
 # --------------------------------------------------------------- MAIN
 
@@ -298,10 +320,10 @@ def main():
     s = sub.add_parser("rmi", help="valor da pensao")
     s.add_argument("--base", type=float, required=True, help="valor da aposentadoria ou aposentadoria ficta")
     s.add_argument("--dependentes", type=int, required=True)
-    s.add_argument("--obito", type=str, default=None, help="AAAA-MM-DD")
-    s.add_argument("--invalido", action="store_true", help="ha dependente invalido ou com deficiencia")
-    s.add_argument("--salario-minimo", type=float, default=SM_PADRAO)
-    s.add_argument("--teto", type=float, default=TETO_PADRAO)
+    s.add_argument("--obito", type=str, required=True, help="AAAA-MM-DD")
+    s.add_argument("--invalido", action="store_true", help="ha dependente invalido ou com deficiencia intelectual, mental ou grave")
+    s.add_argument("--salario-minimo", type=float, required=True)
+    s.add_argument("--teto", type=float, required=True)
     s.set_defaults(func=cmd_rmi)
 
     s = sub.add_parser("duracao", help="duracao do beneficio do conjuge")
@@ -315,6 +337,7 @@ def main():
     s.set_defaults(func=cmd_duracao)
 
     s = sub.add_parser("dib", help="data de inicio do beneficio")
+    s.add_argument("--filho", action="store_true", help="requerente e filho; indispensavel para prazo de 180 dias")
     s.add_argument("--obito", type=str, required=True)
     s.add_argument("--der", type=str, required=True)
     s.add_argument("--idade-dependente", type=int, default=None)
@@ -323,7 +346,7 @@ def main():
     s = sub.add_parser("acumulacao", help="redutores do art. 24 da EC 103/2019")
     s.add_argument("--beneficio-a", type=float, required=True)
     s.add_argument("--beneficio-b", type=float, required=True)
-    s.add_argument("--salario-minimo", type=float, default=SM_PADRAO)
+    s.add_argument("--salario-minimo", type=float, required=True)
     s.set_defaults(func=cmd_acumulacao)
 
     s = sub.add_parser("prazos", help="prazos recursais administrativos")
@@ -333,7 +356,24 @@ def main():
     args = p.parse_args()
     if args.cmd == "duracao" and args.idade_dependente is None and args.nascimento_dependente is None:
         p.error("informe --idade-dependente ou --nascimento-dependente")
-    args.func(args)
+    try:
+        for nome in ("base", "salario_minimo", "teto", "beneficio_a", "beneficio_b"):
+            value = getattr(args, nome, None)
+            if value is not None and (not math.isfinite(value) or value <= 0):
+                raise ValueError(nome + " deve ser positivo e finito")
+        for nome in ("idade_dependente", "contribuicoes", "uniao_meses"):
+            value = getattr(args, nome, None)
+            if value is not None and value < 0:
+                raise ValueError(nome + " nao pode ser negativo")
+        if getattr(args, "obito", None) and parse_data(args.obito) > date.today():
+            raise ValueError("obito futuro")
+        if getattr(args, "nascimento_dependente", None) and parse_data(args.nascimento_dependente) > parse_data(args.obito):
+            raise ValueError("nascimento posterior ao obito: examinar habilitacao de filho postumo separadamente")
+        if getattr(args, "teto", None) and args.teto < args.salario_minimo:
+            raise ValueError("teto inferior ao piso")
+        args.func(args)
+    except (ValueError, TypeError) as e:
+        p.error(str(e))
 
 
 if __name__ == "__main__":

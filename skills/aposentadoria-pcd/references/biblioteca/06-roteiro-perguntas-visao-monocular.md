@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Roteiro de Perguntas — Visão Monocular
 
 > Fonte (PDF original): `33---roteiro-de-perguntas-PCD-para-visao-monocular.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -7,8 +9,7 @@
         ROTEIRO ESTRATÉGICO DE PERGUNTAS E RESPOSTAS - VISÃO MONOCULAR
                                       COM LENTE CORRETIVA (CLIENTE: ....)
 
-        - OBJETIVO: Reduzir pontuação do IF-BrA de 7.950 para até 7.584, enquadrando o
-        cliente como deficiência leve (LC 142/2013, Decreto 3048/99 e Portaria Interministerial
+        - OBJETIVO: apurar funcionalidade real e conferir a avaliação, sem meta de pontuação.
         01/2014), com aplicação de pontuação 75 ou 50 em atividades afetadas por visão
         monocular e uso de lente corretiva.
 

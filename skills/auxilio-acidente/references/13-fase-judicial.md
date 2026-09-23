@@ -4,11 +4,7 @@
 
 ## 1. Competência
 
-Ação de auxílio-acidente tramita na Justiça Federal, no Juizado Especial Federal (JEF) quando o
-valor da causa não exceder 60 salários mínimos, ou na Vara Federal comum acima desse limite ou
-quando houver complexidade incompatível com o rito sumaríssimo. Confirme o teto vigente e a
-regra de competência delegada, quando não houver vara federal na comarca do domicílio do
-segurado (Tema 820/STF).
+Definir natureza antes de escolher competência: ação acidentária decorrente de acidente do trabalho/doença ocupacional tramita na Justiça Estadual (CF, art. 109, I; conferir matéria do pedido). Auxílio-acidente de natureza comum segue Justiça Federal, com análise do limite e exclusões do JEF e competência territorial. Não enviar B94 ocupacional ao JEF por padrão.
 
 ---
 

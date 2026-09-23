@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Réplica com Único Ponto Controvertido DIDEF
 
 > Fonte (PDF original): `30---replica-com-unico-ponto-controvertido-didef.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -39,7 +41,7 @@ DEFICIÊNCIA:
 
                                                          O INSS, em sua Contestação, alega
 que a data do início da deficiência do autor seria 14/02/2014, divergindo da
-data fixada em 03/12/2001 no processo administrativo n. 202.115.494-1
+data fixada em 03/12/2001 no processo administrativo n. [NB DO CASO — CONFERIR]
 (IF-Bra – portaria n. 01/2014), já citado em inicial.
 
                                                          No entanto, tal afirmação é descabida
@@ -65,7 +67,7 @@ desde 01/2002, o que demonstra a fragilidade dessa alegação.
 
                                                                   Diante do exposto, sustenta-se a data
          do início da deficiência em 03/12/2001, conforme atestado na perícia médica
-         e social realizada no processo administrativo n. 202.115.494-1, devendo ser
+         e social realizada no processo administrativo n. [NB DO CASO — CONFERIR], devendo ser
          reconhecida por este Juízo.
 
                                                                   II.II - DO TEMPO DE
@@ -132,7 +134,7 @@ b) Patologia lombar (CID 10 M 54.4), com incapacidade reconhecida desde
                                                          As avaliações médicas e sociais do
 próprio requerido reconhecem a limitação funcional do autor:
 
-- A perícia realizada no processo administrativo n. 202.115.494-1 fixou
+- A perícia realizada no processo administrativo n. [NB DO CASO — CONFERIR] fixou
 a data do início da deficiência em 03/12/2001;
 
 -A limitação funcional decorrente das patologias dificulta,

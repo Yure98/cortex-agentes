@@ -1,24 +1,12 @@
 ---
 name: aposentadoria-pcd
-description: >
-  Especialista sênior em Aposentadoria da Pessoa com Deficiência (PCD) — LC 142/2013,
-  Decreto 3.048/1999, IF-BrA e avaliação biopsicossocial. Auxiliar jurídico experiente,
-  sábio, com raciocínio crítico e analítico, para atendimento, enquadramento de grau,
-  pontuação IF-BrA, preparação de perícia e redação de peças.
-  GATILHOS DIRETOS (slash): /atendimentopcd, /peticaopcd, /aposentadoriapcd, /pcd, /ifbra —
-  ative IMEDIATAMENTE esta skill quando o usuário digitar qualquer um (com ou sem argumentos).
-  Aceite também as variantes /peticao-pcd, /atendimento-pcd, /peticaopcs, /petiçãopcd.
-  Use SEMPRE que o usuário mencionar: aposentadoria PCD, pessoa com deficiência, LC 142,
-  LC 142/2013, IF-BrA, IF BrA, Índice de Funcionalidade Brasileiro, avaliação biopsicossocial,
-  grau de deficiência (leve/moderado/grave), enquadramento de grau, pontuação IF-BrA,
-  perícia biopsicossocial, DID (data de início da deficiência), DIDEF, impugnação de laudo
-  PCD, quesitos IF-BrA, revisão de ATC para LC 142, conversão de tempo PCD, deficiência
-  auditiva/visual/física/motora/psíquica/intelectual, visão monocular, aposentadoria por
-  tempo ou idade da PCD, roteiro de atendimento PCD, entrevista PCD, "meu cliente é PCD",
-  "quero enquadrar como deficiente", "montar o caso de aposentadoria PCD". Essencial para
-  advogados previdenciários — nunca ignore em contexto de aposentadoria da pessoa com deficiência.
-license: Proprietário — Cortex / Vértika
+description: Assessorar aposentadoria da pessoa com deficiência, LC 142/2013, DID, avaliação biopsicossocial e IF-BrA; organizar prova, preparar perícia e peças. Comandos /pcd, /atendimentopcd, /peticaopcd, /aposentadoriapcd e /ifbra. Ativar quando houver contexto explícito de deficiência ou LC 142, sem assumir grau ou pontuação. Não ativar por aposentadoria genérica.
+license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
+
+## Protocolo comum obrigatório
+
+Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar o dossiê versionado, coleta progressiva, fontes verificadas e os quatro portões de qualidade. Recursos locais: [.cortex/dossie.exemplo.json](.cortex/dossie.exemplo.json) e [.cortex/cortex.py](.cortex/cortex.py). A revisão técnica de 23/09/2026 não amplia automaticamente a data de confirmação normativa das referências.
 
 # Aposentadoria da Pessoa com Deficiência (PCD)
 
@@ -46,7 +34,7 @@ isso a definição do grau, com prova funcional, é o coração da estratégia.
 
 Faixas: **Grave ≤ 5.739 · Moderado 5.740–6.354 · Leve 6.355–7.584 · Insuficiente ≥ 7.585.**
 Tempo (H/M): Grave 25/20 · Moderado 29/24 · Leve 33/28. Idade: H 60 / M 55 + 15 anos como PCD.
-Cálculo: **100% da média** (sem coeficiente 60%+2% da EC 103/19). Carência: 180.
+Cálculo: **100% do salário de benefício por tempo; por idade, 70% + 1% por grupo de 12 contribuições, limitado a 100% (LC 142, art. 8º)** (sem coeficiente 60%+2% da EC 103/19). Carência: 180.
 
 ---
 
@@ -69,25 +57,17 @@ perguntar o óbvio. Diante de dúvida jurídica pontual, responda com base nas r
 
 Objetivo: transformar o relato do cliente em **enquadramento fundamentado + estratégia de prova**.
 
-**A1. Determine o grau pretendido/provável.** Se o usuário não informou, pergunte o grau
-pretendido OU colha o suficiente para estimá-lo. Carregue o roteiro correspondente de
-`references/roteiros-atendimento.md` (Leve, Moderado ou Grave).
+**A1. Delimite modalidade e fatos disponíveis.** Não começar por grau pretendido. Ler `references/roteiros-atendimento.md`, colher o necessário para idade/tempo e DID e aproveitar documentos existentes.
 
-**A2. Colete os dados do caso** usando o **Roteiro Específico (intake)** ao final de
-`roteiros-atendimento.md`: dados básicos, diagnóstico/CID/DID, limitações reais, ajuda de
-terceiros/adaptações, barreiras, documentos. Pergunte apenas o que faltar; não repita o que já
-foi dito.
+**A2. Investigue funcionalidade com perguntas abertas.** Registrar relato, ajuda, adaptações, barreiras e fonte de prova, em até três perguntas por rodada. Não sugerir respostas nem garantir grau pela entrevista.
 
-**A3. Aplique o motor IF-BrA** (`references/if-bra-metodologia.md`). Para cada uma das
-**41 atividades (7 domínios)** relevantes, use o bloco de 5 perguntas e atribua **25/50/75/100**
-conforme o desempenho real. Nomeie a **barreira** de cada atividade limitada. Foque a prova no
-que puxa o grau pretendido (75 → leve; 75/50 → moderado; 50/25 → grave).
+**A3. Confira as avaliações IF-BrA.** Exigir 41 atividades em cada uma das duas avaliações, médica e social (máximo 4.100 por avaliador, 8.200 total). Uma única entrevista não gera escore oficial. Para conferir a soma bruta, executar `.cortex/cortex.py ifbra formularios.json` com listas `medica` e `social`, cada uma com 41 notas; não aplica Fuzzy nem emite grau oficial. Aplicar Fuzzy somente após conferir o instrumento integral e os critérios do caso; sem isso, manter `[CONFERIR]`. Registrar divergências entre os avaliadores antes de concluir o grau.
 
 **A4. Entregue o resultado estruturado:**
 ```
 ENQUADRAMENTO PCD — [nome/iniciais]
 
-Grau pretendido: [leve/moderado/grave]  |  Benefício: [tempo/idade]
+Grau comprovado/pendente: [CONFERIR]  |  Benefício: [tempo/idade]
 DID sugerida: [data + fundamento]
 
 Pontuação provável por domínio (atividades impactadas):
@@ -152,7 +132,7 @@ finalize com o disclaimer de que é **minuta de trabalho** — o advogado revisa
 - **Sempre delimite a DID** (data de início da deficiência) e verifique se cobre o período
   contributivo — sua ausência é falha crítica.
 - Não confunda **deficiência** com **incapacidade**; não sustente pontuação 25 sem prova de
-  dependência total; para grau leve, 75 é a nota-chave.
+  dependência total; a nota depende do desempenho comprovado, sem faixa-alvo.
 - Cuide da **conversão de tempo** PCD/não-PCD (art. 7º LC 142) — erro comum de indeferimento.
 - A cada peça ou parecer, cite a fonte usada da `biblioteca/` para rastreabilidade.
 - Toda peça é **minuta**; inclua disclaimer na entrega.

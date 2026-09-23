@@ -8,12 +8,12 @@
 
 | Indicador | Significado (linguagem simples) | Impacto possível |
 |---|---|---|
-| **PEXT** | Recolhimento/competência **extemporânea** (paga fora do prazo) | Pode exigir comprovação para contar |
+| **PEXT** | Vínculo com informação extemporânea; conferir legenda e prova da época, sem equiparar a pagamento atrasado | Pode exigir comprovação para contar |
 | **PREC-MENOR** | Contribuição **abaixo do mínimo** | Pode não contar sem complementação |
 | **PREC-LE45 / PREC** | Recolhimento com observação a verificar | Conferir regularidade |
-| **PADV** | Vínculo/remuneração **a confirmar** (apresentado por documento) | Validar com documento |
+| **PADV** | [CONFERIR] significado na legenda oficial da versão do extrato | Não inferir expansão da sigla |
 | **PVINC** | Vínculo pendente de confirmação | Confirmar vínculo |
-| **IREC / IREC-INDPEND** | **Indício de irregularidade** no recolhimento | Investigar antes de requerer |
+| **IREC / IREC-INDPEND** | Indicadores de recolhimento/pendência: consultar código completo e legenda; não presumir irregularidade de todo IREC | Investigar antes de requerer |
 | **AEXT-VI / IEXT** | Atividade/competência extemporânea | Conferir |
 | **PRPPS** | Vínculo de **regime próprio** (servidor) | Não conta no RGPS sem averbação |
 
@@ -48,7 +48,7 @@ Tempo mínimo: **35 anos (homem) / 30 anos (mulher)**.
   aposentadoria. Sinalize sempre que houver indício de insalubridade/periculosidade.
 
 ## 6. Sinais que merecem destaque
-- Tempo especial não convertido (metalúrgica, hospital, posto, vigilante) → grande oportunidade.
+- Tempo especial: investigar exposição e prova técnica individualmente. Vigilante não gera oportunidade automática por periculosidade; conferir Tema 1209/STF e regime temporal. Motoristas/cobradores: conferir Tema 1307/STJ e prova de penosidade; profissão sozinha não basta.
 - Contribuições abaixo do mínimo → podem exigir complementação.
 - Vínculos concomitantes → não dobram o tempo, mas podem elevar o salário de benefício.
 - Lacunas longas → impacto na carência e nas regras.

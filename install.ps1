@@ -1,37 +1,27 @@
-# Cortex — Instalador (Windows / PowerShell)
-# Uso: clone o repo e rode  ->  powershell -ExecutionPolicy Bypass -File install.ps1
-
+# Cortex 2.0 — Yure Digital. Instala e atualiza sem exigir administrador.
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$claude = Join-Path $HOME ".claude"
-$skillsDst = Join-Path $claude "skills"
-$cmdsDst = Join-Path $claude "commands"
-
-Write-Host ""
-Write-Host "==================================================" -ForegroundColor Green
-Write-Host "  CORTEX - Agentes de IA para Advocacia" -ForegroundColor Green
-Write-Host "  Instalando no Claude Code..." -ForegroundColor Green
-Write-Host "==================================================" -ForegroundColor Green
-Write-Host ""
-
-New-Item -ItemType Directory -Force -Path $skillsDst | Out-Null
-New-Item -ItemType Directory -Force -Path $cmdsDst | Out-Null
-
-# Skills
-Get-ChildItem -Path (Join-Path $root "skills") -Directory | ForEach-Object {
-  $dst = Join-Path $skillsDst $_.Name
-  if (Test-Path $dst) { Remove-Item -Recurse -Force $dst }
-  Copy-Item -Recurse -Force $_.FullName $dst
-  Write-Host "  [skill]   $($_.Name)" -ForegroundColor Cyan
+$installer = Join-Path $root "scripts/install.py"
+$pythonCommand = $null
+$pythonArguments = @()
+foreach ($candidate in @("py", "python", "python3")) {
+    if (Get-Command $candidate -ErrorAction SilentlyContinue) {
+        $prefix = @()
+        if ($candidate -eq "py") { $prefix = @("-3") }
+        & $candidate @prefix -c "import sys; sys.exit(0 if sys.version_info >= (3,10) else 1)" 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $pythonCommand = $candidate
+            $pythonArguments = $prefix
+            break
+        }
+    }
 }
-
-# Comandos
-Get-ChildItem -Path (Join-Path $root "commands") -Filter *.md | ForEach-Object {
-  Copy-Item -Force $_.FullName (Join-Path $cmdsDst $_.Name)
-  Write-Host "  [comando] /$($_.BaseName)" -ForegroundColor Cyan
+if (-not $pythonCommand) {
+    Write-Host "Python 3.10 ou superior nao foi encontrado." -ForegroundColor Yellow
+    Write-Host "1. Instale Python em https://www.python.org/downloads/windows/ e marque Add python.exe to PATH."
+    Write-Host "2. Feche esta janela e abra INSTALAR-CORTEX-WINDOWS.cmd novamente."
+    Write-Host "Nenhuma skill foi substituida."
+    exit 1
 }
-
-Write-Host ""
-Write-Host "Instalacao concluida!" -ForegroundColor Green
-Write-Host "Reinicie o Claude Code e teste:  /cnis  /peticionar  /decisor  /recurso" -ForegroundColor Yellow
-Write-Host ""
+& $pythonCommand @pythonArguments $installer @args
+exit $LASTEXITCODE

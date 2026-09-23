@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Quesitos — Ponto Controvertido DIDEF
 
 > Fonte (PDF original): `28---quesitos-ponto-controvertido-didef.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -21,7 +23,7 @@ abaixo segue:
 inicial e em replica, cumpre esclarecer que o único ponto controvertido dos
 autos é a data do inicio da deficiência, solicitando o autor a sua fixação
 em 01/12/2001, conforme já reconhecido no processo administrativo – NB
-n. 202.115.494-1 (IF-Bra – portaria n. 01/2014).
+n. [NB DO CASO — CONFERIR] (IF-Bra – portaria n. 01/2014).
 
                                 A deficiência é decorrente das
 

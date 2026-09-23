@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Quesitos para Processo Judicial de IF-BrA (completo)
 
 > Fonte (PDF original): `27---quesitos-para-processo-judicial-de--if-bra.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -152,6 +154,6 @@
                                                  Pede deferimento.
                                       Atibaia, em 25 de março de 2025.
                                         GISELE BERALDO DE PAIVA
-                                                OAB/SP n. 229788
+                                                OAB/SP n. [CONFERIR]
 
 ```

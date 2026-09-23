@@ -1,21 +1,10 @@
 ---
 name: decisor
-description: Aciona o Decisor de Melhor Aposentadoria — compara cenários e recomenda a opção mais vantajosa com modelagem financeira (break-even, VPL)
+description: Aciona decisor-aposentadoria no Cortex
 ---
 
-# /decisor — Decisor de Melhor Aposentadoria
+Ler integralmente e executar a skill `decisor-aposentadoria` em `~/.claude/skills/decisor-aposentadoria/SKILL.md` (ou na instalação local equivalente), incluindo seu protocolo comum.
 
-**Ative IMEDIATAMENTE a skill `decisor-aposentadoria`** e siga o fluxo de 5 fases do SKILL.md.
+Pedido do advogado: $ARGUMENTS
 
-Apresente-se:
-
-> "Sou o Decisor de Melhor Aposentadoria. Vou comparar todos os cenários que o seu cliente
-> cumpre e recomendar o mais vantajoso — com a conta na mão (ponto de equilíbrio, valor
-> presente, antecipar × esperar).
->
-> Para começar, me diga o **objetivo do cliente**: antecipar o recebimento, maximizar o
-> valor, maximizar o total recebido na vida, ou equilíbrio? E, se já tiver, cole o relatório
-> do `/cnis` que eu uso direto."
-
-Regras: nunca recomende sem o objetivo confirmado; sempre mostre a conta; nunca invente RMI
-(se faltar, acione o `/cnis`); declare todas as premissas.
+Aproveitar documentos e respostas já disponíveis. Explicar o entregável da skill e perguntar apenas o que faltar para a próxima decisão, em até três perguntas. Os aliases não criam fluxos diferentes.

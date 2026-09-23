@@ -4,17 +4,21 @@
 diagnostico.py — Calculadora determinística para casos de salário-maternidade (RGPS).
 
 Por que existe: contagem de período de graça e de prescrição com suspensão administrativa
-é onde o caso se perde por aritmética, não por direito. Cálculo mental erra. Este script não.
+é onde o caso se perde por aritmética, não por direito. Cálculo determinístico exige entradas e enquadramento verificados; este script também tem limites.
 
 Uso:
     python3 diagnostico.py --interativo
     python3 diagnostico.py --json caso.json
     python3 diagnostico.py --exemplo
 
-Formato do JSON de entrada (todos os campos são opcionais, exceto fato_gerador):
+Contrato JSON: obrigatórios fato_gerador, categoria, data_referencia, salario_minimo e teto_rgps.
+Para art. 73, III, usar salarios_competencias com competencia YYYY-MM, valor_atualizado,
+atualizacao_confirmada=true e fonte. Lista legada sem competências não gera RMI.
+Exemplo ilustrativo (parâmetros precisam corresponder à data-base):
 
 {
   "nome": "Cliente Exemplo",
+  "data_referencia": "2026-09-23",
   "fato_gerador": "2024-08-15",
   "tipo_fato_gerador": "parto",          # parto | natimorto | aborto | adocao | guarda
   "categoria": "contribuinte_individual", # ver CATEGORIAS abaixo
@@ -38,6 +42,8 @@ AVISO: os parâmetros salario_minimo e teto_rgps são [VOLÁTIL]. Confirme antes
 from __future__ import annotations
 
 import argparse
+import math
+from decimal import Decimal, ROUND_HALF_UP
 import json
 import sys
 from dataclasses import dataclass, field
@@ -113,13 +119,54 @@ def soma_meses(dt: date, meses: int) -> date:
     return date(ano, mes, min(dt.day, ultimo))
 
 
+def validar_entrada(dados):
+    for key in ('fato_gerador', 'categoria', 'data_referencia', 'salario_minimo', 'teto_rgps'):
+        if dados.get(key) is None:
+            raise ValueError('campo obrigatório: ' + key)
+    if dados['categoria'] not in CATEGORIAS:
+        raise ValueError('categoria desconhecida')
+    if dados.get('tipo_fato_gerador', 'parto') not in DURACAO_DIAS:
+        raise ValueError('tipo de fato gerador desconhecido')
+    for key in ('desemprego_involuntario', 'nexo_internacao_confirmado'):
+        if key in dados and type(dados[key]) is not bool:
+            raise ValueError(key + ' exige booleano JSON, não texto')
+    for key in ('salario_minimo', 'teto_rgps', 'remuneracao_mensal'):
+        if dados.get(key) is not None:
+            val = dados[key]
+            if isinstance(val, bool) or not math.isfinite(float(val)) or float(val) <= 0:
+                raise ValueError(key + ' deve ser positivo e finito')
+    for valor in dados.get("salarios_contribuicao", []):
+        if isinstance(valor, bool) or not math.isfinite(float(valor)) or float(valor) < 0:
+            raise ValueError("salário de contribuição inválido")
+    if float(dados['teto_rgps']) < float(dados['salario_minimo']):
+        raise ValueError('teto inferior ao piso')
+    for key in ('internacao_dias', 'dias_antes_parto', 'contribuicoes_totais'):
+        val = dados.get(key, 0)
+        if type(val) is not int or val < 0:
+            raise ValueError(key + ' exige inteiro não negativo')
+    if dados.get('dias_antes_parto', 0) > 120:
+        raise ValueError('dias anteriores excedem duração')
+    ref, evento = d(dados['data_referencia']), d(dados['fato_gerador'])
+    if evento > ref:
+        raise ValueError('evento futuro: usar planejamento, não diagnóstico de fato ocorrido')
+    for key in ('der', 'ciencia_decisao', 'ajuizamento', 'alta_hospitalar', 'ultima_contribuicao'):
+        dt = d(dados.get(key))
+        if dt and dt > ref:
+            raise ValueError(key + ' posterior à data de referência')
+    der, ciencia = d(dados.get('der')), d(dados.get('ciencia_decisao'))
+    if ciencia and (not der or ciencia < der):
+        raise ValueError('ciência exige DER anterior ou igual')
+    if dados.get('alta_hospitalar') and d(dados['alta_hospitalar']) < evento:
+        raise ValueError('alta anterior ao parto')
+
+
 # ---------------------------------------------------------------------------
 @dataclass
 class Caso:
     fato_gerador: date
     nome: str = "—"
     tipo_fato_gerador: str = "parto"
-    categoria: str = "contribuinte_individual"
+    categoria: str = "desconhecida"
     ultima_contribuicao: date | None = None
     contribuicoes_totais: int = 0
     desemprego_involuntario: bool = False
@@ -130,19 +177,25 @@ class Caso:
     remuneracao_mensal: float | None = None
     internacao_dias: int = 0
     alta_hospitalar: date | None = None
-    salario_minimo: float = SALARIO_MINIMO_PADRAO
-    teto_rgps: float = TETO_RGPS_PADRAO
+    salario_minimo: float | None = None
+    teto_rgps: float | None = None
+    data_referencia: date | None = None
+    salarios_competencias: list[dict] = field(default_factory=list)
+    dias_antes_parto: int = 0
+    nexo_internacao_confirmado: bool = False
+    feriados: list[date] = field(default_factory=list)
 
     @staticmethod
     def de_dict(dados: dict) -> "Caso":
+        validar_entrada(dados)
         return Caso(
             fato_gerador=d(dados["fato_gerador"]),
             nome=dados.get("nome", "—"),
             tipo_fato_gerador=dados.get("tipo_fato_gerador", "parto"),
-            categoria=dados.get("categoria", "contribuinte_individual"),
+            categoria=dados["categoria"],
             ultima_contribuicao=d(dados.get("ultima_contribuicao")),
             contribuicoes_totais=int(dados.get("contribuicoes_totais", 0) or 0),
-            desemprego_involuntario=bool(dados.get("desemprego_involuntario", False)),
+            desemprego_involuntario=dados.get("desemprego_involuntario", False),
             der=d(dados.get("der")),
             ciencia_decisao=d(dados.get("ciencia_decisao")),
             ajuizamento=d(dados.get("ajuizamento")),
@@ -151,8 +204,13 @@ class Caso:
                                 if dados.get("remuneracao_mensal") else None),
             internacao_dias=int(dados.get("internacao_dias", 0) or 0),
             alta_hospitalar=d(dados.get("alta_hospitalar")),
-            salario_minimo=float(dados.get("salario_minimo", SALARIO_MINIMO_PADRAO)),
-            teto_rgps=float(dados.get("teto_rgps", TETO_RGPS_PADRAO)),
+            salario_minimo=float(dados["salario_minimo"]),
+            teto_rgps=float(dados["teto_rgps"]),
+            data_referencia=d(dados["data_referencia"]),
+            salarios_competencias=dados.get("salarios_competencias", []),
+            dias_antes_parto=dados.get("dias_antes_parto", 0),
+            nexo_internacao_confirmado=dados.get("nexo_internacao_confirmado", False),
+            feriados=[d(x) for x in dados.get("feriados", [])],
         )
 
 
@@ -173,14 +231,16 @@ def calcular_periodo_graca(c: Caso) -> dict:
         base += 12
         detalhe.append("+12 meses — mais de 120 contribuições sem perda intercalada (art. 15, § 1º)")
 
-    if c.desemprego_involuntario:
+    if c.desemprego_involuntario and c.categoria != "facultativa":
         base += 12
         detalhe.append("+12 meses — desemprego involuntário comprovado (art. 15, § 2º; Tema 19/TNU)")
 
     fim_manutencao = soma_meses(fim_do_mes(c.ultima_contribuicao), base)
     # extensão do art. 30, II, da Lei 8.212/91: até o dia 15 do 2º mês seguinte
-    limite = date(fim_manutencao.year + (1 if fim_manutencao.month == 12 else 0),
-                  1 if fim_manutencao.month == 12 else fim_manutencao.month + 1, 15)
+    segundo_mes = soma_meses(fim_manutencao, 2)
+    limite = date(segundo_mes.year, segundo_mes.month, 15)
+    while limite.weekday() >= 5 or limite in c.feriados:
+        limite += timedelta(days=1)
 
     mantida = c.fato_gerador <= limite
     return {
@@ -191,6 +251,7 @@ def calcular_periodo_graca(c: Caso) -> dict:
         "limite_com_extensao_art_30_II": limite.isoformat(),
         "qualidade_mantida_no_fato_gerador": mantida,
         "margem_dias": (limite - c.fato_gerador).days,
+        "calendario": "Feriados dependem da lista informada; conferir vencimento antes de concluir perda.",
     }
 
 
@@ -199,7 +260,9 @@ def calcular_prescricao(c: Caso) -> dict:
     Art. 103, parágrafo único, da Lei 8.213/91.
     Suspensão pelo requerimento administrativo: Súmula 74/TNU + Decreto 20.910/1932, arts. 4º e 5º.
     """
-    referencia = c.ajuizamento or date.today()
+    referencia = c.ajuizamento or c.data_referencia
+    if referencia is None:
+        raise ValueError("data_referencia obrigatória")
     consumido_1 = None
     consumido_2 = None
 
@@ -214,7 +277,7 @@ def calcular_prescricao(c: Caso) -> dict:
         total = (referencia - c.fato_gerador).days
         suspensao_dias = 0
 
-    limite = 5 * 365 + 1  # aproximação conservadora; confira bissextos no caso concreto
+    limite = (soma_meses(c.fato_gerador, 60) - c.fato_gerador).days
     return {
         "data_referencia": referencia.isoformat(),
         "houve_suspensao": bool(c.der),
@@ -223,17 +286,17 @@ def calcular_prescricao(c: Caso) -> dict:
         "dias_apos_a_ciencia": consumido_2,
         "prazo_consumido_dias": total,
         "prazo_consumido_anos": round(total / 365.25, 2),
-        "prescrito": total > limite,
+        "prescrito": None,
         "dias_restantes": max(0, limite - total),
-        "alerta": ("PRESCRIÇÃO CONSUMADA — todas as parcelas" if total > limite
-                   else ("ATENÇÃO: menos de 180 dias restantes" if (limite - total) < 180
-                         else "Dentro do prazo")),
+        "alerta": "[CONFERIR] estimativa desde o evento; apurar vencimento de cada parcela, capacidade e causas de suspensão. Não conclui prescrição de todas as parcelas.",
     }
 
 
 def calcular_rmi(c: Caso) -> dict:
     """RMI conforme arts. 72 e 73 da Lei 8.213/91 e Tema 202/TNU."""
     sm, teto = c.salario_minimo, c.teto_rgps
+    if sm is None or teto is None:
+        raise ValueError("informar piso e teto da data-base")
     base_legal = ""
     valor = None
     observacoes: list[str] = []
@@ -246,7 +309,7 @@ def calcular_rmi(c: Caso) -> dict:
         valor = c.remuneracao_mensal or (c.salarios_contribuicao[0]
                                          if c.salarios_contribuicao else None)
     elif c.categoria == "mei":
-        base_legal = "MEI — 1 salário mínimo (salvo complementação para 20%)"
+        base_legal = "MEI — 1 salário mínimo; complemento de alíquota sobre a mesma base não aumenta a RMI"
         valor = sm
     elif c.categoria == "segurada_especial":
         base_legal = "art. 39, parágrafo único — 1 salário mínimo"
@@ -258,18 +321,29 @@ def calcular_rmi(c: Caso) -> dict:
                 "Tema 202/TNU: ainda que a última vinculação tenha sido como EMPREGADA, "
                 "aplica-se o art. 73, III — e não a remuneração integral do art. 72."
             )
-        if c.salarios_contribuicao:
-            usados = c.salarios_contribuicao[:12]
-            valor = sum(usados) / 12.0
-            observacoes.append(
-                f"{len(usados)} salário(s) de contribuição informado(s); "
-                f"divisor 12 aplicado conforme o art. 73, III."
-            )
-            if len(usados) < 12:
-                observacoes.append(
-                    "ATENÇÃO: menos de 12 SC no período. Verifique o divisor aplicável "
-                    "no caso concreto e o piso do salário mínimo."
-                )
+        if c.salarios_competencias:
+            limite = soma_meses(date(c.fato_gerador.year, c.fato_gerador.month, 1), -15)
+            fim = date(c.fato_gerador.year, c.fato_gerador.month, 1)
+            usados = []
+            vistos = set()
+            for item in c.salarios_competencias:
+                competencia = date.fromisoformat(item['competencia'] + '-01')
+                if competencia in vistos:
+                    raise ValueError('competência duplicada; consolidar atividades antes do cálculo')
+                vistos.add(competencia)
+                if not limite <= competencia < fim:
+                    raise ValueError('competência fora da janela de 15 meses anterior ao evento')
+                if item.get('atualizacao_confirmada') is not True or not item.get('fonte'):
+                    raise ValueError('salário sem atualização/fonte confirmada')
+                val = Decimal(str(item['valor_atualizado']))
+                if not val.is_finite() or val < 0:
+                    raise ValueError('salário inválido')
+                usados.append((competencia, val))
+            usados.sort(reverse=True)
+            valor = float(sum(v for _, v in usados[:12]) / Decimal(12))
+            observacoes.append('Divisor fixo 12; até 12 SC verificados na janela de 15 meses.')
+        elif c.salarios_contribuicao:
+            observacoes.append('[CONFERIR] lista sem competências não permite verificar janela ou atualização; RMI bloqueada.')
 
     if valor is None:
         return {"base_legal": base_legal, "rmi": None,
@@ -282,11 +356,15 @@ def calcular_rmi(c: Caso) -> dict:
             "(CF art. 201, § 2º; art. 73 da Lei 8.213/91)."
         )
         rmi = sm
-    if rmi > teto:
+    if rmi > teto and c.categoria not in ("empregada", "empregada_rural", "avulsa"):
         observacoes.append(f"Valor apurado (R$ {brl(valor)}) acima do teto; limitado.")
         rmi = teto
 
+    if c.categoria in ("empregada", "empregada_rural", "avulsa"):
+        observacoes.append("Remuneração integral sem teto RGPS; conferir limite constitucional aplicável e verbas variáveis.")
     dias = DURACAO_DIAS.get(c.tipo_fato_gerador, 120)
+    if c.internacao_dias > 14:
+        observacoes.append("Total abaixo cobre apenas duração ordinária; extensão hospitalar exige liquidação separada.")
     total = rmi * (dias / 30.0)
 
     return {
@@ -312,8 +390,11 @@ def calcular_duracao(c: Caso) -> dict:
         r["efeito"] = ("Benefício devido durante todo o período de internação E por mais 120 dias "
                        "após a alta (a mais tardia entre mãe e recém-nascido), descontado o tempo "
                        "de recebimento anterior ao parto.")
-        if c.alta_hospitalar:
-            r["dcb_estimada"] = (c.alta_hospitalar + timedelta(days=120)).isoformat()
+        if c.alta_hospitalar and c.nexo_internacao_confirmado:
+            r["dcb_estimada"] = (c.alta_hospitalar + timedelta(days=120 - c.dias_antes_parto)).isoformat()
+            r["nota_contagem"] = "Estimativa exclui dia da alta no acréscimo; conferir DIB/DCB administrativas e dias pagos."
+        else:
+            r["efeito"] += " [CONFERIR] faltam alta ou nexo comprovado; não fixar DCB."
         r["prova_necessaria"] = ("Relatório hospitalar com datas de entrada e alta de mãe e bebê + "
                                  "declaração médica estabelecendo o NEXO com o parto.")
     elif c.internacao_dias > 0:
@@ -338,8 +419,12 @@ def calcular_art_73a(c: Caso) -> dict:
                 "motivo": f"DER anterior a {vigencia.isoformat()} (vigência da Lei 15.415/2026). "
                           "Aplicação a requerimentos pendentes é discutível. [VOLÁTIL]"}
 
+    if c.ciencia_decisao:
+        return {"aplicavel": False, "motivo": "Já há decisão comunicada; examinar tempestividade e efeitos concretos, sem presumir mora atual."}
     prazo = c.der + timedelta(days=30)
-    hoje = date.today()
+    hoje = c.data_referencia
+    if hoje is None:
+        raise ValueError("data_referencia obrigatória")
     return {
         "aplicavel": True,
         "prazo_final_para_decisao": prazo.isoformat(),
@@ -391,12 +476,12 @@ def avaliar_semaforo(c: Caso, graca: dict, presc: dict) -> dict:
             sinal = "🟡 AMARELO"
         riscos.append(
             "Segurada especial: o caso se decide na prova material (Súmula 149/STJ). "
-            "Montar dossiê para 12 meses; sustentar que 10 bastam."
+            "Comprovar qualidade/atividade no regime aplicável; não confundir janela de prova com carência abolida."
         )
 
     if not c.der:
-        sinal = "🔴 VERMELHO"
-        riscos.append("Sem DER: ação judicial será extinta (Tema 350/STF). Requerer primeiro.")
+        sinal = "🟡 AMARELO"
+        riscos.append("Sem DER: triagem possível; verificar necessidade de prévio requerimento e exceções antes de judicializar (Tema 350/STF).")
 
     return {"sinal": sinal, "riscos": riscos or ["Nenhum risco crítico identificado."]}
 
@@ -434,6 +519,11 @@ def relatorio(c: Caso) -> str:
     dur = calcular_duracao(c)
     art73a = calcular_art_73a(c)
     sem = avaliar_semaforo(c, graca, presc)
+    if rmi["rmi"] is None or presc["prescrito"] is None:
+        if sem["sinal"] == "🟢 VERDE":
+            sem["sinal"] = "🟡 AMARELO"
+        sem["riscos"] = [x for x in sem["riscos"] if x != "Nenhum risco crítico identificado."]
+        sem["riscos"].append("Conclusão parcial: conferir RMI, prescrição por parcela e portões antes de uso final.")
 
     L = []
     add = L.append
@@ -540,13 +630,16 @@ def interativo() -> Caso:
         "tipo_fato_gerador": perg("Tipo (parto/natimorto/aborto/adocao/guarda)", "parto"),
         "categoria": perg(f"Categoria ({'/'.join(CATEGORIAS)})", "contribuinte_individual"),
         "ultima_contribuicao": perg("Última contribuição/vínculo (AAAA-MM-DD)") or None,
-        "contribuicoes_totais": perg("Total de contribuições", "0"),
+        "contribuicoes_totais": int(perg("Total de contribuições", "0")),
         "desemprego_involuntario": perg("Desemprego involuntário comprovado? (s/n)", "n").lower() == "s",
         "der": perg("DER (AAAA-MM-DD)") or None,
         "ciencia_decisao": perg("Ciência da decisão (AAAA-MM-DD)") or None,
         "ajuizamento": perg("Ajuizamento/data de referência (AAAA-MM-DD)") or None,
         "remuneracao_mensal": perg("Remuneração mensal (R$)") or None,
-        "internacao_dias": perg("Dias de internação ligada ao parto", "0"),
+        "internacao_dias": int(perg("Dias de internação ligada ao parto", "0")),
+        "data_referencia": perg("Data de referência (AAAA-MM-DD)"),
+        "salario_minimo": perg("Salário mínimo da data-base (R$)"),
+        "teto_rgps": perg("Teto da data-base (R$)"),
         "alta_hospitalar": perg("Alta hospitalar mais tardia (AAAA-MM-DD)") or None,
     }
     sc = perg("Salários de contribuição, do mais recente ao mais antigo (separados por vírgula)")
@@ -569,6 +662,9 @@ EXEMPLO = {
     "ajuizamento": "2026-03-01",
     "salarios_contribuicao": [1412.0] * 12,
     "internacao_dias": 0,
+    "data_referencia": "2026-03-01",
+    "salario_minimo": 1412.0,
+    "teto_rgps": 7786.02,
 }
 
 
@@ -594,7 +690,11 @@ def main() -> int:
         print(f"Erro nos dados de entrada: {e}", file=sys.stderr)
         return 2
 
-    print(relatorio(caso))
+    try:
+        print(relatorio(caso))
+    except (ValueError, TypeError, KeyError) as e:
+        print(f"[CONFERIR] {e}", file=sys.stderr)
+        return 2
     return 0
 
 

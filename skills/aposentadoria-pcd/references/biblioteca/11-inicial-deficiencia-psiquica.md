@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Petição Inicial — PCD Deficiência Psíquica
 
 > Fonte (PDF original): `23---peticao-inicial-pcd-deficiencia-psiquica.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -36,7 +38,7 @@ do art. 5º, inciso LXXIV, da CF/88 e nos arts. 98 e 99 do CPC/15.
        No dia 25/08/2025 (na DER), a parte autora pleiteou, junto a autarquia ré, o benefício de
 aposentadoria por tempo de contribuição da pessoa com deficiência, afirmado ser PCD em grau
 moderado, vez que já reconhecido anteriormente pela perícia federal administrativa em NB anterior (de
-n. 196.863.905-2), pedido este indeferido sob a justificativa de que a parte autora não teria atingido o
+n. [NB DO CASO — CONFERIR]), pedido este indeferido sob a justificativa de que a parte autora não teria atingido o
 tempo mínimo de contribuição, eis que a deficiência, neste novo requerimento de 25/08/2025, foi
 enquadrada como leve.
 
@@ -64,7 +66,7 @@ o modelo Fuzzy de forma correta) - a autora atingiria 6.325 pontos e suficientem
 enquadramento na deficiência moderada, segundo estabelecido pelo IF-BrA (portaria n. 01/2014
 - em anexo).
 
-       Frise-se que no requerimento administrativo de n. NB 42/196.863.905-2, o enquadramento
+       Frise-se que no requerimento administrativo de n. NB 42/[NB DO CASO — CONFERIR], o enquadramento
 como PCD se deu na forma moderada, em 22/03/2023, havendo prova pré-constituída do direito
 
 aqui discutido.
@@ -412,7 +414,7 @@ evitar a execução invertida ou a restituição indevida em prejuízo da segura
 
        DOS PEDIDOS:
        Por todo o exposto, a parte autora pugna pela CONDENAÇÃO do INSS na concessão da
-aposentadoria por tempo de contribuição da pessoa com deficiência (NB n. 42/230.398.894-7), com DIB
+aposentadoria por tempo de contribuição da pessoa com deficiência (NB n. 42/[NB DO CASO — CONFERIR]), com DIB
 na DER em 25/08/2025, mediante o reconhecimento dos seguintes pedidos:
 
                - Reconhecer a existência de deficiência grau moderado, conforme tabela que instrui a

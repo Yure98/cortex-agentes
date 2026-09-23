@@ -60,7 +60,7 @@ BLOCOS = {
             "C3": ("Prova de dependencia economica quando exigida", 5,
                    "Extratos, IR, contas, plano de saude, coabitacao documentada"),
             "C4": ("Invalidez ou deficiencia documentada quando alegada", 4,
-                   "Laudos e historico medico anteriores ao obito e aos 21 anos"),
+                   "Laudos e historico medico para verificar inicio anterior ao obito; nao exigir automaticamente inicio antes dos 21 anos"),
         },
     },
     "D": {
@@ -110,7 +110,8 @@ def template():
         "enquadramento": "urbano | rural | misto",
         "data_obito": "AAAA-MM-DD",
         "itens": {},
-        "bloqueios": {k: False for k in BLOQUEIOS},
+        "justificativas_na": {},
+        "bloqueios": {k: None for k in BLOQUEIOS},
     }
     for bloco in BLOCOS.values():
         for cod in bloco["itens"]:
@@ -118,7 +119,26 @@ def template():
     return caso
 
 
+def validar_caso(caso):
+    if not isinstance(caso.get("itens"), dict):
+        raise ValueError("itens deve ser objeto")
+    conhecidos = {cod for b in BLOCOS.values() for cod in b["itens"]}
+    if set(caso["itens"]) - conhecidos:
+        raise ValueError("codigo de item desconhecido")
+    for cod, estado in caso["itens"].items():
+        if estado not in (*VALORES, "na"):
+            raise ValueError("estado invalido: " + cod)
+        if estado == "na" and (cod in ['A1', 'A3', 'B2', 'C1'] or not caso.get("justificativas_na", {}).get(cod)):
+            raise ValueError("na exige justificativa e nao pode excluir requisito essencial: " + cod)
+    bloqueios = caso.get("bloqueios", {})
+    if not isinstance(bloqueios, dict) or set(bloqueios) - set(BLOQUEIOS):
+        raise ValueError("bloqueios invalidos")
+    if any(v is not None and type(v) is not bool for v in bloqueios.values()):
+        raise ValueError("bloqueios aceitam apenas true, false ou null")
+
+
 def pontuar(caso):
+    validar_caso(caso)
     resultado = {}
     lacunas = []
     for letra, bloco in BLOCOS.items():
@@ -153,9 +173,9 @@ def pontuar(caso):
 
 def faixa(total):
     if total >= 85:
-        return "caso maduro", "Protocolar. Se ja indeferido, judicializar com pedido de tutela"
+        return "caso maduro", "Submeter a revisao juridica; tutela depende de requisitos proprios"
     if total >= 70:
-        return "protocolavel com risco controlado", "Protocolar e suprir lacunas durante a analise"
+        return "protocolavel com risco controlado", "Revisar lacunas e requisitos essenciais antes de protocolar"
     if total >= 50:
         return "instrucao insuficiente", "Diligenciar antes. Protocolo prematuro trava 30 dias (art. 576-A da IN 128/2022)"
     if total >= 30:
@@ -190,14 +210,17 @@ def main():
         barra = "#" * int(round(obtido / maximo * 20)) if maximo else ""
         print(f"  {letra} {nome:<42} {obtido:>5}/{maximo:<3} {barra}")
 
+    desconhecidos = [k for k in BLOQUEIOS if caso.get("bloqueios", {}).get(k) is None]
     ativos = [BLOQUEIOS[k] for k, v in caso.get("bloqueios", {}).items() if v and k in BLOQUEIOS]
+    if desconhecidos:
+        print("\nBLOQUEADO PARA USO FINAL: verificar " + ", ".join(desconhecidos))
     if ativos:
         print("\n*** BLOQUEIOS FATAIS DETECTADOS ***")
         for b in ativos:
             print(f"  - {b}")
         print("\nRECOMENDACAO: NAO PROTOCOLAR. Reavaliar a tese antes de qualquer providencia.")
-    else:
-        print(f"\nRECOMENDACAO: {conduta}")
+    elif not desconhecidos:
+        print(f"\nRECOMENDACAO: {conduta}. Score nao autoriza protocolo nem tutela; aplicar os quatro portoes.")
 
     if lacunas:
         print("\nLACUNAS PRIORITARIAS")

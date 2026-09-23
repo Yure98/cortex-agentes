@@ -4,9 +4,9 @@
 
 | Item | Valor |
 |------|-------|
-| Salário Mínimo | R$ 1.518,00 |
-| Teto do INSS | R$ 8.157,41 |
-| Limite BPC/LOAS (1/4 SM per capita) | R$ 379,50 |
+| Salário Mínimo | R$ 1.621,00 |
+| Teto do INSS | R$ 8.475,55 |
+| Limite BPC/LOAS (1/4 SM per capita) | R$ 405,25 |
 | Data-marco da Reforma | 13/11/2019 |
 | Pontos 2026 — Mulher | 93 pontos |
 | Pontos 2026 — Homem | 103 pontos |
@@ -41,9 +41,10 @@ URL para consulta:
 > A skill pode consultar essa página automaticamente via navegador quando o usuário autorizar
 > (Bloco 6, pergunta 21 do interrogatório).
 
-O Fator Previdenciário é usado APENAS nas seguintes situações:
+O fator previdenciário depende da modalidade, sexo e acréscimos legais do tempo (Lei 8.213, art. 29, §9º). Conferir tábua IBGE efetiva na data-base. Hipóteses usuais:
 - Aposentadoria por Tempo de Contribuição com Direito Adquirido (pré-reforma)
 - Pedágio 50% (regra de transição)
+- PCD e demais hipóteses legais de aplicação somente quando favorável, mediante enquadramento específico
 
 ---
 
@@ -63,8 +64,8 @@ RMI = Média dos 80% MAIORES salários de contribuição desde jul/1994 × Fator
 ### b) Aposentadoria por Idade (regra antiga)
 
 **Requisito:**
-- Mulher: 60 anos + 15 anos de contribuição (carência)
-- Homem: 65 anos + 15 anos de contribuição (carência)
+- Mulher: 60 anos + 15 anos de contribuição, além da carência de 180 meses
+- Homem: 65 anos + 15 anos de contribuição, além da carência de 180 meses
 
 **Cálculo da RMI:**
 ```
@@ -120,12 +121,12 @@ Exemplo: Mulher com 30 anos de contribuição → 60% + 2% × 15 = 60% + 30% = 9
 
 ### c) Pedágio 50%
 
-**Elegibilidade:** Somente para segurados que, em 13/11/2019, faltavam até 2 anos para
+**Elegibilidade:** Somente para segurados que, em 13/11/2019, faltavam menos de 2 anos para
 completar o tempo de contribuição necessário (30 anos mulher / 35 anos homem).
 
 **Requisito:**
 - Tempo faltante em 13/11/2019 + 50% desse tempo faltante
-- Exemplo: Faltavam 2 anos → deve cumprir mais 1 ano de pedágio = 3 anos adicionais
+- Exemplo: faltava 1 ano → cumprir 1 ano + 6 meses de pedágio. Exatos 28F/33H em 13/11/2019 não atendem ao art. 17.
 - Sem idade mínima
 
 **Cálculo da RMI:**
@@ -155,7 +156,7 @@ RMI = Média de 100% dos salários × 100%
 | 20 anos | 76 pontos | 20 anos efetivos |
 | 15 anos | 66 pontos | 15 anos efetivos |
 
-**Cálculo da RMI:** Média de 100% dos salários (sem fator previdenciário)
+**Cálculo da RMI:** média de 100% dos salários × coeficiente do art. 26 da EC 103: 60% + 2 pontos por ano excedente a 15F/20H; na especial de 15 anos, excedente a 15. Sem fator previdenciário.
 
 ---
 
@@ -164,8 +165,8 @@ RMI = Média de 100% dos salários × 100%
 ### a) Aposentadoria por Idade
 
 **Requisito:**
-- Mulher: 62 anos + 15 anos de contribuição (carência)
-- Homem: 65 anos + 20 anos de contribuição (carência)
+- Mulher: 62 anos + 15 anos de contribuição, além da carência de 180 meses
+- Homem: 65 anos + 20 anos de contribuição para filiado após a reforma, além da carência de 180 meses; conferir transição para filiados anteriores
 
 **Cálculo da RMI:**
 ```
@@ -197,11 +198,7 @@ RMI = Média de 100% dos salários × (60% + 2% por ano excedente a 15F / 20H)
 - Homem: 60 anos + 15 anos de contribuição
 - Mulher: 55 anos + 15 anos de contribuição
 
-**Cálculo da RMI (ambas as modalidades):**
-```
-RMI = Média dos 80% maiores × (70% + 1% por ano de contribuição)
-```
-Sem Fator Previdenciário.
+**Coeficiente (LC 142, art. 8º):** tempo de contribuição = 100%; idade = 70% + 1% por grupo de 12 contribuições, até 100%. Fator previdenciário apenas se favorável (art. 9º, I). Na idade, comprovar 15 anos na condição de pessoa com deficiência. A média pós-EC 103 deve ser identificada por regime administrativo/tese judicial; Tema 389/TNU pendente, não apresentar média de 80% como entendimento uniforme.
 
 ---
 
@@ -240,7 +237,7 @@ Limitado à média dos últimos 12 salários de contribuição.
 
 **Cálculo — Doença Comum:**
 ```
-RMI = Média de 100% × (60% + 2% por ano excedente a 20 anos de contribuição)
+RMI = Média de 100% × (60% + 2% por ano excedente a 15 anos (mulher) ou 20 anos (homem))
 Mínimo garantido: 1 salário mínimo
 ```
 
@@ -258,9 +255,9 @@ RMI = Média de 100% × 100%
 **Requisitos:**
 - Idoso: 65 anos ou mais
 - Pessoa com Deficiência: deficiência de longo prazo (impedimentos por 2+ anos)
-- Renda per capita familiar: máximo 1/4 do salário mínimo (R$ 379,50 em 2026)
+- Renda per capita familiar: máximo 1/4 do salário mínimo (R$ 405,25 em 2026)
 
-**Valor:** 1 salário mínimo (R$ 1.518,00 em 2026)
+**Valor:** 1 salário mínimo (R$ 1.621,00 em 2026)
 
 **Observações:**
 - Não exige nenhum período de contribuição
@@ -292,7 +289,7 @@ RMI = Média de 100% × 100%
 
 **Correção monetária (INPC):**
 
-Quando o usuário autorizar a correção monetária (Bloco 6, pergunta 20):
+Para RMI definitiva, a atualização é obrigatória. Confirmar data-base DER/DIB e tabela oficial por competência; sem tabela, entregar apenas estimativa não validada:
 
 1. Identifique a competência (mês/ano) de cada salário de contribuição
 2. Aplique o fator de correção INPC acumulado da competência até o mês de referência
@@ -314,7 +311,7 @@ competência. Salários acima do teto são limitados ao teto.
 
 **Período de carência:**
 - Regra geral: 180 contribuições (15 anos)
-- Aposentadoria por Idade (definitiva — homem): 240 contribuições (20 anos)
+- Aposentadoria por idade: carência geral de 180 contribuições; não confundir com 20 anos de tempo exigidos do homem filiado após a reforma
 - Auxílio por incapacidade: 12 contribuições
 
 ---
@@ -367,8 +364,12 @@ competência. Salários acima do teto são limitados ao teto.
 
 Após cessar as contribuições, o segurado mantém a qualidade por:
 - **12 meses:** regra geral
-- **24 meses:** se já completou 120 contribuições (10 anos)
-- **36 meses:** se o desemprego for comprovado com registro formal
+- **24 meses:** mais de 120 contribuições sem perda intercalada, conforme art. 15, §1º
+- **Até 36 meses:** extensão por desemprego involuntário comprovado quando cabível, cumulada com o §1º; ausência de vínculos no CNIS não é prova suficiente. Facultativo: regra própria de seis meses, sem somar essas extensões automaticamente.
 
 Após o período de graça, perde a qualidade de segurado e perde a proteção previdenciária
 (exceto BPC/LOAS, que independe de contribuição).
+
+## Conferência determinística do pedágio de 50%
+
+Executar `.cortex/cortex.py pedagio50 entrada.json` com `tempo_reforma`, `tempo_atual` (anos já apurados, sem arredondamento para cruzar fronteira), `sexo` (`F`/`M`) e `carencia` em meses. Exatos 28F/33H não dão acesso. O utilitário confere somente requisitos numéricos do art. 17; não extrai CNIS nem valida prova ou filiação.

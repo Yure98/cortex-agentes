@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Tese — Aposentadoria por Tempo PCD + Reconhecimento de Tempo Especial
 
 > Fonte (PDF original): `35---APOSENTADORIA-POR-TEMPO-PCD--RECONHECIMENTO-DE-TEMPO-ESPECIAL.pdf` — pasta Downloads/pcd. Documento do acervo do curso Aposentadoria da PCD PRO (AJ&G).
@@ -311,7 +313,7 @@ AOS LIMITES LEGAIS com fundamento nos Códigos 1.1.6 do Anexo III do Decreto
 
                                           d) A consequente CONCESSÃO DO BENEFÍCIO DE
   APOSENTADORIA POR TEMPO DE CONTRIBUIÇAO DA PESSOA COM
-  DEFICIENCIA NB 42/224.123.390-5, desde a DER 27.05.2024, pagando ao autor todas as
+  DEFICIENCIA NB 42/[NB DO CASO — CONFERIR], desde a DER 27.05.2024, pagando ao autor todas as
   parcelas vencidas desde então, devidamente acrescidas de juros e correção monetária;
 
                                           e) Subsidiariamente, caso NÃO SEJA RECONHECIDOS

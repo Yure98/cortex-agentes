@@ -19,6 +19,7 @@ Valores de referencia de 2026 (confirmar antes de usar):
 """
 
 import argparse
+import math
 from datetime import date, timedelta
 
 SM_PADRAO = 1621.00
@@ -43,7 +44,11 @@ def fmt_moeda(v):
 
 def cmd_rmi(args):
     base = args.base
-    teto = args.teto or TETO_PADRAO
+    teto = args.teto
+    if teto is None:
+        raise ValueError("informe --teto da data-base, sem valor anual implicito")
+    if not all(math.isfinite(v) and v > 0 for v in (base, teto)):
+        raise ValueError("base e teto devem ser positivos e finitos")
 
     if base > teto:
         print(f"AVISO: salario de beneficio informado (R$ {base:.2f}) excede o teto do RGPS "
@@ -117,24 +122,21 @@ def cmd_cumulacao(args):
     else:
         print("RESULTADO: CUMULACAO NAO PERMITIDA.")
         print("Pelo menos uma das datas e posterior a 11/11/1997. O auxilio-acidente e extinto")
-        print("na data de inicio da aposentadoria (art. 86, par. 2o, Lei 9.528/97; art. 26, par. 3o,")
-        print("II, EC 103/2019).")
+        print("na data de inicio da aposentadoria (art. 86, par. 2o, Lei 8.213/91).")
 
 
 def cmd_prazos(args):
     ciencia = parse_data(args.ciencia)
     prazo_recurso = ciencia + timedelta(days=30)
-    prazo_especial = prazo_recurso + timedelta(days=30)
+
 
     print("PRAZOS RECURSAIS ADMINISTRATIVOS (CRPS)")
     print("-" * 48)
     print(f"Ciencia da decisao: {fmt_data(ciencia)}")
     print(f"Prazo final para Recurso Ordinario a Junta de Recursos "
           f"(30 dias, art. 305, par. 1o, Decreto 3.048/99): {fmt_data(prazo_recurso)}")
-    print(f"Se a Junta manter a negativa, prazo estimado para Recurso Especial a Camara de")
-    print(f"Julgamento (30 dias da ciencia da decisao da Junta): confirme a data de ciencia")
-    print(f"real dessa decisao; a data acima ({fmt_data(prazo_especial)}) e apenas ilustrativa,")
-    print(f"somando 30 + 30 dias a partir da ciencia original.")
+    print("Recurso especial: calcular somente apos informar a ciencia real da decisao da Junta.")
+    print("Data nominal: conferir feriados, expediente e regimento vigente antes de fixar termo final.")
     print()
     print("Sempre confirme a data de ciencia exata registrada no processo administrativo,")
     print("nao a data de emissao da decisao.")
@@ -165,7 +167,10 @@ def main():
     s.set_defaults(func=cmd_prazos)
 
     args = p.parse_args()
-    args.func(args)
+    try:
+        args.func(args)
+    except (ValueError, TypeError) as e:
+        p.error(str(e))
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+> MATERIAL HISTÓRICO DE APOIO: não copiar fatos, identificadores, valores, respostas sugeridas ou conclusões como se pertencessem ao caso atual. Conferir cada fonte e vigência. Usar o roteiro neutro de `../roteiros-atendimento.md`; nenhuma meta de pontuação autoriza conduzir respostas.
+
 # Curso Aposentadoria da PCD PRO (AJ&G) — Síntese Doutrinária
 
 > Fonte (PDF original): `Slides---PCD-PRO-TURMA-2.pdf` — 256 slides do treinamento presencial "Aposentadoria da Pessoa com Deficiência PRO — Turma 2" (Cursos Ana Julia e Gisele). PDF de imagem; síntese doutrinária extraída dos slides. Os exemplos práticos do deck (anamneses, laudos, despachos, minutas) estão desenvolvidos, em texto, nos demais documentos desta biblioteca.

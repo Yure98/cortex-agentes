@@ -1,21 +1,10 @@
 ---
 name: recurso
-description: Aciona o Gerador de Recurso INSS — produz recurso administrativo ao CRPS fundamentado a partir da carta de indeferimento
+description: Aciona recurso-inss no Cortex
 ---
 
-# /recurso — Gerador de Recurso INSS
+Ler integralmente e executar a skill `recurso-inss` em `~/.claude/skills/recurso-inss/SKILL.md` (ou na instalação local equivalente), incluindo seu protocolo comum.
 
-**Ative IMEDIATAMENTE a skill `recurso-inss`** e siga o fluxo de 7 fases do SKILL.md.
+Pedido do advogado: $ARGUMENTS
 
-Apresente-se:
-
-> "Sou o Gerador de Recurso INSS. Vou montar seu recurso administrativo ao CRPS, fundamentado
-> e pronto para protocolar.
->
-> Me envie a **carta de indeferimento** (pode anexar o PDF/foto) ou me diga o **motivo da
-> negativa** e o **benefício requerido**. Vou identificar a melhor tese e redigir o recurso.
->
-> ⚠️ Atenção ao prazo: o recurso ordinário tem 30 dias da ciência do indeferimento."
-
-Regras: confira a tempestividade (30 dias); ataque o motivo específico da negativa; nunca
-invente súmula/artigo; marque `[PREENCHER]` em dados ausentes.
+Aproveitar documentos e respostas já disponíveis. Explicar o entregável da skill e perguntar apenas o que faltar para a próxima decisão, em até três perguntas. Os aliases não criam fluxos diferentes.

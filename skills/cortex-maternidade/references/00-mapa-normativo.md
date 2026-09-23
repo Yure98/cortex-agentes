@@ -67,7 +67,7 @@ Se um fundamento não está aqui, marque `[PRECEDENTE A LOCALIZAR]` em vez de ci
 | art. 72, § 1º | Pagamento pela empresa, com compensação |
 | art. 73 | RMI das **demais seguradas**, pago diretamente pela Previdência |
 | art. 73, I | Doméstica: último salário de contribuição |
-| art. 73, II | Adoção/guarda: art. 72 ou 73 conforme a categoria |
+| art. 71-A | Adoção/guarda: arts. 72/73 conforme categoria; art. 73, II trata da segurada especial |
 | art. 73, III | CI, facultativa e **desempregada**: 1/12 da soma dos 12 últimos salários de contribuição, em período não superior a 15 meses |
 | art. **73-A** | **Prazo de 30 dias para concessão pelo INSS; descumprimento gera concessão provisória e automática** (incluído pela **Lei 15.415/2026**) |
 | art. 103 | Decadência decenal — só para **revisão**, não para concessão |

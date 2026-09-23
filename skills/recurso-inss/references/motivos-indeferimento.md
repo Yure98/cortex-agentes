@@ -36,7 +36,7 @@ recolhimentos de contribuinte individual/facultativo e complementações.
 
 **Fundamentos:**
 - Art. 25 e 26 da Lei 8.213/91 — carência por benefício
-- Art. 27 e 27-A — cômputo e recuperação de carência após perda da qualidade (regra atual: metade)
+- Art. 27 e 27-A — cômputo e recuperação de carência após perda da qualidade (conferir benefício e vigência; não aplicar metade de carência ao salário-maternidade após ADIs 2.110/2.111)
 - IN PRES/INSS 128/2022 — regras de cômputo
 
 **Pontos a atacar:**
@@ -59,8 +59,8 @@ particulares robustos, histórico clínico e nexo; requerer nova perícia se nec
 
 **Súmulas/teses:**
 - Súmula 47 da TNU — uma vez constatada a incapacidade parcial e as condições pessoais/sociais, pode-se reconhecer a incapacidade para fins de benefício
-- Súmula 77 da TNU — não é necessária incapacidade total e permanente para auxílio-doença
-- Súmula 78 da TNU — comprovada a impossibilidade de reabilitação, é devida a aposentadoria
+- Súmula 77/TNU: condições pessoais e sociais não precisam ser analisadas quando não se reconhece incapacidade para a atividade habitual.
+- Súmula 78/TNU: HIV exige avaliação de condições pessoais e sociais e estigmatização, nos limites do enunciado.
 
 **Provas:** laudos médicos particulares, exames, receituários, histórico de afastamentos,
 CAT (se acidentário).
@@ -100,7 +100,7 @@ exigências indevidas do INSS (ex: exigir EPI eficaz para ruído).
 **Súmulas/teses:**
 - Súmula 9 da TNU — uso de EPI não descaracteriza tempo especial por ruído
 - STF Tema 555 — EPI eficaz afasta a especialidade, EXCETO para ruído acima do limite
-- Súmula 68 da TNU — havendo exposição a ruído, é possível especialidade ainda com EPI
+- Súmula 68/TNU: laudo não contemporâneo pode comprovar atividade especial; não trata de ruído/EPI.
 
 **Provas:** PPP completo e assinado, LTCAT, laudos da empresa, histórico de função.
 
@@ -156,7 +156,7 @@ requisitos foram cumpridos, ainda que após o requerimento.
 
 **Fundamentos:**
 - STJ Tema 995 — possibilidade de reafirmação da DER para o momento do implemento dos requisitos
-- Art. 690 da IN 128/2022
+- [CONFERIR] dispositivo administrativo vigente para reafirmação da DER; não citar art. 690 como fundamento sem verificação.
 
 **Ação:** requerer a reafirmação da DER para a data correta, com pagamento desde então.
 

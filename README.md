@@ -110,3 +110,15 @@ Comece com `/raiox` para triagem, `/cnis` para apuração, `/decisor` para compa
 As nove skills compartilham dossiê versionado, registro de fontes e quatro portões de revisão. Dados ausentes continuam pendentes. Scripts não substituem enquadramento jurídico e podem recusar casos históricos ou incompletos. Uma revisão bloqueada entrega pendências, nunca uma peça marcada como concluída.
 
 Para manutenção: editar o núcleo em `core/`, executar `python3 scripts/sync_core.py` e `python3 -m unittest discover -s tests -v`. As cópias `.cortex` tornam cada skill autocontida; `python3 scripts/sync_core.py --check` detecta divergências. Dossiês reais ficam em diretório privado fora deste repositório.
+
+## Uma porta de entrada: `/prev`
+
+Depois de instalar esta versão, use `/prev` seguido do relato e do objetivo. O coordenador seleciona e executa a especialista adequada na mesma conversa; se precisar de mais de uma, organiza a sequência e reaproveita o dossiê. Os comandos individuais continuam disponíveis. O pacote passa a ter dez skills: um coordenador e nove especialistas.
+
+Exemplos:
+
+- `/prev Minha cliente teve a aposentadoria PCD negada. Quero preparar recurso. Seguem decisão e CNIS.`
+- `/prev Compare se compensa aposentar agora ou esperar dois anos. Tenho estas simulações...`
+- `/prev Dê uma olhada rápida neste CNIS e aponte as pendências.`
+
+Só `/prev`, sem texto, abre espaço para contar o caso. O coordenador não presume benefício ou fatos e não exige que você saiba qual agente escolher. Requer instalação completa das especialistas; não depende de subagentes para funcionar.

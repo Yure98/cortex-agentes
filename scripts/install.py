@@ -63,8 +63,12 @@ def install(dest):
         raise ValueError('destino simbólico não suportado')
     dest.mkdir(parents=True, exist_ok=True)
     paths = entries()
-    if len(list((ROOT / 'skills').glob('*/SKILL.md'))) != 9:
-        raise ValueError('pacote incompleto: esperadas nove skills')
+    if {p.parent.name for p in (ROOT / 'skills').glob('*/SKILL.md')} != {
+        'prev', 'aposentadoria-pcd', 'auxilio-acidente', 'calculos-previdenciarios',
+        'cortex-maternidade', 'decisor-aposentadoria', 'estagiario-peticoes',
+        'pensao-por-morte', 'raio-x-cnis', 'recurso-inss'
+    }:
+        raise ValueError('pacote incompleto: esperado coordenador prev e nove especialistas')
     for rel in paths:
         safe_target(dest, rel)
         if rel.parts[0] == 'skills' and not (ROOT / rel / '.cortex/protocolo.md').is_file():
@@ -105,7 +109,7 @@ def main():
             print('Versão anterior restaurada.')
         else:
             backup = install(a.dest)
-            print('Nove skills instaladas. Abra uma nova sessão do Claude Code e use /cnis, /pcd ou /peticionar.')
+            print('Coordenador /prev e nove especialistas instalados. Abra uma nova sessão do Claude Code e use /prev seguido do caso.')
             print('Backup das personalizações e versão anterior: ' + str(backup))
             print('Para restaurar: python3 scripts/install.py --dest "' + str(a.dest) + '" --restore "' + str(backup) + '"')
     except (ValueError, OSError) as e:

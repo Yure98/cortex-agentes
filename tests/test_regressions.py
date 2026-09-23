@@ -148,3 +148,13 @@ class AdditionalBoundaries(unittest.TestCase):
         self.assertEqual(core.ifbra({'medica':[100]*41,'social':[100]*41})['total_bruto'],8200)
         with self.assertRaises(ValueError):core.ifbra({'medica':[100]*41})
         with self.assertRaises(ValueError):core.ifbra({'medica':[100]*40,'social':[100]*41})
+
+class CoordinatorInstallTests(unittest.TestCase):
+    def test_prev_and_specialists_installed_together(self):
+        with tempfile.TemporaryDirectory() as temp:
+            dest=Path(temp)/'claude'
+            ins.install(dest)
+            self.assertTrue((dest/'commands/prev.md').is_file())
+            self.assertEqual(len(list((dest/'skills').glob('*/SKILL.md'))),10)
+            for name in ('prev','aposentadoria-pcd','recurso-inss','estagiario-peticoes'):
+                self.assertTrue((dest/'skills'/name/'.cortex/protocolo.md').is_file())

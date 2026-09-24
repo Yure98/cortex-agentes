@@ -1,10 +1,10 @@
-# Cortex 2.1.0 — Yure Digital
+# Cortex 2.1.1 — Yure Digital
 
 Pacote proprietário de IA previdenciária para Claude Code: **dez especialistas e o coordenador `/prev`**.
 
 ## Instalação e atualização
 
-Baixe `Cortex-2.1.0.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
+Baixe `Cortex-2.1.1.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
 
 - Verifica Python 3.10+ e orienta sobre pré-requisitos.
 - Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.1.
@@ -21,7 +21,7 @@ Dossiê com proveniência e continuidade entre skills, verificação de fontes, 
 
 ## Nova especialista em benefícios por incapacidade
 
-`/incapacidade` (alias `/auxiliodoenca`) trata auxílio por incapacidade temporária e aposentadoria por incapacidade permanente no RGPS: triagem por atividade e DII, qualidade/carência, nexo, perícia, reabilitação, Atestmed, cessação, precedentes oficiais, contestação e conexões com o auxílio-acidente e as demais skills. Pesquisa jurídica revisada em 24/09/2026, inclusive alteração de gestação de alto risco em julho e prorrogação excepcional do Atestmed em setembro de 2026, cujo inteiro teor oficial deve ser conferido para casos futuros. Script de simulação condicionado a médias já auditadas, sem apurar CNIS nem RMI final. A instalação preserva backup e atualiza também o coordenador `/prev`.
+`/incapacidade` (alias `/auxiliodoenca`) trata auxílio por incapacidade temporária e aposentadoria por incapacidade permanente no RGPS: triagem por atividade e DII, qualidade/carência, nexo, perícia, reabilitação, Atestmed, cessação, precedentes oficiais, contestação e conexões com o auxílio-acidente e as demais skills. Pesquisa jurídica revisada em 24/09/2026, inclusive alteração de gestação de alto risco em julho e prorrogação excepcional do Atestmed em setembro de 2026, cujo inteiro teor oficial deve ser conferido para casos futuros. Script de simulação condicionado a médias já auditadas, sem apurar CNIS nem RMI final. A instalação preserva backup e atualiza também o coordenador `/prev`. Correção 2.1.1: o limite legal documental geral é 30 dias e os 90 dias decorrem de ato excepcional com vigência definida; dispensa de reavaliação alcança determinadas hipóteses de auxílio temporário, com exigência de infectologista na perícia de segurado com Aids, conforme Lei 15.157/2025.
 
 ## Propriedade e limites
 

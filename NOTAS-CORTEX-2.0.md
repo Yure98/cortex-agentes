@@ -1,13 +1,13 @@
-# Cortex 2.1.1 — Yure Digital
+# Cortex 2.2.0 — Yure Digital
 
-Pacote proprietário de IA previdenciária para Claude Code: **dez especialistas e o coordenador `/prev`**.
+Pacote proprietário de IA previdenciária para Claude Code: **treze especialistas e o coordenador `/prev`**.
 
 ## Instalação e atualização
 
-Baixe `Cortex-2.1.1.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
+Baixe `Cortex-2.2.0.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
 
 - Verifica Python 3.10+ e orienta sobre pré-requisitos.
-- Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.1.
+- Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.2.
 - Preserva backup e restaura a instalação anterior se houver falha durante substituição.
 - Não remove skills de terceiros. Personalizações dentro das pastas Cortex ficam no backup.
 - Inclui a licença Yure Digital em cada skill instalada.
@@ -18,6 +18,14 @@ Destino padrão: `.claude` do usuário atual. Para instalações por projeto ou 
 ## Melhorias
 
 Dossiê com proveniência e continuidade entre skills, verificação de fontes, bloqueios de revisão, entrevista progressiva, cálculos com validação de entradas e parâmetros temporais, entrevista PCD neutra e rotas especializadas. O coordenador escolhe e executa a sequência necessária sem exigir conhecimento dos comandos individuais.
+
+## Três novas especialistas — 24/09/2026
+
+- `/bpc`: pessoa idosa e com deficiência, grupo familiar, CadÚnico, renda, avaliação biopsicossocial e revisão, com calculadora aritmética que recusa classificação sem fonte. Inclui Portaria MDS/INSS 34/2025 e acordo de julho de 2026 sobre família unipessoal. [Portaria oficial](https://www.gov.br/inss/pt-br/centrais-de-conteudo/legislacao/portarias-conjuntas/2025/ptcj34mds-inss.pdf), [acordo publicado pelo MDS](https://www.gov.br/mds/pt-br/noticias/acordo-judicial-permite-mudancas-nos-procedimentos-do-cadastro-unico-para-bpc-e-programa-bolsa-familia-para-familias-de-uma-so-pessoa).
+- `/especial`: prova PPP/LTCAT, ruído, EPI, direito adquirido e transição, com checagem obrigatória da ADI 6309: STF afastou idade mínima do art. 19 §1º I da EC 103, preservando vedação de conversão pós-reforma e novos critérios de cálculo; página do INSS ainda lista a idade e exige cautela operacional. [Resumo oficial MPS, 26/06/2026](https://www.gov.br/previdencia/pt-br/assuntos/rpps/julgamentos/adi-6309-idade-minima-para-aposentadoria-especial-no-rgps-conversao-de-tempo-e-calculo-dos-proventos); [página INSS](https://www.gov.br/inss/pt-br/direitos-e-deveres/aposentadorias/aposentadoria-especial).
+- `/rural`: categorias, autodeclaração, matriz de provas por período, aposentadoria rural e híbrida, Tema 1007/STJ e conexões com benefícios específicos. [INSS](https://www.gov.br/inss/pt-br/saiba-mais/rural/autodeclaracao-rural); [Tema 1007/STJ](https://processo.stj.jus.br/repetitivos/temas_repetitivos/pesquisa.jsp?cod_tema_final=1007&cod_tema_inicial=1007&novaConsulta=true&tipo_pesquisa=T).
+
+`/prev` identifica o benefício e chama a especialista correspondente. Nenhuma skill afirma direito, RMI, data ou precedente sem dados e fonte; revisão humana permanece obrigatória.
 
 ## Nova especialista em benefícios por incapacidade
 

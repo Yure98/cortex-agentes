@@ -1,0 +1,10 @@
+{
+  "competencia": "2026-09",
+  "salario_minimo": "1621.00",
+  "fonte_salario_minimo": "Tabela oficial INSS 2026; exemplo didático, confirmar competência",
+  "pessoas": [
+    {"id": "requerente", "grupo_legal": true, "fonte_grupo": "hipótese fictícia: requerente", "rendimentos": [{"valor": "0.00", "inclui": true, "fonte_classificacao": "hipótese fictícia: nenhum rendimento", "fonte_valor": "hipótese fictícia: renda zero"}]},
+    {"id": "conjuge", "grupo_legal": true, "fonte_grupo": "hipótese fictícia: cônjuge coabitante", "rendimentos": [{"valor": "800.00", "inclui": true, "fonte_classificacao": "hipótese fictícia: rendimento incluído", "fonte_valor": "hipótese fictícia: comprovante de remuneração"}]}
+  ],
+  "deducoes": []
+}

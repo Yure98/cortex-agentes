@@ -84,11 +84,11 @@ def _install(dest):
     dest.mkdir(parents=True, exist_ok=True)
     paths = entries()
     if {p.parent.name for p in (ROOT / 'skills').glob('*/SKILL.md')} != {
-        'prev', 'aposentadoria-pcd', 'auxilio-acidente', 'beneficios-incapacidade', 'calculos-previdenciarios',
+        'prev', 'aposentadoria-pcd', 'aposentadoria-especial', 'auxilio-acidente', 'beneficios-incapacidade', 'bpc-loas', 'calculos-previdenciarios',
         'cortex-maternidade', 'decisor-aposentadoria', 'estagiario-peticoes',
-        'pensao-por-morte', 'raio-x-cnis', 'recurso-inss'
+        'pensao-por-morte', 'raio-x-cnis', 'recurso-inss', 'segurado-especial-rural'
     }:
-        raise ValueError('pacote incompleto: esperado coordenador prev e dez especialistas')
+        raise ValueError('pacote incompleto: esperado coordenador prev e treze especialistas')
     for rel in paths:
         safe_target(dest, rel)
         if rel.parts[0] == 'skills' and not (ROOT / rel / '.cortex/protocolo.md').is_file():
@@ -161,7 +161,7 @@ def main():
             print('Versão anterior restaurada.')
         else:
             backup = install(a.dest)
-            print('Cortex ' + VERSION + ' instalado. Coordenador /prev e dez especialistas instalados. Abra uma nova sessão do Claude Code e use /prev seguido do caso.')
+            print('Cortex ' + VERSION + ' instalado. Coordenador /prev e treze especialistas instalados. Abra uma nova sessão do Claude Code e use /prev seguido do caso.')
             if shutil.which('claude') is None:
                 print('Claude Code nao foi localizado no PATH. Se ainda nao estiver instalado, consulte https://code.claude.com/docs/en/setup e entre na sua conta antes de usar /prev.')
             print('Backup das personalizações e versão anterior: ' + str(backup))

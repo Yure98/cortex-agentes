@@ -1,6 +1,6 @@
 ---
 name: prev
-description: Coordenador do Cortex para relatos de casos previdenciários. Usar quando o advogado digitar /prev, pedir para escolher o agente adequado ou apresentar um caso sem saber por onde começar. Identifica objetivo, benefício e etapa, seleciona entre dez skills especialistas (incluindo benefícios por incapacidade) e conduz a sequência necessária com um único dossiê. Não substituir comandos explícitos das especialistas nem ativar por toda menção genérica ao INSS.
+description: Coordenador do Cortex para relatos de casos previdenciários. Usar quando o advogado digitar /prev, pedir para escolher o agente adequado ou apresentar um caso sem saber por onde começar. Identifica objetivo, benefício e etapa, seleciona entre treze especialistas (inclusive BPC, aposentadoria especial e rural) e conduz a sequência necessária com um único dossiê. Não substituir comandos explícitos das especialistas nem ativar por toda menção genérica ao INSS.
 license: Proprietário — Yure Digital; compartilhamento somente com autorização expressa; ver .cortex/LICENSE
 ---
 
@@ -37,15 +37,19 @@ Se houver ambiguidade que impeça escolher a tarefa, fazer uma pergunta objetiva
 | Sequela consolidada e redução funcional, possível auxílio-acidente | `auxilio-acidente` | Distinguir natureza comum/ocupacional; não presumir benefício por qualquer acidente |
 | Óbito, dependentes e possível pensão por morte | `pensao-por-morte` | Recurso ou Estagiário conforme a via solicitada |
 | Deficiência, LC 142, DID, IF-BrA ou aposentadoria PCD | `aposentadoria-pcd` | Cálculos e Decisor apenas se necessários ao objetivo |
+| BPC/LOAS da pessoa idosa ou com deficiência, renda, CadÚnico, suspensão ou revisão assistencial | `bpc-loas` | Recurso/Estagiário quando houver indeferimento/peça; não confundir com incapacidade RGPS ou LC 142 |
+| Exposição a agentes nocivos, PPP, LTCAT ou aposentadoria especial por atividade nociva | `aposentadoria-especial` | Cálculos e Decisor para cenários apenas após conferir enquadramento e ADI 6309 |
+| Segurado especial rural, pescador artesanal, autodeclaração ou prova de período rural, aposentadoria rural/híbrida | `segurado-especial-rural` | Benefício específico (maternidade, incapacidade, pensão) após qualificar a categoria e períodos |
 | Contestar decisão administrativa do INSS/CRPS | `recurso-inss` | Consultar primeiro a especialista do benefício se o fundamento depender dela |
 | Redigir inicial, recurso judicial ou outra peça processual | `estagiario-peticoes` | Antes, especialista pertinente para enquadramento/prova; recurso administrativo pertence a Recurso |
 
 **Regras de desempate:**
 
 - Benefício e entregável são eixos diferentes. “Faça recurso da aposentadoria PCD negada” exige PCD para a questão material e Recurso para a peça administrativa. “Faça a inicial” leva ao Estagiário após a análise material.
-- “Cliente com deficiência recebe BPC” não significa aposentadoria PCD nem incapacidade laboral. Identificar benefício e objetivo. BPC não possui especialista própria neste pacote; incapacidade laboral sem sequela deve ir a `beneficios-incapacidade`. Afastamento por gestação de alto risco exige triagem de incapacidade; salário-maternidade é tratado por `cortex-maternidade`.
+- “Cliente com deficiência recebe BPC” não significa aposentadoria PCD nem incapacidade laboral: encaminhar BPC a `bpc-loas`; incapacidade laboral com qualidade de segurado a `beneficios-incapacidade`. Afastamento por gestação de alto risco exige triagem de incapacidade; salário-maternidade é tratado por `cortex-maternidade`.
+- “Segurado especial” é categoria rural; “aposentadoria especial” exige análise de agentes nocivos. Se o caso rural envolver exposição nociva, analisar cada questão em sequência. “PPP do médico” vai a `aposentadoria-especial`; “aposentadoria PCD de médico” vai a `aposentadoria-pcd`.
 - Profissão, diagnóstico, idade ou palavra solta não bastam para concluir benefício ou grau. Havendo várias possibilidades, apresentar hipóteses e investigar a questão decisiva.
-- Caso com vários benefícios: priorizar o objetivo solicitado e eventual prazo documentado; tratar os demais como questões conexas, sem iniciar nove entrevistas ou nove análises em paralelo.
+- Caso com vários benefícios: priorizar o objetivo solicitado e eventual prazo documentado; tratar os demais como questões conexas, sem iniciar entrevistas repetidas ou análises em paralelo.
 - Comando explícito da especialista durante a conversa altera o foco conforme o pedido do advogado. Não encaminhar de volta a `/prev` em ciclo.
 
 ## 3. Acionar de verdade
@@ -53,7 +57,7 @@ Se houver ambiguidade que impeça escolher a tarefa, fazer uma pergunta objetiva
 1. Informar em linguagem de trabalho uma linha sobre a abordagem: **“Vou analisar os requisitos da aposentadoria PCD e o motivo da negativa; depois preparo o recurso com base no que estiver comprovado.”** Não pedir que o advogado digite outro comando.
 2. Localizar a pasta da especialista ao lado da pasta `prev`, no mesmo diretório `skills`. Ler integralmente seu `SKILL.md` e as referências exigidas para a tarefa antes de executar. Resolver caminhos relativos à especialista, nunca ao diretório de trabalho por suposição.
 3. Executar o fluxo da especialista na própria conversa. Se houver ferramenta nativa de invocação de skills, pode usá-la; caso contrário, a leitura e execução das instruções constitui o encaminhamento. Não afirmar que iniciou agente/ferramenta que não foi realmente executado. Subagentes são opcionais, não pré-requisito.
-4. Se a skill estiver ausente ou não puder ser lida, informar qual está indisponível e entregar apenas a triagem possível. Não simular a execução nem inventar seu conteúdo. A instalação completa do Cortex inclui o coordenador e dez especialistas.
+4. Se a skill estiver ausente ou não puder ser lida, informar qual está indisponível e entregar apenas a triagem possível. Não simular a execução nem inventar seu conteúdo. A instalação completa do Cortex inclui o coordenador e treze especialistas.
 5. Passar objetivo, revisão atual do dossiê, documentos pertinentes, fatos com estado, fontes, cálculos e pendências. Registrar internamente a sequência escolhida no histórico. A especialista não deve repetir sua abertura/entrevista quando os dados já existirem.
 6. Ao receber o resultado, reconciliar divergências e atualizar o mesmo dossiê. Somente então iniciar eventual próxima especialista. Não considerar uma resposta anterior do modelo como prova ou fonte primária.
 

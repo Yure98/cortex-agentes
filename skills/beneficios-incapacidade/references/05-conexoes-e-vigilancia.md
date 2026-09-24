@@ -10,7 +10,7 @@ O dossiê [.cortex/dossie.exemplo.json](../.cortex/dossie.exemplo.json) mantém 
 | CNIS e contribuição incongruentes | `raio-x-cnis` / `calculos-previdenciarios` | Qualidade na DII e SB apurado com competências corretas |
 | Recurso da negativa administrativa | `recurso-inss` | Motivo exato, ciência, prazo e prova analisada |
 | Ação judicial, impugnação pericial ou inicial | `estagiario-peticoes` | Quesitos, tese, competência, interesse e revisão da minuta |
-| Ausência de qualidade e possível BPC | **sem especialista de BPC** | Encaminhar investigação separada, sem apresentar BPC como seguro por incapacidade |
+| Ausência de qualidade e possível BPC | `bpc-loas` | Investigar renda, grupo familiar, CadÚnico e deficiência/idade; BPC não depende de qualidade de segurado |
 
 ## Rotina antes de afirmar regra decisiva
 

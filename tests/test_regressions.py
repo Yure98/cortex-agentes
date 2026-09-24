@@ -24,6 +24,7 @@ ins = module('scripts/install.py', 'installer')
 pen = module('skills/pensao-por-morte/scripts/score_prontidao.py', 'scorepen')
 acc = module('skills/auxilio-acidente/scripts/score_prontidao.py', 'scoreacc')
 inc = module('skills/beneficios-incapacidade/scripts/cenarios.py', 'incapacidade')
+bpc = module('skills/bpc-loas/scripts/renda.py', 'bpc_renda')
 
 class CoreTests(unittest.TestCase):
     def test_pcd_coefficients(self):
@@ -156,9 +157,11 @@ class CoordinatorInstallTests(unittest.TestCase):
             dest=Path(temp)/'claude'
             ins.install(dest)
             self.assertTrue((dest/'commands/prev.md').is_file())
-            self.assertEqual(len(list((dest/'skills').glob('*/SKILL.md'))),11)
+            self.assertEqual(len(list((dest/'skills').glob('*/SKILL.md'))),14)
             self.assertTrue((dest/'commands/incapacidade.md').is_file())
-            for name in ('prev','aposentadoria-pcd','recurso-inss','estagiario-peticoes','beneficios-incapacidade'):
+            for name in ('bpc','especial','rural'):
+                self.assertTrue((dest/'commands'/f'{name}.md').is_file())
+            for name in ('prev','aposentadoria-pcd','recurso-inss','estagiario-peticoes','beneficios-incapacidade','bpc-loas','aposentadoria-especial','segurado-especial-rural'):
                 self.assertTrue((dest/'skills'/name/'.cortex/protocolo.md').is_file())
 
 class IncapacidadeTests(unittest.TestCase):
@@ -192,6 +195,39 @@ class IncapacidadeTests(unittest.TestCase):
         r=subprocess.run([sys.executable,str(ROOT/'skills/beneficios-incapacidade/scripts/cenarios.py'),'--exemplo'],capture_output=True,text=True)
         self.assertEqual(r.returncode,0,r.stderr)
         self.assertEqual(json.loads(r.stdout)['limites_e_direito'].split(':')[0],'pendentes')
+
+class BpcRendaTests(unittest.TestCase):
+    def exemplo(self):
+        return json.loads((ROOT/'skills/bpc-loas/assets/caso-ficticio.json').read_text(encoding='utf-8'))
+    def test_fronteira_por_competencia_e_grupo_legal(self):
+        d=self.exemplo()
+        d['pessoas'][1]['rendimentos'][0]['valor']='810.50'
+        d['pessoas'].append({'id':'visitante','grupo_legal':False,'fonte_grupo':'não integra grupo, exemplo fictício',
+            'rendimentos':[{'valor':'10000.00','inclui':True,'fonte_classificacao':'renda contabilizável se membro',
+                            'fonte_valor':'exemplo fictício'}]})
+        r=bpc.calcular(d)
+        self.assertEqual(r['renda_per_capita'],'405.25')
+        self.assertEqual(r['comparacao_puramente_aritmetica'],'ate_1_4')
+        d['pessoas'][1]['rendimentos'][0]['valor']='810.51'
+        self.assertEqual(bpc.calcular(d)['comparacao_puramente_aritmetica'],'acima_1_4')
+    def test_exclusao_e_deducao_exigem_fonte(self):
+        d=self.exemplo();item=d['pessoas'][1]['rendimentos'][0]
+        item['inclui']=False
+        self.assertEqual(bpc.calcular(d)['renda_bruta_incluida'],'0.00')
+        del item['fonte_classificacao']
+        with self.assertRaises(ValueError):bpc.calcular(d)
+        d=self.exemplo();d['deducoes']=[{'valor':'100.00','fonte_classificacao':'hipótese fictícia validada pelo advogado',
+                                           'fonte_valor':'comprovante fictício'}]
+        self.assertEqual(bpc.calcular(d)['renda_per_capita'],'350.00')
+        d['deducoes'][0]['valor']='801.00'
+        with self.assertRaises(ValueError):bpc.calcular(d)
+    def test_entrada_incompleta_bloqueia(self):
+        d=self.exemplo();d['pessoas'][0]['grupo_legal']=None
+        with self.assertRaises(ValueError):bpc.calcular(d)
+        d=self.exemplo();d['pessoas'][0]['rendimentos'][0]['valor']=float('nan')
+        with self.assertRaises(ValueError):bpc.calcular(d)
+        d=self.exemplo();d['pessoas'][1]['rendimentos']=[]
+        with self.assertRaises(ValueError):bpc.calcular(d)
 
 class UpdatePackageTests(unittest.TestCase):
     def test_obsolete_cortex_files_removed_and_license_installed(self):

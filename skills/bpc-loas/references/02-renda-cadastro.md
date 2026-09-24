@@ -1,0 +1,15 @@
+# Prova de renda, grupo familiar e CadÚnico
+
+## Matriz por pessoa e competência
+
+Para cada pessoa: identificador pseudônimo; relação com requerente; mora sob o mesmo teto?; integra **grupo legal**?; fonte documental da relação e residência; fonte, valor, competência e duração de cada rendimento; eventuais rubricas excluídas pela norma vigente e comprovante de enquadramento. Agrupar pelo conceito do art. 20 §1º da [LOAS](https://www.planalto.gov.br/ccivil_03/leis/l8742compilado.htm) e arts. 7º e seguintes da [Portaria MDS/INSS 34/2025](https://www.gov.br/inss/pt-br/centrais-de-conteudo/legislacao/portarias-conjuntas/2025/ptcj34mds-inss.pdf); coabitação ou cadastro sozinho não bastam. Verificar diferenças entre CadÚnico, CNIS, extratos e processo administrativo sem resolver conflito por palpite.
+
+Excluir renda apenas após identificar base normativa aplicável (ex.: benefício mínimo de outro idoso/PCD do grupo legal nas condições previstas, aprendizagem ou estágio quando cabível). Não presumir que toda pensão, Bolsa Família, benefício temporário ou renda informal seja desconsiderada. Gastos contínuos comprovados com saúde exigem teste documental e critérios legais/administrativos; consultar arts. 20-B da LOAS e dispositivos específicos da Portaria antes de abater. A notícia do [MDS sobre gastos e variação de renda, 14/10/2025](https://www.gov.br/mds/pt-br/noticias-e-conteudos/desenvolvimento-social/noticias-desenvolvimento-social/nova-regra-do-bpc-garante-protecao-a-quem-tiver-variacao-de-renda) é orientação, não fundamento único.
+
+Renda por pessoa e parâmetro de um quarto do salário mínimo são **apenas um teste administrativo**, não prova única de vulnerabilidade ou deferimento. Conferir hipótese de ampliação do critério e a redação em vigor. Não confundir renda na DER, na revisão e renda atual. Havendo valor inconsistente ou competência ausente, declarar `[CONFERIR]` e não executar cenário definitivo.
+
+## Calculadora aritmética delimitada
+
+`scripts/renda.py` recebe JSON com `salario_minimo`, `fonte_salario_minimo`, `competencia`, `pessoas` (cada uma `id`, `grupo_legal` booleano **já validado**, `fonte_grupo`, `rendimentos` com `valor`, `inclui` booleano **já validado**, `fonte_classificacao` e `fonte_valor`). Para deduções juridicamente validadas, campo `deducoes` (`valor`, `fonte_classificacao`, `fonte_valor`). Todas as pessoas precisam de `grupo_legal` decidido; ao menos uma integrante. Valores em reais com decimal **como string**, sem zeros inventados; fornecer renda zero explícita documentada por pessoa quando confirmada. Script rejeita falta de fonte, negativos, dados flutuantes, classificação incerta e dedução que excede a renda total; arredonda centavos somente na saída e rotula o resultado como simulação aritmética. Não automatiza limiar alternativo, vulnerabilidade ou direito.
+
+Exemplo puramente fictício: [assets/caso-ficticio.json](../assets/caso-ficticio.json). Executar `python3 scripts/renda.py --arquivo assets/caso-ficticio.json` a partir da pasta da skill. Na peça, incluir memória por item, fonte, norma e competência; não exportar JSON com identificação pessoal a pastas públicas.

@@ -1,12 +1,12 @@
-# Protocolo Cortex — versão 1, revisão técnica 23/09/2026
+# Protocolo Cortex — versão 1, revisão técnica 24/09/2026
 
-Este protocolo é obrigatório nas nove skills. Em conflito com um fluxo antigo, prevalecem os bloqueios abaixo. A revisão técnica não significa confirmação integral de toda a legislação até esta data.
+Este protocolo é obrigatório em todas as skills do pacote. Em conflito com um fluxo antigo, prevalecem os bloqueios abaixo. A revisão técnica não significa confirmação integral de toda a legislação até esta data.
 
 ## Abertura e roteamento
 
 Começar pelo objetivo do advogado e pelos documentos já fornecidos. Entregar um primeiro Painel do Caso com o que já se sabe; perguntar no máximo três lacunas prioritárias por rodada. Não repetir perguntas respondidas, nem executar entrevista completa para uma dúvida pontual. Inferir somente a intenção da tarefa: nunca inferir fatos jurídicos, datas, filiação, renda ou prova ausente.
 
-Respeitar o comando explícito. Sem comando: triagem rápida de extrato → Raio-X; apuração de tempo/RMI → Cálculos; comparação entre cenários já calculados → Decisor; deficiência/LC 142 → PCD; negativa administrativa → Recurso; redação de peça → Estagiário, consultando a skill do benefício. Maternidade, pensão e auxílio-acidente são especialistas no respectivo benefício. Palavra genérica “aposentadoria” não basta para ativar três fluxos: perguntar se deseja apuração, comparação ou análise PCD quando o contexto não resolver.
+Respeitar o comando explícito. Sem comando: triagem rápida de extrato → Raio-X; apuração de tempo/RMI → Cálculos; comparação entre cenários já calculados → Decisor; deficiência/LC 142 → PCD; incapacidade laboral/afastamento/perícia → Benefícios por Incapacidade; sequela consolidada com redução funcional → Auxílio-Acidente; negativa administrativa → Recurso, consultando a especialista material; redação de peça → Estagiário, consultando a skill do benefício. Maternidade e pensão são especialistas nos respectivos benefícios. Palavra genérica “aposentadoria” não basta para ativar múltiplos fluxos: perguntar se deseja apuração, comparação, incapacidade ou análise PCD quando o contexto não resolver.
 
 ## Dossiê do caso e continuidade
 

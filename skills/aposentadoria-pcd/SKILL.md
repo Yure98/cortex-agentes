@@ -32,6 +32,8 @@ PCD. Avalia-se o **desempenho REAL no ambiente habitual** (o que a pessoa faz no
 não o que conseguiria em situação ideal. **Grau menor exige mais tempo de contribuição** — por
 isso a definição do grau, com prova funcional, é o coração da estratégia.
 
+Se o objetivo for afastamento, perícia médica por incapacidade, auxílio temporário ou aposentadoria por incapacidade permanente, consultar `beneficios-incapacidade` sem inferir deficiência nem grau por diagnóstico. Comparação entre vias exige testar cada hipótese em separado.
+
 Faixas: **Grave ≤ 5.739 · Moderado 5.740–6.354 · Leve 6.355–7.584 · Insuficiente ≥ 7.585.**
 Tempo (H/M): Grave 25/20 · Moderado 29/24 · Leve 33/28. Idade: H 60 / M 55 + 15 anos como PCD.
 Cálculo: **100% do salário de benefício por tempo; por idade, 70% + 1% por grupo de 12 contribuições, limitado a 100% (LC 142, art. 8º)** (sem coeficiente 60%+2% da EC 103/19). Carência: 180.

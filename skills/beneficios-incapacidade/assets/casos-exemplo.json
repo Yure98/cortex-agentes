@@ -1,0 +1,10 @@
+{
+  "especie": "permanente",
+  "data_inicio": "2026-08-10",
+  "salario_beneficio": "4000.00",
+  "fonte_salario_beneficio": "exemplo ficticio: media ja auditada",
+  "competencia_base": "2026-08",
+  "sexo_regra": "F",
+  "anos_completos": 20,
+  "nexo_ocupacional_comprovado": false
+}

@@ -1,13 +1,13 @@
-# Cortex 2.0.1 — Yure Digital
+# Cortex 2.1.0 — Yure Digital
 
-Pacote proprietário de IA previdenciária para Claude Code: **nove especialistas atualizadas e o coordenador `/prev`**.
+Pacote proprietário de IA previdenciária para Claude Code: **dez especialistas e o coordenador `/prev`**.
 
 ## Instalação e atualização
 
-Baixe `Cortex-2.0.1.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
+Baixe `Cortex-2.1.0.zip`, extraia a pasta inteira e abra `INSTALAR-CORTEX-WINDOWS.cmd` no Windows. Mac/Linux: `bash install.sh`. O mesmo instalador serve para primeira instalação e atualização.
 
 - Verifica Python 3.10+ e orienta sobre pré-requisitos.
-- Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.0.
+- Identifica pastas e comandos oficiais existentes no destino e substitui integralmente pelo Cortex 2.1.
 - Preserva backup e restaura a instalação anterior se houver falha durante substituição.
 - Não remove skills de terceiros. Personalizações dentro das pastas Cortex ficam no backup.
 - Inclui a licença Yure Digital em cada skill instalada.
@@ -18,6 +18,10 @@ Destino padrão: `.claude` do usuário atual. Para instalações por projeto ou 
 ## Melhorias
 
 Dossiê com proveniência e continuidade entre skills, verificação de fontes, bloqueios de revisão, entrevista progressiva, cálculos com validação de entradas e parâmetros temporais, entrevista PCD neutra e rotas especializadas. O coordenador escolhe e executa a sequência necessária sem exigir conhecimento dos comandos individuais.
+
+## Nova especialista em benefícios por incapacidade
+
+`/incapacidade` (alias `/auxiliodoenca`) trata auxílio por incapacidade temporária e aposentadoria por incapacidade permanente no RGPS: triagem por atividade e DII, qualidade/carência, nexo, perícia, reabilitação, Atestmed, cessação, precedentes oficiais, contestação e conexões com o auxílio-acidente e as demais skills. Pesquisa jurídica revisada em 24/09/2026, inclusive alteração de gestação de alto risco em julho e prorrogação excepcional do Atestmed em setembro de 2026, cujo inteiro teor oficial deve ser conferido para casos futuros. Script de simulação condicionado a médias já auditadas, sem apurar CNIS nem RMI final. A instalação preserva backup e atualiza também o coordenador `/prev`.
 
 ## Propriedade e limites
 

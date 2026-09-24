@@ -23,6 +23,7 @@ mat = module('skills/cortex-maternidade/scripts/diagnostico.py', 'mater')
 ins = module('scripts/install.py', 'installer')
 pen = module('skills/pensao-por-morte/scripts/score_prontidao.py', 'scorepen')
 acc = module('skills/auxilio-acidente/scripts/score_prontidao.py', 'scoreacc')
+inc = module('skills/beneficios-incapacidade/scripts/cenarios.py', 'incapacidade')
 
 class CoreTests(unittest.TestCase):
     def test_pcd_coefficients(self):
@@ -155,9 +156,42 @@ class CoordinatorInstallTests(unittest.TestCase):
             dest=Path(temp)/'claude'
             ins.install(dest)
             self.assertTrue((dest/'commands/prev.md').is_file())
-            self.assertEqual(len(list((dest/'skills').glob('*/SKILL.md'))),10)
-            for name in ('prev','aposentadoria-pcd','recurso-inss','estagiario-peticoes'):
+            self.assertEqual(len(list((dest/'skills').glob('*/SKILL.md'))),11)
+            self.assertTrue((dest/'commands/incapacidade.md').is_file())
+            for name in ('prev','aposentadoria-pcd','recurso-inss','estagiario-peticoes','beneficios-incapacidade'):
                 self.assertTrue((dest/'skills'/name/'.cortex/protocolo.md').is_file())
+
+class IncapacidadeTests(unittest.TestCase):
+    def caso(self):
+        return json.loads((ROOT/'skills/beneficios-incapacidade/assets/casos-exemplo.json').read_text())
+    def test_aposentadoria_comum_20_anos_mulher(self):
+        r=inc.calcular(self.caso())
+        self.assertEqual(r['coeficiente'],'0.70')
+        self.assertEqual(r['base_teorica_antes_piso_teto'],'2800.00')
+    def test_acidente_comum_nao_gera_cem_porcento(self):
+        d=self.caso(); d['nexo_ocupacional_comprovado']=False
+        self.assertEqual(inc.calcular(d)['coeficiente'],'0.70')
+        d['nexo_ocupacional_comprovado']=True
+        self.assertEqual(inc.calcular(d)['coeficiente'],'1')
+    def test_auxilio_limitado_media_12(self):
+        d={k:v for k,v in self.caso().items() if k not in ('sexo_regra','anos_completos','nexo_ocupacional_comprovado')}
+        d.update(especie='temporaria',media_ultimos_ate_12='3000.00',fonte_media_12='media auditada ficticia',quantidade_salarios=12,regra_2015_aplicavel=True)
+        self.assertEqual(inc.calcular(d)['base_teorica_antes_piso_teto'],'3000.00')
+        d['media_ultimos_ate_12']='5000.00'
+        self.assertEqual(inc.calcular(d)['base_teorica_antes_piso_teto'],'3640.00')
+    def test_bloqueios_de_entradas(self):
+        d=self.caso(); d['nexo_ocupacional_comprovado']='false'
+        with self.assertRaises(ValueError):inc.calcular(d)
+        d=self.caso();d['data_inicio']='2018-01-01'
+        with self.assertRaises(ValueError):inc.calcular(d)
+        d=self.caso();d['salario_beneficio']='NaN'
+        with self.assertRaises(ValueError):inc.calcular(d)
+        d=self.caso();d['anos_completos']=20.5
+        with self.assertRaises(ValueError):inc.calcular(d)
+    def test_cli_example(self):
+        r=subprocess.run([sys.executable,str(ROOT/'skills/beneficios-incapacidade/scripts/cenarios.py'),'--exemplo'],capture_output=True,text=True)
+        self.assertEqual(r.returncode,0,r.stderr)
+        self.assertEqual(json.loads(r.stdout)['limites_e_direito'].split(':')[0],'pendentes')
 
 class UpdatePackageTests(unittest.TestCase):
     def test_obsolete_cortex_files_removed_and_license_installed(self):

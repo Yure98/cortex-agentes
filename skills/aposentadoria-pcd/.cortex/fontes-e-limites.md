@@ -1,6 +1,6 @@
 # Fontes do núcleo e limites de atualização
 
-Revisão técnica: 23/09/2026. Conferir redação/vigência aplicável ao evento em cada caso, inclusive alterações posteriores. Este registro não substitui o registro de fontes do caso.
+Revisão técnica: 24/09/2026. Conferir redação/vigência aplicável ao evento em cada caso, inclusive alterações posteriores. Este registro não substitui o registro de fontes do caso.
 
 | Fonte primária | Recorte empregado |
 |---|---|
@@ -12,6 +12,9 @@ Revisão técnica: 23/09/2026. Conferir redação/vigência aplicável ao evento
 | [Súmulas TNU — CJF](https://www.cjf.jus.br/phpdoc/virtus/listaSumulas.php) | Conferir texto integral de 68, 77 e 78; não usar ementas trocadas. |
 | [Tema 389/TNU](https://www.cjf.jus.br/cjf/corregedoria-da-justica-federal/turma-nacional-de-uniformizacao/temas-representativos/tema-389) | Média PCD pós-reforma: pendência de julgamento identificada na auditoria; consultar status antes de fundamentar. |
 | [RFB — Outros rendimentos](https://www.gov.br/receitafederal/pt-br/assuntos/meu-imposto-de-renda/preenchimento/manual-mir/rendimentos/outros-rendimentos) | Auxílio-acidente é listado entre rendimentos isentos; conferir rubrica e verba concreta, inclusive atrasados. |
+| [Lei 15.157, de 01/07/2025](https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2025/lei/l15157.htm) | Art. 43 §§5º–6º da Lei 8.213: dispensas de reavaliação da incapacidade permanente, com exceção expressa para suspeita fundamentada de fraude/erro. |
+| [INSS, auxílio temporário, atualização 20/08/2026](https://www.gov.br/inss/pt-br/direitos-e-deveres/beneficios-por-incapacidade/auxilio-por-incapacidade-temporaria) | Requisitos, isenção de carência com gestação de alto risco (Portaria Interministerial MPS/MS 15/2026), documentos Atestmed e limite temporário de 90 dias. |
+| [STF Tema 1300](https://www.stf.jus.br/arquivo/cms/noticiaNoticiaStf/anexo/Info_RE1469150FINAL.pdf), [STJ Tema 1157](https://processo.stj.jus.br/jurisprudencia/externo/informativo/?acao=pesquisarumaedicao&livre=%270889%27.cod.) e [STJ Tema 1124](https://www.stj.jus.br/sites/portalp/Paginas/Comunicacao/Noticias/2025/31122025-Repetitivo-define-criterios-para-interesse-de-agir-e-data-de-inicio-do-beneficio-em-acao-previdenciaria.aspx) | Coeficiente da aposentadoria por incapacidade permanente, revisão de benefício judicial e marco de prova/efeitos financeiros; conferir aderência e inteiro teor. |
 
 ## Não automatizar como regra confirmada
 
@@ -20,4 +23,5 @@ Revisão técnica: 23/09/2026. Conferir redação/vigência aplicável ao evento
 - Pensões anteriores a 18/06/2015, MP 664/2014, MP 905 e fronteira temporal do doméstico: analisar regime histórico fora do motor simplificado.
 - Conversão PCD, Fuzzy integral e média pós-reforma: exigir instrumento e tese aplicáveis; não reduzir pontuação por aproximação.
 - Indicadores CNIS sem legenda oficial e teses emergentes de auxílio-acidente do contribuinte individual: `[CONFERIR]`, sem preenchimento plausível.
+- [Portaria Conjunta MPS/INSS 43/2026 no DOU](https://www.in.gov.br/web/dou/-/portaria-conjunta-mps/inss-n-43-de-18-de-setembro-de-2026-733208414): portal oficial inacessível na consulta de 24/09/2026. Duas reproduções concordantes indicam prorrogação excepcional de 365 dias do limite ampliado de 90 dias do Atestmed; conferir versão certificada e termo final antes de automatizar prazo.
 - Modelos históricos da biblioteca PCD não são fonte de fatos do cliente nem de jurisprudência confirmada; não exportar identificadores de terceiros. Autorizações de redistribuição e remoção de dados do histórico Git exigem saneamento específico.

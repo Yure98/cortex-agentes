@@ -1,8 +1,8 @@
-# 🧠 Cortex 2.0 — Yure Digital
+# 🧠 Cortex 2.1 — Yure Digital
 
 Transforme o **Claude** numa equipe previdenciária completa. Agentes especializados
 que redigem petições, analisam CNIS, decidem a melhor aposentadoria, geram recursos ao INSS
-e cuidam de salário-maternidade e da aposentadoria da pessoa com deficiência, tudo com
+e cuidam de salário-maternidade, benefícios por incapacidade e aposentadoria da pessoa com deficiência, tudo com
 jurisprudência real e sem invenção.
 
 Ambiente-alvo: **Claude Code**. Compatibilidade com Cowork ainda não validada.
@@ -15,7 +15,7 @@ Ambiente-alvo: **Claude Code**. Compatibilidade com Cowork ainda não validada.
 
 1. Baixe o ZIP desta versão pelo botão **Code → Download ZIP** e **extraia tudo** antes de executar.
 2. No Windows, abra **INSTALAR-CORTEX-WINDOWS.cmd** com dois cliques. No Mac/Linux, execute `bash install.sh` na pasta extraída.
-3. O instalador verifica Python 3.10+, identifica a instalação anterior nos diretórios oficiais do Cortex e substitui as dez skills e os comandos pelos arquivos completos do Cortex 2.0. Não é preciso desinstalar a versão anterior nem copiar pastas manualmente.
+3. O instalador verifica Python 3.10+, identifica a instalação anterior no destino escolhido e instala ou substitui as onze skills e os comandos pelos arquivos do Cortex 2.1. Não é preciso desinstalar a versão anterior nem copiar pastas manualmente.
 4. Um backup preserva os arquivos substituídos, inclusive personalizações. Arquivos antigos dentro das pastas Cortex deixam de ficar ativos; skills de terceiros não são removidas.
 5. Ao terminar, abra uma nova sessão do Claude Code e digite `/prev`, seguido do caso. Se faltarem pré-requisitos, o instalador informa o próximo passo; não instala Python ou Claude silenciosamente.
 
@@ -45,7 +45,7 @@ bash install.sh
 
 ### 3. Reinicie o Claude Code e teste
 ```
-/cnis   /peticionar   /decisor   /recurso   /raio-x   /pcd   /maternidade   /pensaopormorte   /auxilioacidente
+/prev   /incapacidade   /auxiliodoenca   /cnis   /peticionar   /decisor   /recurso   /raio-x   /pcd   /maternidade   /pensaopormorte   /auxilioacidente
 ```
 
 Pronto. Os agentes estão instalados e prontos para usar. ✅
@@ -65,6 +65,7 @@ Pronto. Os agentes estão instalados e prontos para usar. ✅
 | **Cortex Maternidade** | `/maternidade` | Salário-maternidade de ponta a ponta: triagem, prova, requerimento, recurso ao CRPS e petição no JEF. |
 | **Pensão por Morte** | `/pensaopormorte` | Pensão por morte urbana e rural: entrevista, Índice de Prontidão, dependência, cálculo de cota e duração, DIB/DER, fase administrativa e recursal. |
 | **Auxílio-Acidente** | `/auxilioacidente` | Auxílio-acidente urbano e rural: nexo técnico (CAT, NTEP, trajeto, doença ocupacional), Índice de Prontidão Probatória, análise documental prévia, cálculo (50% do SB), cumulação, fase administrativa e recursal. |
+| **Benefícios por Incapacidade** | `/incapacidade` (`/auxiliodoenca`) | Auxílio por incapacidade temporária e aposentadoria por incapacidade permanente: triagem funcional, qualidade/carência, perícia, Atestmed, nexo, reabilitação, cessação, precedentes e simulação condicionada. |
 
 Cada agente também ativa **automaticamente** por contexto — basta mencionar o tema
 (ex: "analisa esse CNIS", "preciso recorrer desse indeferimento").
@@ -119,15 +120,15 @@ Requer Claude Code instalado e Python 3.10 ou superior disponível no terminal. 
 
 Após clonar, execute `bash install.sh` no Mac/Linux ou `powershell -ExecutionPolicy Bypass -File install.ps1` no Windows. O instalador guarda a versão anterior e personalizações em um backup, exibe o caminho e o comando de restauração. Não mistura automaticamente personalizações com a nova versão. Skills de terceiros permanecem intactas. Para testar em outra pasta: `python3 scripts/install.py --dest /caminho/de/teste`.
 
-Comece com `/raiox` para triagem, `/cnis` para apuração, `/decisor` para comparar cenários, `/pcd` para LC 142, `/maternidade`, `/auxilioacidente`, `/pensaopormorte`, `/recurso` ou `/peticionar`. Aliases antigos com acento continuam funcionando; todos encaminham para a mesma skill. Anexe o documento e diga o objetivo; não precisa preencher uma entrevista inteira antes do primeiro diagnóstico.
+Comece com `/prev` seguido do caso, ou `/raiox` para triagem, `/cnis` para apuração, `/decisor` para comparar cenários, `/pcd` para LC 142, `/maternidade`, `/incapacidade` (também `/auxiliodoenca`), `/auxilioacidente`, `/pensaopormorte`, `/recurso` ou `/peticionar`. Aliases antigos com acento continuam funcionando; todos encaminham para a mesma skill. Anexe o documento e diga o objetivo; não precisa preencher uma entrevista inteira antes do primeiro diagnóstico.
 
-As nove skills compartilham dossiê versionado, registro de fontes e quatro portões de revisão. Dados ausentes continuam pendentes. Scripts não substituem enquadramento jurídico e podem recusar casos históricos ou incompletos. Uma revisão bloqueada entrega pendências, nunca uma peça marcada como concluída.
+As skills compartilham dossiê versionado, registro de fontes e quatro portões de revisão. Dados ausentes continuam pendentes. Scripts não substituem enquadramento jurídico e podem recusar casos históricos ou incompletos. Uma revisão bloqueada entrega pendências, nunca uma peça marcada como concluída.
 
 Para manutenção: editar o núcleo em `core/`, executar `python3 scripts/sync_core.py` e `python3 -m unittest discover -s tests -v`. As cópias `.cortex` tornam cada skill autocontida; `python3 scripts/sync_core.py --check` detecta divergências. Dossiês reais ficam em diretório privado fora deste repositório.
 
 ## Uma porta de entrada: `/prev`
 
-Depois de instalar esta versão, use `/prev` seguido do relato e do objetivo. O coordenador seleciona e executa a especialista adequada na mesma conversa; se precisar de mais de uma, organiza a sequência e reaproveita o dossiê. Os comandos individuais continuam disponíveis. O pacote passa a ter dez skills: um coordenador e nove especialistas.
+Depois de instalar esta versão, use `/prev` seguido do relato e do objetivo. O coordenador seleciona e executa a especialista adequada na mesma conversa; se precisar de mais de uma, organiza a sequência e reaproveita o dossiê. Os comandos individuais continuam disponíveis. O pacote passa a ter onze skills: um coordenador e dez especialistas. Para afastamento, perícia e benefícios por incapacidade, `/prev` encaminha a `beneficios-incapacidade`; sequelas consolidadas vão a `auxilio-acidente`.
 
 Exemplos:
 

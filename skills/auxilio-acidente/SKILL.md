@@ -16,6 +16,8 @@ Antes do fluxo abaixo, ler [.cortex/protocolo.md](.cortex/protocolo.md). Aplicar
 
 Separar natureza **comum (B36)** e **ocupacional (B94)**. Ambos exigem nexo entre evento e sequela; CAT/NTEP são pertinentes ao ramo ocupacional, não requisitos universais. No score, informar `natureza: comum` ou `ocupacional`; B1/B2 são inaplicáveis automaticamente no ramo comum, sem dispensar prova do evento, consolidação e redução funcional. Ação ocupacional: Justiça Estadual; natureza comum: conferir competência federal/JEF. Ler referências 09 e 13 antes de calcular tributos ou definir via.
 
+Se ainda há afastamento e incapacidade impeditiva para a atividade habitual, consultar `beneficios-incapacidade` antes de tratar a sequela como consolidada. Registrar DCB e data de consolidação separadas. Não duplicar respostas ou presumir conversão automática do auxílio temporário em auxílio-acidente.
+
 
 # Auxílio-Acidente (RGPS): da entrevista à fase recursal
 
